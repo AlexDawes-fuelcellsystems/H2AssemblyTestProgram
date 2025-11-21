@@ -4,14 +4,20 @@
     <Declaration><![CDATA[PROGRAM MAIN
 VAR
 	fbDeviceExample:FB_Solenoid;
-	EnableDevice,ResetDevice,NormallyOpen,CommandOpen,ActualEnergiseState :BOOL;
+	fbDeviceExample2:FB_Solenoid;
+	EnableDevice,ResetDevice,NormallyOpen,CommandOpen:BOOL;
+	EnableDevice2,ResetDevice2,NormallyOpen2,CommandOpen2 :BOOL;
 END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[fbDeviceExample(bDeviceEnable:=EnableDevice,
                 bDeviceReset:=ResetDevice,
                 bNormallyOpen:=NormallyOpen,
-                bCmdOpen:=CommandOpen);]]></ST>
+                bCmdOpen:=CommandOpen);
+fbDeviceExample2(bDeviceEnable:=EnableDevice2,
+                bDeviceReset:=ResetDevice2,
+                bNormallyOpen:=NormallyOpen2,
+                bCmdOpen:=CommandOpen2);				]]></ST>
     </Implementation>
   </POU>
 </TcPlcObject>

@@ -10,7 +10,6 @@ VAR
 	fbTrig:R_TRIG;
 END_VAR
 VAR_OUTPUT
-	bWarning      : BOOL;   // True if in warning condition
     bError        : BOOL;   // True if in error
     eDeviceState  : E_ErrorState; // Summary device state
 END_VAR
