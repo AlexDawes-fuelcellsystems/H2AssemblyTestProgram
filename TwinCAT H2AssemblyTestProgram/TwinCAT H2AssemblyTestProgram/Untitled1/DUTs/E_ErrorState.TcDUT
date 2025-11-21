@@ -6,7 +6,7 @@
 {attribute 'to_string'}
 TYPE E_ErrorState :
 (
-	Healthy := 0, Alarm:= 1, Disabled:=2
+	Healthy := 0, Warning:=1, Alarm:= 2, Disabled:=3
 );
 END_TYPE
 ]]></Declaration>

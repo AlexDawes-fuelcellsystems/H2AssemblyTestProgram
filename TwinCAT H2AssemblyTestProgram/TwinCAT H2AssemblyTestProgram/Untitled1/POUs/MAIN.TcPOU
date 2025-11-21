@@ -4,20 +4,16 @@
     <Declaration><![CDATA[PROGRAM MAIN
 VAR
 	fbDeviceExample:FB_Solenoid;
-	fbDeviceExample2:FB_Solenoid;
-	EnableDevice,ResetDevice,NormallyOpen,CommandOpen:BOOL;
-	EnableDevice2,ResetDevice2,NormallyOpen2,CommandOpen2 :BOOL;
+	fbDeviceExample2:FB_PressureTransducer;
+	EnableDevice2,ResetDevice2:BOOL;
+	pv1:INT;
+	t1:INT;
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[fbDeviceExample(bDeviceEnable:=EnableDevice,
-                bDeviceReset:=ResetDevice,
-                bNormallyOpen:=NormallyOpen,
-                bCmdOpen:=CommandOpen);
-fbDeviceExample2(bDeviceEnable:=EnableDevice2,
-                bDeviceReset:=ResetDevice2,
-                bNormallyOpen:=NormallyOpen2,
-                bCmdOpen:=CommandOpen2);				]]></ST>
+      <ST><![CDATA[fbDeviceExample2(bDeviceEnable:=EnableDevice2,
+                bDeviceReset:=ResetDevice2,nSensorPressure:=pv1
+                ,nSensorTemperature:=t1);				]]></ST>
     </Implementation>
   </POU>
 </TcPlcObject>

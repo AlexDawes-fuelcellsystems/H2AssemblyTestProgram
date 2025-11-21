@@ -3,14 +3,48 @@
   <POU Name="FB_PressureTransducer" Id="{4a351574-9fd7-451d-b391-c9b46c5a302c}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_PressureTransducer EXTENDS FB_Device
 VAR_INPUT
+	nSensorPressure: INT;
+	nSensorTemperature:INT;
 END_VAR
 VAR_OUTPUT
+	rEngPressure:REAL;
+	rEngTemperature:REAL;
 END_VAR
 VAR
+	rWarninglevel: REAL;
+	rErrorLevel: REAL;
+	rPressureRangeHigh:REAL:=1000;
+	rPressureRangeLow:REAL:=0;
+	rTemperatureRangeHigh:REAL:=125;
+	rTemperatureRangeLow:REAL:=-40;
+	nRawMax:INT:=32767;
+	nRawMin:INT:=0;
+	rNormPressure:REAL;
+	rNormTemperature:REAL;
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[]]></ST>
+      <ST><![CDATA[M_CyclicLogic();]]></ST>
     </Implementation>
+    <Method Name="M_CyclicLogic" Id="{1ef18ec2-39ea-4a7a-9812-158fef41a970}">
+      <Declaration><![CDATA[METHOD M_CyclicLogic
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[SUPER^.M_CyclicLogic();
+IF bDeviceEnable THEN
+   rNormPressure    := (INT_TO_REAL(nSensorPressure)    - INT_TO_REAL(nRawMin)) / (INT_TO_REAL(nRawMax) - INT_TO_REAL(nRawMin));
+   rNormTemperature := (INT_TO_REAL(nSensorTemperature) - INT_TO_REAL(nRawMin)) / (INT_TO_REAL(nRawMax) - INT_TO_REAL(nRawMin));
+   rEngPressure:=rPressureRangeLow + rNormPressure * (rPressureRangeHigh - rPressureRangeLow);
+   rEngTemperature:=rTemperatureRangeLow + rNormTemperature * (rTemperatureRangeHigh - rTemperatureRangeLow);
+END_IF
+IF (rEngPressure > 500) AND (rEngPressure < 525) THEN
+	bWarning:=TRUE;
+ELSIF rEngPressure > 525 THEN
+	bError:=TRUE;
+ELSE 
+	bWarning:=FALSE;
+END_IF]]></ST>
+      </Implementation>
+    </Method>
   </POU>
 </TcPlcObject>

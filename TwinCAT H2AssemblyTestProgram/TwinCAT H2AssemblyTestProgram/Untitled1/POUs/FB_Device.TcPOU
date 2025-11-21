@@ -11,6 +11,7 @@ VAR
 END_VAR
 VAR_OUTPUT
     bError        : BOOL;   // True if in error
+	bWarning :BOOL; //True if warning applicable
     eDeviceState  : E_ErrorState; // Summary device state
 END_VAR
 
@@ -21,8 +22,6 @@ END_VAR
     <Method Name="M_CyclicLogic" Id="{4fdbe872-4aea-40f3-b2d6-233db8f39603}">
       <Declaration><![CDATA[METHOD PUBLIC M_CyclicLogic 
 VAR
-	bLocalError:BOOL;
-	bLocalWarning: BOOL;
 	bResetCmd:BOOL;
 END_VAR
 ]]></Declaration>
@@ -40,6 +39,8 @@ IF NOT bDeviceEnable THEN
 ELSE
 	IF bError THEN
 		eDeviceState:=E_ErrorState.Alarm;
+	ELSIF bWarning THEN
+        eDeviceState:=E_ErrorState.Warning;	
 	ELSE 
 		eDeviceState:=E_ErrorState.Healthy;
 	END_IF
