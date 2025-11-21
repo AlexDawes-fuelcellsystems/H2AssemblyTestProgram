@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <DUT Name="E_ErrorState" Id="{61fc1aa6-90b7-4efb-86f7-b3f659ed9d56}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+{attribute 'strict'}
+{attribute 'to_string'}
+TYPE E_ErrorState :
+(
+	Healthy := 0, Alarm:= 1, Disabled:=2
+);
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

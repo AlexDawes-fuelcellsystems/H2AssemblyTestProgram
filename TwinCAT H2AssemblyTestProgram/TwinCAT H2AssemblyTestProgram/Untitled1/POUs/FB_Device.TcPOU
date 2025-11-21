@@ -3,14 +3,49 @@
   <POU Name="FB_Device" Id="{1bde026b-6494-4364-8556-c40b3b37b68a}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK PUBLIC FB_Device
 VAR_INPUT
-END_VAR
-VAR_OUTPUT
+	bDeviceEnable:BOOL; //Make the device Active
+	bDeviceReset:BOOL;//Reset Error state
 END_VAR
 VAR
+	fbTrig:R_TRIG;
 END_VAR
+VAR_OUTPUT
+	bWarning      : BOOL;   // True if in warning condition
+    bError        : BOOL;   // True if in error
+    eDeviceState  : E_ErrorState; // Summary device state
+END_VAR
+
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[]]></ST>
+      <ST><![CDATA[M_CyclicLogic();]]></ST>
     </Implementation>
+    <Method Name="M_CyclicLogic" Id="{4fdbe872-4aea-40f3-b2d6-233db8f39603}">
+      <Declaration><![CDATA[METHOD PUBLIC M_CyclicLogic 
+VAR
+	bLocalError:BOOL;
+	bLocalWarning: BOOL;
+	bResetCmd:BOOL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[fbTrig(CLK:=bDeviceReset);
+bResetCmd:=fbTrig.Q;
+
+IF bResetCmd THEN
+	bError:=FALSE;
+	eDeviceState:=E_ErrorState.Healthy;
+END_IF
+
+IF NOT bDeviceEnable THEN
+	eDeviceState:=E_ErrorState.Disabled;
+ELSE
+	IF bError THEN
+		eDeviceState:=E_ErrorState.Alarm;
+	ELSE 
+		eDeviceState:=E_ErrorState.Healthy;
+	END_IF
+END_IF]]></ST>
+      </Implementation>
+    </Method>
   </POU>
 </TcPlcObject>

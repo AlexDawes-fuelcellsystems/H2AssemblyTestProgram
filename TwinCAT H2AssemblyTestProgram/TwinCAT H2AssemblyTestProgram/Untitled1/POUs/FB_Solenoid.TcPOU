@@ -3,14 +3,53 @@
   <POU Name="FB_Solenoid" Id="{a7e2e3b9-dfd6-4640-b79e-2b5bc5bc4dd9}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_Solenoid EXTENDS FB_Device
 VAR_INPUT
-END_VAR
-VAR_OUTPUT
+	bNormallyOpen:BOOL;//True if Valve is Normally Open
+	bCmdOpen:BOOL;// True if Valve should be opened
 END_VAR
 VAR
+	bTheoreticallyOpen:BOOL;
+	bTheoreticallyClosed:BOOL;
+END_VAR
+VAR_OUTPUT
+	bCoilEnergiseState:BOOL;//Signal sent to coil to energise
+	eSolenoidState: E_SolenoidState;//If coil is not energised in reality
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[]]></ST>
+      <ST><![CDATA[M_CyclicLogic();]]></ST>
     </Implementation>
+    <Method Name="M_CyclicLogic" Id="{e0f7a43f-bf45-4aad-b570-5a1a3b451270}">
+      <Declaration><![CDATA[METHOD PUBLIC M_CyclicLogic 
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[SUPER^.M_CyclicLogic();
+IF bDeviceEnable THEN
+	IF (bNormallyOpen AND NOT bCmdOpen) THEN
+		bCoilEnergiseState:=TRUE;
+		bTheoreticallyOpen:=FALSE;
+		bTheoreticallyClosed:=TRUE;
+	ELSIF (NOT bNormallyOpen AND bCmdOpen) THEN
+		bCoilEnergiseState:=TRUE;
+	    bTheoreticallyOpen:=TRUE;
+        bTheoreticallyClosed:=FALSE;
+	ELSE
+	    bCoilEnergiseState:=FALSE;
+		bTheoreticallyOpen:=bNormallyOpen;
+		bTheoreticallyClosed:=NOT bNormallyOpen;
+	END_IF
+	
+ELSE
+    	bCoilEnergiseState:=FALSE;	
+		bTheoreticallyOpen:=bNormallyOpen;
+		bTheoreticallyClosed:=NOT bNormallyOpen;
+END_IF
+IF bTheoreticallyOpen THEN
+	eSolenoidState:=E_SolenoidState.Open;
+ELSE
+	eSolenoidState:=E_SolenoidState.Closed;
+
+END_IF]]></ST>
+      </Implementation>
+    </Method>
   </POU>
 </TcPlcObject>
