@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <DUT Name="ST_AnalogPressureTemp" Id="{442ec741-0c87-4196-8cca-7d8334582bc9}">
+    <Declaration><![CDATA[TYPE ST_AnalogPressureTemp :
+STRUCT
+	rWarninglevel: REAL;
+	rErrorLevel: REAL;
+	rPressureMaxSP:REAL;
+	rPressureMinSP:REAL;
+	rTemperatureMaxSP:REAL;
+	rTemperatureMinSP:REAL;
+	nRawMax:INT;
+	nRawMin:INT;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

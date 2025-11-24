@@ -5,20 +5,13 @@
 VAR_INPUT
 	nSensorPressure: INT;
 	nSensorTemperature:INT;
+	st_AnalogPressureTempdata:ST_AnalogPressureTemp;
 END_VAR
 VAR_OUTPUT
 	rEngPressure:REAL;
 	rEngTemperature:REAL;
 END_VAR
 VAR
-	rWarninglevel: REAL;
-	rErrorLevel: REAL;
-	rPressureRangeHigh:REAL:=1000;
-	rPressureRangeLow:REAL:=0;
-	rTemperatureRangeHigh:REAL:=125;
-	rTemperatureRangeLow:REAL:=-40;
-	nRawMax:INT:=32767;
-	nRawMin:INT:=0;
 	rNormPressure:REAL;
 	rNormTemperature:REAL;
 END_VAR
@@ -27,15 +20,19 @@ END_VAR
       <ST><![CDATA[M_CyclicLogic();]]></ST>
     </Implementation>
     <Method Name="M_CyclicLogic" Id="{1ef18ec2-39ea-4a7a-9812-158fef41a970}">
-      <Declaration><![CDATA[METHOD M_CyclicLogic
+      <Declaration><![CDATA[METHOD M_CyclicLogic : HRESULT
+
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[SUPER^.M_CyclicLogic();
 IF bDeviceEnable THEN
-   rNormPressure    := (INT_TO_REAL(nSensorPressure)    - INT_TO_REAL(nRawMin)) / (INT_TO_REAL(nRawMax) - INT_TO_REAL(nRawMin));
-   rNormTemperature := (INT_TO_REAL(nSensorTemperature) - INT_TO_REAL(nRawMin)) / (INT_TO_REAL(nRawMax) - INT_TO_REAL(nRawMin));
-   rEngPressure:=rPressureRangeLow + rNormPressure * (rPressureRangeHigh - rPressureRangeLow);
-   rEngTemperature:=rTemperatureRangeLow + rNormTemperature * (rTemperatureRangeHigh - rTemperatureRangeLow);
+	//Normalise the analog inputs
+   rNormPressure    := (INT_TO_REAL(nSensorPressure)    - INT_TO_REAL(st_AnalogPressureTempdata.nRawMin)) / (INT_TO_REAL(st_AnalogPressureTempdata.nRawMax) - INT_TO_REAL(st_AnalogPressureTempdata.nRawMin));
+   rNormTemperature := (INT_TO_REAL(nSensorTemperature) - INT_TO_REAL(st_AnalogPressureTempdata.nRawMin)) / (INT_TO_REAL(st_AnalogPressureTempdata.nRawMax) - INT_TO_REAL(st_AnalogPressureTempdata.nRawMin));
+   
+   //Scale analog inputs to the Engineerinf process value
+   rEngPressure:=st_AnalogPressureTempdata.rPressureMinSP + rNormPressure * (st_AnalogPressureTempdata.rPressureMaxSP - st_AnalogPressureTempdata.rPressureMinSP);
+   rEngTemperature:=st_AnalogPressureTempdata.rTemperatureMinSP + rNormTemperature * (st_AnalogPressureTempdata.rTemperatureMaxSP - st_AnalogPressureTempdata.rTemperatureMinSP);
 END_IF
 IF (rEngPressure > 500) AND (rEngPressure < 525) THEN
 	bWarning:=TRUE;

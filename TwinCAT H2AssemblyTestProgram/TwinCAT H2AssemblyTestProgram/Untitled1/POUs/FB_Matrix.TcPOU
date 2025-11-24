@@ -28,7 +28,8 @@ END_FOR
 ]]></ST>
     </Implementation>
     <Method Name="M_CyclicLogic" Id="{f1b117f3-667e-4a24-a226-6ce2e5fb34e4}">
-      <Declaration><![CDATA[METHOD M_CyclicLogic
+      <Declaration><![CDATA[METHOD M_CyclicLogic: HRESULT
+
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[SUPER^.M_CyclicLogic();

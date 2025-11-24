@@ -15,35 +15,63 @@ VAR_OUTPUT
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[M_CyclicLogic();]]></ST>
+      <ST><![CDATA[IF bCmdOpen THEN
+	M_Open();
+ELSE
+    M_Close();
+END_IF]]></ST>
     </Implementation>
-    <Method Name="M_CyclicLogic" Id="{e0f7a43f-bf45-4aad-b570-5a1a3b451270}">
-      <Declaration><![CDATA[METHOD PUBLIC M_CyclicLogic 
+    <Method Name="M_CheckState" Id="{876197d4-1678-4755-bfce-9f51e76cf52b}">
+      <Declaration><![CDATA[METHOD M_CheckState : HRESULT
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF bTheoreticallyOpen THEN
+	eSolenoidState := E_SolenoidState.Open;
+ELSE
+	eSolenoidState := E_SolenoidState.Closed;
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_Close" Id="{9936ae59-63a8-4842-acb7-0972cbd832e2}">
+      <Declaration><![CDATA[METHOD PUBLIC M_Close : HRESULT
+
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[SUPER^.M_CyclicLogic();
 IF bDeviceEnable THEN
-	IF (bNormallyOpen AND NOT bCmdOpen) THEN
-		bCoilEnergiseState:=TRUE;
-		bTheoreticallyOpen:=FALSE;
-	ELSIF (NOT bNormallyOpen AND bCmdOpen) THEN
-		bCoilEnergiseState:=TRUE;
-	    bTheoreticallyOpen:=TRUE;
+	IF bNormallyOpen THEN
+		bCoilEnergiseState := TRUE;
+		bTheoreticallyOpen := FALSE;
 	ELSE
-	    bCoilEnergiseState:=FALSE;
-		bTheoreticallyOpen:=bNormallyOpen;
+		bCoilEnergiseState := FALSE;
+		bTheoreticallyOpen := bNormallyOpen;
 	END_IF
-	
 ELSE
-    	bCoilEnergiseState:=FALSE;	
-		bTheoreticallyOpen:=bNormallyOpen;
+	bCoilEnergiseState := FALSE;
+	bTheoreticallyOpen := bNormallyOpen;
 END_IF
-IF bTheoreticallyOpen THEN
-	eSolenoidState:=E_SolenoidState.Open;
-ELSE
-	eSolenoidState:=E_SolenoidState.Closed;
+M_CheckState();]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_Open" Id="{e0f7a43f-bf45-4aad-b570-5a1a3b451270}">
+      <Declaration><![CDATA[METHOD PUBLIC M_Open : HRESULT
 
-END_IF]]></ST>
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[SUPER^.M_CyclicLogic();
+IF bDeviceEnable THEN
+	IF NOT bNormallyOpen THEN
+		bCoilEnergiseState := TRUE;
+		bTheoreticallyOpen := TRUE;
+	ELSE
+		bCoilEnergiseState := FALSE;
+		bTheoreticallyOpen := bNormallyOpen;
+	END_IF
+ELSE
+	bCoilEnergiseState := FALSE;
+	bTheoreticallyOpen := bNormallyOpen;
+END_IF
+M_Checkstate();]]></ST>
       </Implementation>
     </Method>
   </POU>

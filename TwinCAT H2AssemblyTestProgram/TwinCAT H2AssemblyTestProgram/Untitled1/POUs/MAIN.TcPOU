@@ -3,26 +3,55 @@
   <POU Name="MAIN" Id="{606a3699-021a-464e-b575-9f2f01835131}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM MAIN
 VAR
-	fbDeviceExample:FB_Solenoid;
-	fbDeviceExample2:FB_PressureTransducer;
-	EnableDevice2,ResetDevice2:BOOL;
-	pv1:INT;
-	t1:INT;
-	
-	fbMatrixExample:FB_Matrix;
 	//Configure simple 2x2 matrix of valves
+	fbMatrixExample:FB_Matrix;
 	aMatrixConfig : ARRAY [1..2,1..2] OF ST_SolenoidConfig;
 	bMatrixEnable:BOOL;
 	bMatrixReset:BOOL;
+	
+	//Testing Pressure and Temperature Sensors
+	fbPressureTempSensorExample:FB_PressureTransducer;
+	bSensorEnable:BOOL;
+	bSensorReset:BOOL;
+	nPressure:INT;
+	nTemperature:INT;
+	
+	//Initialising the pressure and Temp sensor ranges and warnings
+	stAnalogCfg : ST_AnalogPressureTemp;
+	
+	//Initialising Boolean
+	bInitialise:BOOL:=TRUE;
+
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[fbDeviceExample2(bDeviceEnable:=EnableDevice2,
-                bDeviceReset:=ResetDevice2,nSensorPressure:=pv1
-                ,nSensorTemperature:=t1);		
+      <ST><![CDATA[IF bInitialise THEN
+	M_Initalize();
+	bInitialise:=FALSE;
+END_IF
 
+
+//Testing FB_Matrix
 fbMatrixExample(bDeviceEnable:=bMatrixEnable,bDeviceReset:=bMatrixReset,
-	            aConfig:=aMatrixConfig);]]></ST>
+	            aConfig:=aMatrixConfig);
+				
+fbPressureTempSensorExample(bDeviceEnable:=bSensorEnable,bDeviceReset:=bSensorReset,
+	                        nSensorPressure:=nPressure, nSensorTemperature:=nTemperature,st_AnalogPressureTempdata:=stAnalogCfg);]]></ST>
     </Implementation>
+    <Method Name="M_Initalize" Id="{c8c10e44-8587-4199-9743-e05feaa06a39}">
+      <Declaration><![CDATA[METHOD PUBLIC M_Initalize 
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[///solenoids[1].MInitalize(tag := 'PT/TT-350-A-II',  hdasfgjhsdag
+	stAnalogCfg.rWarninglevel:=500;
+	stAnalogCfg.rErrorLevel:=525;
+	stAnalogCfg.rPressureMinSP:=0;
+	stAnalogCfg.rPressureMaxSP:=1000;
+	stAnalogCfg.rTemperatureMinSP:=-40;
+	stAnalogCfg.rTemperatureMaxSP:=125;
+	stAnalogCfg.nRawMin:=0;
+	stAnalogCfg.nRawMax:=32767;]]></ST>
+      </Implementation>
+    </Method>
   </POU>
 </TcPlcObject>

@@ -6,45 +6,48 @@ VAR_INPUT
 	bDeviceEnable:BOOL; //Make the device Active
 	bDeviceReset:BOOL;//Reset Error state
 END_VAR
-VAR
-	fbTrig:R_TRIG;
-END_VAR
 VAR_OUTPUT
     bError        : BOOL;   // True if in error
 	bWarning :BOOL; //True if warning applicable
     eDeviceState  : E_ErrorState; // Summary device state
 END_VAR
-
-]]></Declaration>
-    <Implementation>
-      <ST><![CDATA[M_CyclicLogic();]]></ST>
-    </Implementation>
-    <Method Name="M_CyclicLogic" Id="{4fdbe872-4aea-40f3-b2d6-233db8f39603}">
-      <Declaration><![CDATA[METHOD PUBLIC M_CyclicLogic 
 VAR
-	bResetCmd:BOOL;
+	hr : HRESULT;
+	fbTrig:R_TRIG;
 END_VAR
 ]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[hr := M_CyclicLogic();]]></ST>
+    </Implementation>
+    <Method Name="M_CyclicLogic" Id="{4fdbe872-4aea-40f3-b2d6-233db8f39603}">
+      <Declaration><![CDATA[METHOD PUBLIC M_CyclicLogic : HRESULT
+]]></Declaration>
       <Implementation>
-        <ST><![CDATA[fbTrig(CLK:=bDeviceReset);
-bResetCmd:=fbTrig.Q;
+        <ST><![CDATA[//  Check enable state
+IF NOT bDeviceEnable THEN
+	eDeviceState:=E_ErrorState.Disabled;
+	M_CyclicLogic := S_Pending;
+	RETURN;
+END_IF
 
-IF bResetCmd THEN
+// Check reset 
+fbTrig(CLK:=bDeviceReset);
+IF fbTrig.Q THEN
 	bError:=FALSE;
+	bWarning:=FALSE;
 	eDeviceState:=E_ErrorState.Healthy;
 END_IF
 
-IF NOT bDeviceEnable THEN
-	eDeviceState:=E_ErrorState.Disabled;
-ELSE
-	IF bError THEN
-		eDeviceState:=E_ErrorState.Alarm;
-	ELSIF bWarning THEN
+// Handle state logic
+IF bError THEN
+	eDeviceState:=E_ErrorState.Alarm;
+ELSIF bWarning THEN
         eDeviceState:=E_ErrorState.Warning;	
-	ELSE 
+ELSE 
 		eDeviceState:=E_ErrorState.Healthy;
-	END_IF
-END_IF]]></ST>
+END_IF
+
+M_CyclicLogic := S_OK;]]></ST>
       </Implementation>
     </Method>
   </POU>
