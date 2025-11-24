@@ -8,12 +8,21 @@ VAR
 	EnableDevice2,ResetDevice2:BOOL;
 	pv1:INT;
 	t1:INT;
+	
+	fbMatrixExample:FB_Matrix;
+	//Configure simple 2x2 matrix of valves
+	aMatrixConfig : ARRAY [1..2,1..2] OF ST_SolenoidConfig;
+	bMatrixEnable:BOOL;
+	bMatrixReset:BOOL;
 END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[fbDeviceExample2(bDeviceEnable:=EnableDevice2,
                 bDeviceReset:=ResetDevice2,nSensorPressure:=pv1
-                ,nSensorTemperature:=t1);				]]></ST>
+                ,nSensorTemperature:=t1);		
+
+fbMatrixExample(bDeviceEnable:=bMatrixEnable,bDeviceReset:=bMatrixReset,
+	            aConfig:=aMatrixConfig);]]></ST>
     </Implementation>
   </POU>
 </TcPlcObject>

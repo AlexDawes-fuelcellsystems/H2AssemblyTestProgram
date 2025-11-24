@@ -1,16 +1,54 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
   <POU Name="FB_Matrix" Id="{2c7f537e-a85d-49b4-9066-1d7397aeaf2d}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK FB_Matrix EXTENDS FB_Solenoid
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_Matrix EXTENDS FB_Device
 VAR_INPUT
-END_VAR
-VAR_OUTPUT
+	aConfig:ARRAY[1..2,1..2] OF ST_SolenoidConfig;
 END_VAR
 VAR
+	aValves:ARRAY [1..2,1..2] OF FB_Solenoid;
+	iRows:INT;
+	iColumns:INT;
+	bOverallEnable:BOOL;
+	bValveResets:BOOL;
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[]]></ST>
+      <ST><![CDATA[bOverallEnable:=bDeviceEnable;
+bValveResets:=fbTrig.Q;
+M_CyclicLogic();
+FOR iRows := 1 TO 2 DO
+    FOR iColumns := 1 TO 2 DO
+        aValves[iRows, iColumns](bDeviceReset:=bValveResets);
+    END_FOR
+END_FOR
+
+
+
+]]></ST>
     </Implementation>
+    <Method Name="M_CyclicLogic" Id="{f1b117f3-667e-4a24-a226-6ce2e5fb34e4}">
+      <Declaration><![CDATA[METHOD M_CyclicLogic
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[SUPER^.M_CyclicLogic();
+ IF bDeviceEnable THEN
+   FOR iRows := 1 TO 2 DO
+       FOR iColumns := 1 TO 2 DO
+           aValves[iRows, iColumns](bDeviceEnable:=bOverallEnable,
+		   bNormallyOpen:=aConfig[iRows,iColumns].NormallyOpen,
+		   bCmdOpen:=aConfig[iRows,iColumns].bOpen);
+       END_FOR
+   END_FOR
+   
+ ELSE
+	 FOR iRows := 1 TO 2 DO
+       FOR iColumns := 1 TO 2 DO
+           aValves[iRows, iColumns](bDeviceEnable:=bOverallEnable);
+       END_FOR
+     END_FOR
+ END_IF]]></ST>
+      </Implementation>
+    </Method>
   </POU>
 </TcPlcObject>

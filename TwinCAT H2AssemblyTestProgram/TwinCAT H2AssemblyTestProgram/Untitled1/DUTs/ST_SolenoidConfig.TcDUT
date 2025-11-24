@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <DUT Name="ST_SolenoidConfig" Id="{54331237-0dc6-4dea-b13a-add341ff0e7a}">
+    <Declaration><![CDATA[TYPE ST_SolenoidConfig :
+STRUCT
+	NormallyOpen:BOOL; //True if valve to be configured as Normally open
+    bOpen:BOOL; //True if valve should be opened
+	
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>
