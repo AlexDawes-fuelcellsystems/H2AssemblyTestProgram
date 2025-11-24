@@ -18,6 +18,12 @@
     <LibraryReferences>{34be6aec-ab08-4455-bc8c-d00f604de014}</LibraryReferences>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="DUTs\E_OutletNumber.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\E_TankBundleNumber.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="DUTs\E_ErrorState.TcDUT">
       <SubType>Code</SubType>
     </Compile>
@@ -25,6 +31,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\ST_AnalogPressureTemp.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\ST_Path.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\ST_SolenoidConfig.TcDUT">

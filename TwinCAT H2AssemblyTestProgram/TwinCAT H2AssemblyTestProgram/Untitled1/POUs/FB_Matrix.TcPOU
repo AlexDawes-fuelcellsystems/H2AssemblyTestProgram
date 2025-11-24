@@ -4,6 +4,8 @@
     <Declaration><![CDATA[FUNCTION_BLOCK FB_Matrix EXTENDS FB_Device
 VAR_INPUT
 	aConfig:ARRAY[1..2,1..2] OF ST_SolenoidConfig;
+	st_path : ST_Path;
+	bSetCurrentPath:BOOL;
 END_VAR
 VAR
 	aValves:ARRAY [1..2,1..2] OF FB_Solenoid;
@@ -14,14 +16,10 @@ VAR
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[bOverallEnable:=bDeviceEnable;
-bValveResets:=fbTrig.Q;
+      <ST><![CDATA[M_EnableResetLogic();
 M_CyclicLogic();
-FOR iRows := 1 TO 2 DO
-    FOR iColumns := 1 TO 2 DO
-        aValves[iRows, iColumns](bDeviceReset:=bValveResets);
-    END_FOR
-END_FOR
+M_DispensePathing();
+
 
 
 
@@ -49,6 +47,37 @@ END_FOR
        END_FOR
      END_FOR
  END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_DispensePathing" Id="{1de2314d-8795-4c7a-99e8-ef133b9b0aae}">
+      <Declaration><![CDATA[METHOD M_DispensePathing : BOOL
+VAR
+	nRowToOpen: INT :=(st_path.startPath);
+	nColToOpen: INT :=(st_path.endPath);
+END_VAR
+
+VAR_INST
+	fbTrigger:R_TRIG;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[fbTrigger.CLK:=bSetCurrentPath;
+IF fbTrigger.Q THEN
+aConfig[nRowToOpen,nColToOpen].bOpen:=TRUE;
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_EnableResetLogic" Id="{7d457710-3a0c-4071-bb2d-81ff18c2698c}">
+      <Declaration><![CDATA[METHOD M_EnableResetLogic : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//Set up variables and logic to reset and enable valve FB's created by FB_Matrix
+bOverallEnable:=bDeviceEnable;
+bValveResets:=fbTrig.Q;
+FOR iRows := 1 TO 2 DO
+    FOR iColumns := 1 TO 2 DO
+        aValves[iRows, iColumns](bDeviceReset:=bValveResets);
+    END_FOR
+END_FOR]]></ST>
       </Implementation>
     </Method>
   </POU>

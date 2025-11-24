@@ -8,20 +8,21 @@ VAR
 	aMatrixConfig : ARRAY [1..2,1..2] OF ST_SolenoidConfig;
 	bMatrixEnable:BOOL;
 	bMatrixReset:BOOL;
+	_st_path : ST_Path;
+	bFindPath: BOOL;
 	
 	//Testing Pressure and Temperature Sensors
 	fbPressureTempSensorExample:FB_PressureTransducer;
 	bSensorEnable:BOOL;
 	bSensorReset:BOOL;
-	nPressure:INT;
-	nTemperature:INT;
+	nPressure AT %I*:INT;
+	nTemperature AT %I*:INT;
 	
 	//Initialising the pressure and Temp sensor ranges and warnings
 	stAnalogCfg : ST_AnalogPressureTemp;
 	
 	//Initialising Boolean
 	bInitialise:BOOL:=TRUE;
-
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -33,7 +34,7 @@ END_IF
 
 //Testing FB_Matrix
 fbMatrixExample(bDeviceEnable:=bMatrixEnable,bDeviceReset:=bMatrixReset,
-	            aConfig:=aMatrixConfig);
+	            aConfig:=aMatrixConfig,st_path:=_st_path,bSetCurrentPath:=bFindPath);
 				
 fbPressureTempSensorExample(bDeviceEnable:=bSensorEnable,bDeviceReset:=bSensorReset,
 	                        nSensorPressure:=nPressure, nSensorTemperature:=nTemperature,st_AnalogPressureTempdata:=stAnalogCfg);]]></ST>
@@ -50,7 +51,8 @@ fbPressureTempSensorExample(bDeviceEnable:=bSensorEnable,bDeviceReset:=bSensorRe
 	stAnalogCfg.rTemperatureMinSP:=-40;
 	stAnalogCfg.rTemperatureMaxSP:=125;
 	stAnalogCfg.nRawMin:=0;
-	stAnalogCfg.nRawMax:=32767;]]></ST>
+	stAnalogCfg.nRawMax:=32767;
+	]]></ST>
       </Implementation>
     </Method>
   </POU>

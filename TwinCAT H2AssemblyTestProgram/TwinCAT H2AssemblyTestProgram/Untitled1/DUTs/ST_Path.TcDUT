@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <DUT Name="ST_Path" Id="{9f922bcd-f4c5-4d35-8e0d-8eda12194373}">
+    <Declaration><![CDATA[TYPE ST_Path :
+STRUCT
+	startPath : E_TankBundleNumber;
+	endPath : E_OutletNumber;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

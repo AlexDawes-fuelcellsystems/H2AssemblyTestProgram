@@ -11,16 +11,16 @@ VAR_OUTPUT
 	rEngPressure:REAL;
 	rEngTemperature:REAL;
 END_VAR
-VAR
-	rNormPressure:REAL;
-	rNormTemperature:REAL;
-END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[M_CyclicLogic();]]></ST>
     </Implementation>
     <Method Name="M_CyclicLogic" Id="{1ef18ec2-39ea-4a7a-9812-158fef41a970}">
       <Declaration><![CDATA[METHOD M_CyclicLogic : HRESULT
+VAR
+	rNormPressure:REAL;
+	rNormTemperature:REAL;
+END_VAR
 
 ]]></Declaration>
       <Implementation>
@@ -34,7 +34,15 @@ IF bDeviceEnable THEN
    rEngPressure:=st_AnalogPressureTempdata.rPressureMinSP + rNormPressure * (st_AnalogPressureTempdata.rPressureMaxSP - st_AnalogPressureTempdata.rPressureMinSP);
    rEngTemperature:=st_AnalogPressureTempdata.rTemperatureMinSP + rNormTemperature * (st_AnalogPressureTempdata.rTemperatureMaxSP - st_AnalogPressureTempdata.rTemperatureMinSP);
 END_IF
-IF (rEngPressure > 500) AND (rEngPressure < 525) THEN
+M_PressureState();]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_PressureState" Id="{5a80939a-4228-4bfa-a79b-b4ef01743c70}">
+      <Declaration><![CDATA[METHOD M_PressureState : BOOL
+
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF (rEngPressure > 500) AND (rEngPressure < 525) THEN
 	bWarning:=TRUE;
 ELSIF rEngPressure > 525 THEN
 	bError:=TRUE;
