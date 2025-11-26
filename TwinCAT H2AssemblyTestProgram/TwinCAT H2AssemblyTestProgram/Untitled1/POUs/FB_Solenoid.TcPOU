@@ -22,7 +22,7 @@ ELSE
 END_IF]]></ST>
     </Implementation>
     <Method Name="M_CheckState" Id="{876197d4-1678-4755-bfce-9f51e76cf52b}">
-      <Declaration><![CDATA[METHOD M_CheckState : HRESULT
+      <Declaration><![CDATA[METHOD M_CheckState 
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF bTheoreticallyOpen THEN
@@ -37,7 +37,7 @@ END_IF]]></ST>
 
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[SUPER^.M_CyclicLogic();
+        <ST><![CDATA[hr:=SUPER^.M_CyclicLogic();
 IF bDeviceEnable THEN
 	IF bNormallyOpen THEN
 		bCoilEnergiseState := TRUE;
@@ -58,7 +58,7 @@ M_CheckState();]]></ST>
 
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[SUPER^.M_CyclicLogic();
+        <ST><![CDATA[hr:=SUPER^.M_CyclicLogic();
 IF bDeviceEnable THEN
 	IF NOT bNormallyOpen THEN
 		bCoilEnergiseState := TRUE;

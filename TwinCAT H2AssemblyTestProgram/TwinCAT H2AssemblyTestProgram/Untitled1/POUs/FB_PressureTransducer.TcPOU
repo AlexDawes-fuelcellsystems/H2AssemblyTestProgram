@@ -24,13 +24,13 @@ END_VAR
 
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[SUPER^.M_CyclicLogic();
+        <ST><![CDATA[hr:=SUPER^.M_CyclicLogic();
 IF bDeviceEnable THEN
 	//Normalise the analog inputs
    rNormPressure    := (INT_TO_REAL(nSensorPressure)    - INT_TO_REAL(st_AnalogPressureTempdata.nRawMin)) / (INT_TO_REAL(st_AnalogPressureTempdata.nRawMax) - INT_TO_REAL(st_AnalogPressureTempdata.nRawMin));
    rNormTemperature := (INT_TO_REAL(nSensorTemperature) - INT_TO_REAL(st_AnalogPressureTempdata.nRawMin)) / (INT_TO_REAL(st_AnalogPressureTempdata.nRawMax) - INT_TO_REAL(st_AnalogPressureTempdata.nRawMin));
    
-   //Scale analog inputs to the Engineerinf process value
+   //Scale analog inputs to the Engineering process values for Pressure and Temperature
    rEngPressure:=st_AnalogPressureTempdata.rPressureMinSP + rNormPressure * (st_AnalogPressureTempdata.rPressureMaxSP - st_AnalogPressureTempdata.rPressureMinSP);
    rEngTemperature:=st_AnalogPressureTempdata.rTemperatureMinSP + rNormTemperature * (st_AnalogPressureTempdata.rTemperatureMaxSP - st_AnalogPressureTempdata.rTemperatureMinSP);
 END_IF

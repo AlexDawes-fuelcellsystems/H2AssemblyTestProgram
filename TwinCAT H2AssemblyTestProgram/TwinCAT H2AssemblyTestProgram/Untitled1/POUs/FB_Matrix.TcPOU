@@ -3,22 +3,33 @@
   <POU Name="FB_Matrix" Id="{2c7f537e-a85d-49b4-9066-1d7397aeaf2d}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_Matrix EXTENDS FB_Device
 VAR_INPUT
-	aConfig:ARRAY[1..2,1..2] OF ST_SolenoidConfig;
 	st_path : ST_Path;
 	bSetCurrentPath:BOOL;
+	bPathingOn:BOOL;
+	nRowSize:INT;
+	nColSize:INT;
 END_VAR
 VAR
-	aValves:ARRAY [1..2,1..2] OF FB_Solenoid;
+	aValves:ARRAY [1..4,1..3] OF FB_Solenoid;
 	iRows:INT;
 	iColumns:INT;
 	bOverallEnable:BOOL;
-	bValveResets:BOOL;
 END_VAR
-]]></Declaration>
+VAR_IN_OUT
+	aConfig:ARRAY[1..4,1..3] OF ST_SolenoidConfig;
+END_VAR
+VAR_OUTPUT
+	aValveStates : ARRAY [1..4,1..3] OF E_SolenoidState;
+END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[M_EnableResetLogic();
 M_CyclicLogic();
-M_DispensePathing();
+IF bPathingOn THEN
+	M_DispensePathing();
+ELSE
+	M_ManualControl();
+END_IF
+
 
 
 
@@ -26,27 +37,34 @@ M_DispensePathing();
 ]]></ST>
     </Implementation>
     <Method Name="M_CyclicLogic" Id="{f1b117f3-667e-4a24-a226-6ce2e5fb34e4}">
-      <Declaration><![CDATA[METHOD M_CyclicLogic: HRESULT
+      <Declaration><![CDATA[METHOD M_CyclicLogic : HRESULT
 
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[SUPER^.M_CyclicLogic();
+        <ST><![CDATA[hr:=SUPER^.M_CyclicLogic();
  IF bDeviceEnable THEN
-   FOR iRows := 1 TO 2 DO
-       FOR iColumns := 1 TO 2 DO
+   FOR iRows := 1 TO nRowSize DO
+       FOR iColumns := 1 TO nColSize DO
            aValves[iRows, iColumns](bDeviceEnable:=bOverallEnable,
 		   bNormallyOpen:=aConfig[iRows,iColumns].NormallyOpen,
-		   bCmdOpen:=aConfig[iRows,iColumns].bOpen);
+           bCmdOpen:=aConfig[iRows,iColumns].bOpen);
        END_FOR
    END_FOR
    
  ELSE
-	 FOR iRows := 1 TO 2 DO
-       FOR iColumns := 1 TO 2 DO
+	 FOR iRows := 1 TO nRowSize DO
+       FOR iColumns := 1 TO nColSize DO
            aValves[iRows, iColumns](bDeviceEnable:=bOverallEnable);
        END_FOR
      END_FOR
- END_IF]]></ST>
+ END_IF
+ 
+FOR iRows := 1 TO nRowSize DO
+   FOR iColumns := 1 TO nColSize DO
+       aValveStates[iRows, iColumns]:=aValves[iRows, iColumns].eSolenoidState;
+   END_FOR
+END_FOR
+]]></ST>
       </Implementation>
     </Method>
     <Method Name="M_DispensePathing" Id="{1de2314d-8795-4c7a-99e8-ef133b9b0aae}">
@@ -55,14 +73,12 @@ VAR
 	nRowToOpen: INT :=(st_path.startPath);
 	nColToOpen: INT :=(st_path.endPath);
 END_VAR
-
-VAR_INST
-	fbTrigger:R_TRIG;
-END_VAR]]></Declaration>
+]]></Declaration>
       <Implementation>
-        <ST><![CDATA[fbTrigger.CLK:=bSetCurrentPath;
-IF fbTrigger.Q THEN
-aConfig[nRowToOpen,nColToOpen].bOpen:=TRUE;
+        <ST><![CDATA[IF bDeviceEnable THEN
+	IF bSetCurrentPath THEN
+       aConfig[nRowToOpen,nColToOpen].bOpen:=TRUE;
+    END_IF
 END_IF]]></ST>
       </Implementation>
     </Method>
@@ -72,12 +88,31 @@ END_IF]]></ST>
       <Implementation>
         <ST><![CDATA[//Set up variables and logic to reset and enable valve FB's created by FB_Matrix
 bOverallEnable:=bDeviceEnable;
-bValveResets:=fbTrig.Q;
-FOR iRows := 1 TO 2 DO
-    FOR iColumns := 1 TO 2 DO
-        aValves[iRows, iColumns](bDeviceReset:=bValveResets);
+IF bDeviceReset THEN
+    FOR iRows := 1 TO nRowSize DO
+       FOR iColumns := 1 TO nColSize DO
+           aValves[iRows, iColumns](bDeviceReset:=fbTrig.Q);
+		   aConfig[iRows,iColumns].bOpen:=FALSE;
+		   GVL_HMI.aDispManualValveSelection[iRows,iColumns]:=FALSE;
+		   GVL_HMI.aInletManualValveSelection[iRows,iColumns]:=FALSE;
+       END_FOR
     END_FOR
-END_FOR]]></ST>
+END_IF
+
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_ManualControl" Id="{0be0b670-86a1-4a84-85ca-54c8277a37d4}">
+      <Declaration><![CDATA[METHOD M_ManualControl 
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF NOT bPathingOn AND bDeviceEnable THEN
+   FOR iRows := 1 TO 4 DO
+       FOR iColumns := 1 TO 3 DO
+           aValves[iRows, iColumns](bCmdOpen:=aConfig[iRows,iColumns].bOpen);
+       END_FOR
+   END_FOR
+END_IF]]></ST>
       </Implementation>
     </Method>
   </POU>

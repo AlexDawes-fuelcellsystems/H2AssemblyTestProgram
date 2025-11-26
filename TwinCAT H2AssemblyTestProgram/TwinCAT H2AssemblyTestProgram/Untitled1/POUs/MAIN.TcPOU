@@ -2,26 +2,38 @@
 <TcPlcObject Version="1.1.0.1">
   <POU Name="MAIN" Id="{606a3699-021a-464e-b575-9f2f01835131}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM MAIN
+VAR CONSTANT
+	//Constants to set maximum matrix size at compile time
+	cMaxRows:INT:=4;
+	cMaxCols:INT:=3;
+END_VAR
 VAR
-	//Configure simple 2x2 matrix of valves
-	fbMatrixExample:FB_Matrix;
-	aMatrixConfig : ARRAY [1..2,1..2] OF ST_SolenoidConfig;
-	bMatrixEnable:BOOL;
-	bMatrixReset:BOOL;
-	_st_path : ST_Path;
-	bFindPath: BOOL;
+	//Configure Dispense Matrix [4,3]
+	fbDispenseMatrix:FB_Matrix;
+	aDispenseMatrixConfig : ARRAY [1..cMaxRows,1..cMaxCols] OF ST_SolenoidConfig;
+	bDispMatrixEnable:BOOL;
+	bDispMatrixReset:BOOL;
+	Disp_st_path : ST_Path;
+	bDispFindPath: BOOL;
+	bDispPathingSwitch:BOOL;
+	nDispenseRows:INT:=4;
+	nDispenseCols:INT:=3;
 	
-	//Testing Pressure and Temperature Sensors
-	fbPressureTempSensorExample:FB_PressureTransducer;
-	bSensorEnable:BOOL;
-	bSensorReset:BOOL;
-	nPressure AT %I*:INT;
-	nTemperature AT %I*:INT;
+	//Configure Inlet Matrix [2,3]
+	fbInletMatrix:FB_Matrix;
+	aInletMatrixConfig: ARRAY [1..cMaxRows,1..cMaxCols] OF ST_SolenoidConfig;
+	bInletMatrixEnable:BOOL;
+	bInletMatrixReset:BOOL;
+	Inlet_st_path : ST_Path;
+	bInletFindPath: BOOL;
+	bInletPathingSwitch:BOOL;
+	nInletRows:INT:=2;
+	nInletCols:INT:=3;
 	
-	//Initialising the pressure and Temp sensor ranges and warnings
+	//Configure Filling Matrix [4,3]
 	stAnalogCfg : ST_AnalogPressureTemp;
 	
-	//Initialising Boolean
+	//Initialising Boolean 
 	bInitialise:BOOL:=TRUE;
 END_VAR
 ]]></Declaration>
@@ -31,17 +43,25 @@ END_VAR
 	bInitialise:=FALSE;
 END_IF
 
-
-//Testing FB_Matrix
-fbMatrixExample(bDeviceEnable:=bMatrixEnable,bDeviceReset:=bMatrixReset,
-	            aConfig:=aMatrixConfig,st_path:=_st_path,bSetCurrentPath:=bFindPath);
+//Calling FB_MAtrix for each of the three matrices of valves, Dispense, Inlet and FIlling.
+fbDispenseMatrix(bDeviceEnable:=bDispMatrixEnable,bDeviceReset:=bDispMatrixReset,
+	            aConfig:=aDispenseMatrixConfig,st_path:=Disp_st_path,bSetCurrentPath:=bDispFindPath,
+                bPathingOn:=bDispPathingSwitch,nRowSize:=nDispenseRows,nColSize:=nDispenseCols);
 				
-fbPressureTempSensorExample(bDeviceEnable:=bSensorEnable,bDeviceReset:=bSensorReset,
-	                        nSensorPressure:=nPressure, nSensorTemperature:=nTemperature,st_AnalogPressureTempdata:=stAnalogCfg);]]></ST>
+fbInletMatrix(bDeviceEnable:=bInletMatrixEnable,bDeviceReset:=bInletMatrixReset,aConfig:=aInletMatrixConfig,
+	          st_path:=Inlet_st_path,bSetCurrentPath:=bInletFindPath,bPathingOn:=bInletPathingSwitch,
+			  nRowSize:=nInletRows,nColSize:=nInletCols);
+				
+
+M_UpdateFromHMI();	
+]]></ST>
     </Implementation>
     <Method Name="M_Initalize" Id="{c8c10e44-8587-4199-9743-e05feaa06a39}">
       <Declaration><![CDATA[METHOD PUBLIC M_Initalize 
-]]></Declaration>
+VAR
+rows:INT;
+cols:INT;
+END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[///solenoids[1].MInitalize(tag := 'PT/TT-350-A-II',  hdasfgjhsdag
 	stAnalogCfg.rWarninglevel:=500;
@@ -52,7 +72,83 @@ fbPressureTempSensorExample(bDeviceEnable:=bSensorEnable,bDeviceReset:=bSensorRe
 	stAnalogCfg.rTemperatureMaxSP:=125;
 	stAnalogCfg.nRawMin:=0;
 	stAnalogCfg.nRawMax:=32767;
-	]]></ST>
+
+    FOR  rows:=1 TO cMaxRows DO
+       FOR  cols:=1 TO cMaxCols DO
+          aDispenseMatrixConfig[rows,cols].NormallyOpen:=FALSE;
+		  aInletMatrixConfig[rows,cols].NormallyOpen:=FALSE;
+		  aDispenseMatrixConfig[rows,cols].bOpen:=FALSE;
+		  aInletMatrixConfig[rows,cols].bOpen:=FALSE;
+       END_FOR
+    END_FOR
+
+    
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_UpdateDispenseFromHMI" Id="{5551aa22-177e-4a8b-ba12-5a3e1e154657}">
+      <Declaration><![CDATA[METHOD M_UpdateDispenseFromHMI
+VAR
+	rows:INT;
+	cols:INT;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//Variables for filling matrix updated from GVL here
+bDispMatrixEnable:=GVL_HMI.bDispTurnOnMatrix;
+bDispMatrixReset:=GVL_HMI.bDispResetMatrix;
+Disp_st_path.endPath:=GVL_HMI.eDispEndOfPath;
+Disp_st_path.startPath:=GVL_HMI.eDispStartOfPath;
+bDispFindPath:=GVL_HMI.bDispActuatePath;
+bDispPathingSwitch:=GVL_HMI.bDispTurnOnPathing;
+GVL_HMI.aDispStateofValves:=fbDispenseMatrix.aValveStates;
+
+IF GVL_HMI.bDispTurnOnPathing THEN
+	RETURN;
+END_IF
+FOR rows := 1 TO nDispenseRows DO
+       FOR cols := 1 TO nDispenseCols DO
+          aDispenseMatrixConfig[rows,cols].bOpen:=GVL_HMI.aDispManualValveSelection[rows,cols];
+       END_FOR
+END_FOR
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_UpdateFromHMI" Id="{8779a328-bd71-463f-a457-6702a1e02170}">
+      <Declaration><![CDATA[METHOD M_UpdateFromHMI
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//Update each matrix Independently
+M_UpdateDispenseFromHMI();
+M_UpdateInletFromHMI();]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_UpdateInletFromHMI" Id="{c16b0c66-cb74-42d1-a703-df3168c8abc9}">
+      <Declaration><![CDATA[METHOD M_UpdateInletFromHMI
+VAR
+	rows:INT;
+	cols:INT;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//Variables for inlet matrix are updated from here
+bInletMatrixEnable:=GVL_HMI.bInletTurnOnMatrix;
+bInletMatrixReset:=GVL_HMI.bInletResetMatrix;
+bInletFindPath:=GVL_HMI.bInletActuatePath;
+bInletPathingSwitch:=GVL_HMI.bInbletTurnOnPathing;
+Inlet_st_path.endPath:=GVL_HMI.eInletEndOfPath;
+Inlet_st_path.startPath:=GVL_HMI.eInletStartOfPath;
+GVL_HMI.aInletStateofValves:=fbInletMatrix.aValveStates;
+
+IF GVL_HMI.bInbletTurnOnPathing THEN
+	RETURN;
+END_IF
+FOR rows := 1 TO nInletRows DO
+       FOR cols := 1 TO nInletCols DO
+          aInletMatrixConfig[rows,cols].bOpen:=GVL_HMI.aInletManualValveSelection[rows,cols];
+       END_FOR
+END_FOR
+]]></ST>
       </Implementation>
     </Method>
   </POU>

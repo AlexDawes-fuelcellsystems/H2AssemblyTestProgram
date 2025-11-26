@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
   <DUT Name="E_OutletNumber" Id="{56cd93e0-eb0f-42d8-85b9-e404dce89284}">
-    <Declaration><![CDATA[{attribute 'qualified_only'}
-{attribute 'strict'}
-{attribute 'to_string'}
+    <Declaration><![CDATA[{attribute 'strict'}
 TYPE E_OutletNumber :
 (
-	Outlet_1:= 1,Outlet_2:= 2,Recirculation:=3
-);
+	Outlet_2:=1,
+    Outlet_1:= 2,
+    Recirculation:=3
+)USINT;
 END_TYPE
 ]]></Declaration>
   </DUT>

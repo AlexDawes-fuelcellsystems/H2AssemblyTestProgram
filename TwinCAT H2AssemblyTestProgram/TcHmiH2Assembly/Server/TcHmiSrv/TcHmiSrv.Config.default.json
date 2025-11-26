@@ -27,7 +27,141 @@
     "DEFAULTLOCALE": "client",
     "DEFAULTTIMEFORMATLOCALE": "client",
     "DEFAULTTIMEZONE": "client",
-    "DEFINITIONS": {},
+    "DEFINITIONS": {
+        "ADS": {
+            "ADS-PLC1.E_CompressionStages": {
+                "attributes": {
+                    "generate_implicit_init_function": "",
+                    "strict": ""
+                },
+                "enum": [
+                    1,
+                    2,
+                    3
+                ],
+                "options": [
+                    {
+                        "label": "Bypass_Line",
+                        "value": 1
+                    },
+                    {
+                        "label": "Second_Stage_Compression",
+                        "value": 2
+                    },
+                    {
+                        "label": "First_Stage_Compression",
+                        "value": 3
+                    }
+                ],
+                "type": "integer"
+            },
+            "ADS-PLC1.E_InletToSystem": {
+                "attributes": {
+                    "generate_implicit_init_function": "",
+                    "qualified_only": "",
+                    "strict": "",
+                    "to_string": ""
+                },
+                "enum": [
+                    1,
+                    2
+                ],
+                "options": [
+                    {
+                        "label": "Recirculation_From_Storage",
+                        "value": 1
+                    },
+                    {
+                        "label": "Hydrogen_Inlet",
+                        "value": 2
+                    }
+                ],
+                "type": "integer"
+            },
+            "ADS-PLC1.E_OutletNumber": {
+                "attributes": {
+                    "generate_implicit_init_function": "",
+                    "strict": ""
+                },
+                "enum": [
+                    1,
+                    2,
+                    3
+                ],
+                "options": [
+                    {
+                        "label": "Outlet_2",
+                        "value": 1
+                    },
+                    {
+                        "label": "Outlet_1",
+                        "value": 2
+                    },
+                    {
+                        "label": "Recirculation",
+                        "value": 3
+                    }
+                ],
+                "type": "integer"
+            },
+            "ADS-PLC1.E_SolenoidState": {
+                "attributes": {
+                    "generate_implicit_init_function": "",
+                    "qualified_only": "",
+                    "strict": "",
+                    "to_string": ""
+                },
+                "enum": [
+                    0,
+                    1
+                ],
+                "options": [
+                    {
+                        "label": "Open",
+                        "value": 0
+                    },
+                    {
+                        "label": "Closed",
+                        "value": 1
+                    }
+                ],
+                "type": "integer"
+            },
+            "ADS-PLC1.E_TankBundleNumber": {
+                "attributes": {
+                    "generate_implicit_init_function": "",
+                    "qualified_only": "",
+                    "strict": "",
+                    "to_string": ""
+                },
+                "enum": [
+                    1,
+                    2,
+                    3,
+                    4
+                ],
+                "options": [
+                    {
+                        "label": "Bundle_Tank_1",
+                        "value": 1
+                    },
+                    {
+                        "label": "Bundle_Tank_2",
+                        "value": 2
+                    },
+                    {
+                        "label": "Bundle_Tank_3",
+                        "value": 3
+                    },
+                    {
+                        "label": "Bundle_Tank_4",
+                        "value": 4
+                    }
+                ],
+                "type": "integer"
+            }
+        }
+    },
     "DEFLATECOMPRESSIONLEVEL": 5,
     "DIAGNOSTICS_DOMAINS": [],
     "DISABLED_CONFIGURATION_HINTS": [],
@@ -783,6 +917,776 @@
             "OPTIONS": {},
             "SCHEMA": {
                 "function": true
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aDispManualValveSelection.0.0": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aDispManualValveSelection[0][0]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aDispManualValveSelection.0.1": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aDispManualValveSelection[0][1]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aDispManualValveSelection.0.2": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aDispManualValveSelection[0][2]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aDispManualValveSelection.1.0": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aDispManualValveSelection[1][0]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aDispManualValveSelection.1.1": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aDispManualValveSelection[1][1]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aDispManualValveSelection.1.2": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aDispManualValveSelection[1][2]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aDispManualValveSelection.2.0": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aDispManualValveSelection[2][0]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aDispManualValveSelection.2.1": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aDispManualValveSelection[2][1]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aDispManualValveSelection.2.2": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aDispManualValveSelection[2][2]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aDispManualValveSelection.3.0": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aDispManualValveSelection[3][0]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aDispManualValveSelection.3.1": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aDispManualValveSelection[3][1]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aDispManualValveSelection.3.2": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aDispManualValveSelection[3][2]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aDispStateofValves.0.0": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aDispStateofValves[0][0]",
+            "SCHEMA": {
+                "$ref": "tchmi:server#/definitions/ADS-PLC1.E_SolenoidState"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aDispStateofValves.0.1": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aDispStateofValves[0][1]",
+            "SCHEMA": {
+                "$ref": "tchmi:server#/definitions/ADS-PLC1.E_SolenoidState"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aDispStateofValves.0.2": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aDispStateofValves[0][2]",
+            "SCHEMA": {
+                "$ref": "tchmi:server#/definitions/ADS-PLC1.E_SolenoidState"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aDispStateofValves.1.0": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aDispStateofValves[1][0]",
+            "SCHEMA": {
+                "$ref": "tchmi:server#/definitions/ADS-PLC1.E_SolenoidState"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aDispStateofValves.1.1": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aDispStateofValves[1][1]",
+            "SCHEMA": {
+                "$ref": "tchmi:server#/definitions/ADS-PLC1.E_SolenoidState"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aDispStateofValves.1.2": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aDispStateofValves[1][2]",
+            "SCHEMA": {
+                "$ref": "tchmi:server#/definitions/ADS-PLC1.E_SolenoidState"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aDispStateofValves.2.0": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aDispStateofValves[2][0]",
+            "SCHEMA": {
+                "$ref": "tchmi:server#/definitions/ADS-PLC1.E_SolenoidState"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aDispStateofValves.2.1": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aDispStateofValves[2][1]",
+            "SCHEMA": {
+                "$ref": "tchmi:server#/definitions/ADS-PLC1.E_SolenoidState"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aDispStateofValves.2.2": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aDispStateofValves[2][2]",
+            "SCHEMA": {
+                "$ref": "tchmi:server#/definitions/ADS-PLC1.E_SolenoidState"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aDispStateofValves.3.0": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aDispStateofValves[3][0]",
+            "SCHEMA": {
+                "$ref": "tchmi:server#/definitions/ADS-PLC1.E_SolenoidState"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aDispStateofValves.3.1": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aDispStateofValves[3][1]",
+            "SCHEMA": {
+                "$ref": "tchmi:server#/definitions/ADS-PLC1.E_SolenoidState"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aDispStateofValves.3.2": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aDispStateofValves[3][2]",
+            "SCHEMA": {
+                "$ref": "tchmi:server#/definitions/ADS-PLC1.E_SolenoidState"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aInletManualValveSelection.0.0": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aInletManualValveSelection[0][0]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aInletManualValveSelection.0.1": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aInletManualValveSelection[0][1]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aInletManualValveSelection.0.2": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aInletManualValveSelection[0][2]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aInletManualValveSelection.1.0": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aInletManualValveSelection[1][0]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aInletManualValveSelection.1.1": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aInletManualValveSelection[1][1]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aInletManualValveSelection.1.2": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aInletManualValveSelection[1][2]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aInletStateofValves.0.0": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aInletStateofValves[0][0]",
+            "SCHEMA": {
+                "$ref": "tchmi:server#/definitions/ADS-PLC1.E_SolenoidState"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aInletStateofValves.0.1": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aInletStateofValves[0][1]",
+            "SCHEMA": {
+                "$ref": "tchmi:server#/definitions/ADS-PLC1.E_SolenoidState"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aInletStateofValves.0.2": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aInletStateofValves[0][2]",
+            "SCHEMA": {
+                "$ref": "tchmi:server#/definitions/ADS-PLC1.E_SolenoidState"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aInletStateofValves.1.0": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aInletStateofValves[1][0]",
+            "SCHEMA": {
+                "$ref": "tchmi:server#/definitions/ADS-PLC1.E_SolenoidState"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aInletStateofValves.1.1": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aInletStateofValves[1][1]",
+            "SCHEMA": {
+                "$ref": "tchmi:server#/definitions/ADS-PLC1.E_SolenoidState"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aInletStateofValves.1.2": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aInletStateofValves[1][2]",
+            "SCHEMA": {
+                "$ref": "tchmi:server#/definitions/ADS-PLC1.E_SolenoidState"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aManualValveSelection.0.0": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aManualValveSelection[0][0]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aManualValveSelection.0.1": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aManualValveSelection[0][1]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aManualValveSelection.0.2": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aManualValveSelection[0][2]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aManualValveSelection.1.0": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aManualValveSelection[1][0]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aManualValveSelection.1.1": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aManualValveSelection[1][1]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aManualValveSelection.1.2": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aManualValveSelection[1][2]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aManualValveSelection.2.0": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aManualValveSelection[2][0]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aManualValveSelection.2.1": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aManualValveSelection[2][1]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aManualValveSelection.2.2": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aManualValveSelection[2][2]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aManualValveSelection.3.0": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aManualValveSelection[3][0]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aManualValveSelection.3.1": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aManualValveSelection[3][1]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aManualValveSelection.3.2": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aManualValveSelection[3][2]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aStateofValves.0.0": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aStateofValves[0][0]",
+            "SCHEMA": {
+                "$ref": "tchmi:server#/definitions/ADS-PLC1.E_SolenoidState"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aStateofValves.0.1": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aStateofValves[0][1]",
+            "SCHEMA": {
+                "$ref": "tchmi:server#/definitions/ADS-PLC1.E_SolenoidState"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aStateofValves.0.2": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aStateofValves[0][2]",
+            "SCHEMA": {
+                "$ref": "tchmi:server#/definitions/ADS-PLC1.E_SolenoidState"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aStateofValves.1.0": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aStateofValves[1][0]",
+            "SCHEMA": {
+                "$ref": "tchmi:server#/definitions/ADS-PLC1.E_SolenoidState"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aStateofValves.1.1": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aStateofValves[1][1]",
+            "SCHEMA": {
+                "$ref": "tchmi:server#/definitions/ADS-PLC1.E_SolenoidState"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aStateofValves.1.2": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aStateofValves[1][2]",
+            "SCHEMA": {
+                "$ref": "tchmi:server#/definitions/ADS-PLC1.E_SolenoidState"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aStateofValves.2.0": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aStateofValves[2][0]",
+            "SCHEMA": {
+                "$ref": "tchmi:server#/definitions/ADS-PLC1.E_SolenoidState"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aStateofValves.2.1": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aStateofValves[2][1]",
+            "SCHEMA": {
+                "$ref": "tchmi:server#/definitions/ADS-PLC1.E_SolenoidState"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aStateofValves.2.2": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aStateofValves[2][2]",
+            "SCHEMA": {
+                "$ref": "tchmi:server#/definitions/ADS-PLC1.E_SolenoidState"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aStateofValves.3.0": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aStateofValves[3][0]",
+            "SCHEMA": {
+                "$ref": "tchmi:server#/definitions/ADS-PLC1.E_SolenoidState"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aStateofValves.3.1": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aStateofValves[3][1]",
+            "SCHEMA": {
+                "$ref": "tchmi:server#/definitions/ADS-PLC1.E_SolenoidState"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aStateofValves.3.2": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aStateofValves[3][2]",
+            "SCHEMA": {
+                "$ref": "tchmi:server#/definitions/ADS-PLC1.E_SolenoidState"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.bActuatePath": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::bActuatePath",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.bDispActuatePath": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::bDispActuatePath",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.bDispResetMatrix": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::bDispResetMatrix",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.bDispTurnOnMatrix": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::bDispTurnOnMatrix",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.bDispTurnOnPathing": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::bDispTurnOnPathing",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.bInbletTurnOnPathing": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::bInbletTurnOnPathing",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.bInletActuatePath": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::bInletActuatePath",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.bInletTurnOnMatrix": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::bInletTurnOnMatrix",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.bResetMatrix": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::bResetMatrix",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.bTurnOnMatrix": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::bTurnOnMatrix",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.bTurnOnPathing": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::bTurnOnPathing",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.eDispEndOfPath": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::eDispEndOfPath",
+            "SCHEMA": {
+                "$ref": "tchmi:server#/definitions/ADS-PLC1.E_OutletNumber"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.eDispStartOfPath": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::eDispStartOfPath",
+            "SCHEMA": {
+                "$ref": "tchmi:server#/definitions/ADS-PLC1.E_TankBundleNumber"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.eEndOfPath": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::eEndOfPath",
+            "SCHEMA": {
+                "$ref": "tchmi:server#/definitions/ADS-PLC1.E_OutletNumber"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.eInletEndOfPath": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::eInletEndOfPath",
+            "SCHEMA": {
+                "$ref": "tchmi:server#/definitions/ADS-PLC1.E_CompressionStages"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.eInletStartOfPath": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::eInletStartOfPath",
+            "SCHEMA": {
+                "$ref": "tchmi:server#/definitions/ADS-PLC1.E_InletToSystem"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.eStartOfPath": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::eStartOfPath",
+            "SCHEMA": {
+                "$ref": "tchmi:server#/definitions/ADS-PLC1.E_TankBundleNumber"
             },
             "USEMAPPING": true
         },
@@ -3822,6 +4726,83 @@
                 "ADS.CheckLicense": 3,
                 "ADS.Diagnostics": 3,
                 "ADS.PLC1": 3,
+                "ADS.PLC1.GVL_HMI.aDispManualValveSelection.0.0": 3,
+                "ADS.PLC1.GVL_HMI.aDispManualValveSelection.0.1": 3,
+                "ADS.PLC1.GVL_HMI.aDispManualValveSelection.0.2": 3,
+                "ADS.PLC1.GVL_HMI.aDispManualValveSelection.1.0": 3,
+                "ADS.PLC1.GVL_HMI.aDispManualValveSelection.1.1": 3,
+                "ADS.PLC1.GVL_HMI.aDispManualValveSelection.1.2": 3,
+                "ADS.PLC1.GVL_HMI.aDispManualValveSelection.2.0": 3,
+                "ADS.PLC1.GVL_HMI.aDispManualValveSelection.2.1": 3,
+                "ADS.PLC1.GVL_HMI.aDispManualValveSelection.2.2": 3,
+                "ADS.PLC1.GVL_HMI.aDispManualValveSelection.3.0": 3,
+                "ADS.PLC1.GVL_HMI.aDispManualValveSelection.3.1": 3,
+                "ADS.PLC1.GVL_HMI.aDispManualValveSelection.3.2": 3,
+                "ADS.PLC1.GVL_HMI.aDispStateofValves.0.0": 3,
+                "ADS.PLC1.GVL_HMI.aDispStateofValves.0.1": 3,
+                "ADS.PLC1.GVL_HMI.aDispStateofValves.0.2": 3,
+                "ADS.PLC1.GVL_HMI.aDispStateofValves.1.0": 3,
+                "ADS.PLC1.GVL_HMI.aDispStateofValves.1.1": 3,
+                "ADS.PLC1.GVL_HMI.aDispStateofValves.1.2": 3,
+                "ADS.PLC1.GVL_HMI.aDispStateofValves.2.0": 3,
+                "ADS.PLC1.GVL_HMI.aDispStateofValves.2.1": 3,
+                "ADS.PLC1.GVL_HMI.aDispStateofValves.2.2": 3,
+                "ADS.PLC1.GVL_HMI.aDispStateofValves.3.0": 3,
+                "ADS.PLC1.GVL_HMI.aDispStateofValves.3.1": 3,
+                "ADS.PLC1.GVL_HMI.aDispStateofValves.3.2": 3,
+                "ADS.PLC1.GVL_HMI.aInletManualValveSelection.0.0": 3,
+                "ADS.PLC1.GVL_HMI.aInletManualValveSelection.0.1": 3,
+                "ADS.PLC1.GVL_HMI.aInletManualValveSelection.0.2": 3,
+                "ADS.PLC1.GVL_HMI.aInletManualValveSelection.1.0": 3,
+                "ADS.PLC1.GVL_HMI.aInletManualValveSelection.1.1": 3,
+                "ADS.PLC1.GVL_HMI.aInletManualValveSelection.1.2": 3,
+                "ADS.PLC1.GVL_HMI.aInletStateofValves.0.0": 3,
+                "ADS.PLC1.GVL_HMI.aInletStateofValves.0.1": 3,
+                "ADS.PLC1.GVL_HMI.aInletStateofValves.0.2": 3,
+                "ADS.PLC1.GVL_HMI.aInletStateofValves.1.0": 3,
+                "ADS.PLC1.GVL_HMI.aInletStateofValves.1.1": 3,
+                "ADS.PLC1.GVL_HMI.aInletStateofValves.1.2": 3,
+                "ADS.PLC1.GVL_HMI.aManualValveSelection.0.0": 3,
+                "ADS.PLC1.GVL_HMI.aManualValveSelection.0.1": 3,
+                "ADS.PLC1.GVL_HMI.aManualValveSelection.0.2": 3,
+                "ADS.PLC1.GVL_HMI.aManualValveSelection.1.0": 3,
+                "ADS.PLC1.GVL_HMI.aManualValveSelection.1.1": 3,
+                "ADS.PLC1.GVL_HMI.aManualValveSelection.1.2": 3,
+                "ADS.PLC1.GVL_HMI.aManualValveSelection.2.0": 3,
+                "ADS.PLC1.GVL_HMI.aManualValveSelection.2.1": 3,
+                "ADS.PLC1.GVL_HMI.aManualValveSelection.2.2": 3,
+                "ADS.PLC1.GVL_HMI.aManualValveSelection.3.0": 3,
+                "ADS.PLC1.GVL_HMI.aManualValveSelection.3.1": 3,
+                "ADS.PLC1.GVL_HMI.aManualValveSelection.3.2": 3,
+                "ADS.PLC1.GVL_HMI.aStateofValves.0.0": 3,
+                "ADS.PLC1.GVL_HMI.aStateofValves.0.1": 3,
+                "ADS.PLC1.GVL_HMI.aStateofValves.0.2": 3,
+                "ADS.PLC1.GVL_HMI.aStateofValves.1.0": 3,
+                "ADS.PLC1.GVL_HMI.aStateofValves.1.1": 3,
+                "ADS.PLC1.GVL_HMI.aStateofValves.1.2": 3,
+                "ADS.PLC1.GVL_HMI.aStateofValves.2.0": 3,
+                "ADS.PLC1.GVL_HMI.aStateofValves.2.1": 3,
+                "ADS.PLC1.GVL_HMI.aStateofValves.2.2": 3,
+                "ADS.PLC1.GVL_HMI.aStateofValves.3.0": 3,
+                "ADS.PLC1.GVL_HMI.aStateofValves.3.1": 3,
+                "ADS.PLC1.GVL_HMI.aStateofValves.3.2": 3,
+                "ADS.PLC1.GVL_HMI.bActuatePath": 3,
+                "ADS.PLC1.GVL_HMI.bDispActuatePath": 3,
+                "ADS.PLC1.GVL_HMI.bDispResetMatrix": 3,
+                "ADS.PLC1.GVL_HMI.bDispTurnOnMatrix": 3,
+                "ADS.PLC1.GVL_HMI.bDispTurnOnPathing": 3,
+                "ADS.PLC1.GVL_HMI.bInbletTurnOnPathing": 3,
+                "ADS.PLC1.GVL_HMI.bInletActuatePath": 3,
+                "ADS.PLC1.GVL_HMI.bInletTurnOnMatrix": 3,
+                "ADS.PLC1.GVL_HMI.bResetMatrix": 3,
+                "ADS.PLC1.GVL_HMI.bTurnOnMatrix": 3,
+                "ADS.PLC1.GVL_HMI.bTurnOnPathing": 3,
+                "ADS.PLC1.GVL_HMI.eDispEndOfPath": 3,
+                "ADS.PLC1.GVL_HMI.eDispStartOfPath": 3,
+                "ADS.PLC1.GVL_HMI.eEndOfPath": 3,
+                "ADS.PLC1.GVL_HMI.eInletEndOfPath": 3,
+                "ADS.PLC1.GVL_HMI.eInletStartOfPath": 3,
+                "ADS.PLC1.GVL_HMI.eStartOfPath": 3,
                 "ADS.PLC1.MAIN.EnableDevice2": 3,
                 "ADS.PLC1.MAIN.fbDeviceExample2.rEngTemperature": 3,
                 "ChangeUserSettings": 3,

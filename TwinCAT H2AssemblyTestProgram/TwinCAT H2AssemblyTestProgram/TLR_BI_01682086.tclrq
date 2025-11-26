@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<TcLicenseInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2011/11/TcLicenseInfo">
+	<TargetInfo>
+		<TcTargetDesc>
+			<TargetType>CX52x0-WIN 10.0</TargetType>
+			<TargetVersion>
+				<Version>3</Version>
+				<Revision>1</Revision>
+				<Build>4026</Build>
+			</TargetVersion>
+			<TargetFeatures>
+				<Level>CP</Level>
+				<NetId>10.1.176.219.1.1</NetId>
+			</TargetFeatures>
+			<Hardware>
+				<Model>CX5230-0195</Model>
+				<SerialNo>000u9wks</SerialNo>
+				<CPUVersion>3.2</CPUVersion>
+				<Date>11.11.25</Date>
+				<CPUArchitecture>9</CPUArchitecture>
+			</Hardware>
+			<OsImage>
+				<ImageDevice>CX52x0</ImageDevice>
+				<ImageVersion>2025-11-00050</ImageVersion>
+				<ImageLevel>CX1800-0991-1015</ImageLevel>
+				<OsName>Windows 10 Enterprise LTSC 2021</OsName>
+				<OsVersion>10.0</OsVersion>
+			</OsImage>
+		</TcTargetDesc>
+	</TargetInfo>
+	<LicenseInfo>
+		<SystemId Level="40" SerialNo="000u9wks" MacAddress="000105a19f0e">{3C0C27AA-F7F3-5A85-1ABB-C0F1D44F62C8}</SystemId>
+		<PurchaseOrder><![CDATA[01682086]]></PurchaseOrder>
+		<IssueTime>2025-11-25T11:22:00</IssueTime>
+		<License>
+			<LicenseId>{66689887-CCBD-452C-AC9A-039D997C6E66}</LicenseId>
+			<Name>TC3 PLC</Name>
+			<OrderNo>TC1200</OrderNo>
+		</License>
+	</LicenseInfo>
+</TcLicenseInfo>
