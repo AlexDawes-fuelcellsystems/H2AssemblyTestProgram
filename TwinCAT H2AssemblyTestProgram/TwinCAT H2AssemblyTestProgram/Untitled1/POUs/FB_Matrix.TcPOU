@@ -95,6 +95,7 @@ IF bDeviceReset THEN
 		   aConfig[iRows,iColumns].bOpen:=FALSE;
 		   GVL_HMI.aDispManualValveSelection[iRows,iColumns]:=FALSE;
 		   GVL_HMI.aInletManualValveSelection[iRows,iColumns]:=FALSE;
+		   GVL_HMI.aFillManualValveSelection[iRows,iColumns]:=FALSE;
        END_FOR
     END_FOR
 END_IF

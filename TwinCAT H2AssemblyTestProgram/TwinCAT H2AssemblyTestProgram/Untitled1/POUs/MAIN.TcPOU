@@ -31,6 +31,17 @@ VAR
 	nInletCols:INT:=3;
 	
 	//Configure Filling Matrix [4,3]
+	fbFillMatrix:FB_Matrix;
+	aFillMatrixConfig : ARRAY [1..cMaxRows,1..cMaxCols] OF ST_SolenoidConfig;
+	bFillMatrixEnable:BOOL;
+	bFillMatrixReset:BOOL;
+	Fill_st_path : ST_Path;
+	bFillFindPath: BOOL;
+	bFillPathingSwitch:BOOL;
+	nFillRows:INT:=4;
+	nFillCols:INT:=3;	
+
+	//Standard Config Parameter Struct for Pressure and Temp sensors
 	stAnalogCfg : ST_AnalogPressureTemp;
 	
 	//Initialising Boolean 
@@ -51,6 +62,10 @@ fbDispenseMatrix(bDeviceEnable:=bDispMatrixEnable,bDeviceReset:=bDispMatrixReset
 fbInletMatrix(bDeviceEnable:=bInletMatrixEnable,bDeviceReset:=bInletMatrixReset,aConfig:=aInletMatrixConfig,
 	          st_path:=Inlet_st_path,bSetCurrentPath:=bInletFindPath,bPathingOn:=bInletPathingSwitch,
 			  nRowSize:=nInletRows,nColSize:=nInletCols);
+			  
+fbFillMatrix(bDeviceEnable:=bFillMatrixEnable,bDeviceReset:=bFillMatrixReset,aConfig:=aFillMatrixConfig,
+	          st_path:=Fill_st_path,bSetCurrentPath:=bFillFindPath,bPathingOn:=bFillPathingSwitch,
+			  nRowSize:=nFillRows,nColSize:=nFillCols);
 				
 
 M_UpdateFromHMI();	
@@ -114,13 +129,42 @@ END_FOR
 ]]></ST>
       </Implementation>
     </Method>
+    <Method Name="M_UpdateFillFromHMI" Id="{1f387af1-a8e8-4464-8a9a-5150149a1400}">
+      <Declaration><![CDATA[METHOD M_UpdateFillFromHMI
+VAR
+	rows:INT;
+	cols:INT;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//Variables for inlet matrix are updated from here
+bFillMatrixEnable:=GVL_HMI.bFillTurnOnMatrix;
+bFillMatrixReset:=GVL_HMI.bFillResetMatrix;
+bFillFindPath:=GVL_HMI.bFillActuatePath;
+bFillPathingSwitch:=GVL_HMI.bFillTurnOnPathing;
+Fill_st_path.endPath:=GVL_HMI.eFillEndOfPath;
+Fill_st_path.startPath:=GVL_HMI.eFillStartOfPath;
+GVL_HMI.aFillStateofValves:=fbFillMatrix.aValveStates;
+
+IF GVL_HMI.bFillTurnOnPathing THEN
+	RETURN;
+END_IF
+FOR rows := 1 TO nFillRows DO
+       FOR cols := 1 TO nFillCols DO
+          aFillMatrixConfig[rows,cols].bOpen:=GVL_HMI.aFillManualValveSelection[rows,cols];
+       END_FOR
+END_FOR
+]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="M_UpdateFromHMI" Id="{8779a328-bd71-463f-a457-6702a1e02170}">
       <Declaration><![CDATA[METHOD M_UpdateFromHMI
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[//Update each matrix Independently
 M_UpdateDispenseFromHMI();
-M_UpdateInletFromHMI();]]></ST>
+M_UpdateInletFromHMI();
+M_UpdateFillFromHMI();
+]]></ST>
       </Implementation>
     </Method>
     <Method Name="M_UpdateInletFromHMI" Id="{c16b0c66-cb74-42d1-a703-df3168c8abc9}">
