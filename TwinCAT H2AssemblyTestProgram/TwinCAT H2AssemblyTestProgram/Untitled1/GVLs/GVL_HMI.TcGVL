@@ -33,8 +33,20 @@ VAR_GLOBAL
 	eFillEndOfPath:E_CompressionStages;
 	aFillStateofValves: ARRAY[1..cMaxRows,1..cMaxCols] OF E_SolenoidState;
 	
+	//Variables to enable and reset Sensors
+	bEnableSensors:BOOL;
+	bResetSensors:BOOL;
+	
+	//Sensor Error states
+	aSensorErrors :  ARRAY[1..GVL_IO.cNumofPT] OF E_ErrorState;
+	
+	//Sensor Engineering values
+	aPV:  ARRAY[1..GVL_IO.cNumofPT] OF REAL;
+	aTV:  ARRAY[1..GVL_IO.cNumofPT] OF REAL;
+	
 END_VAR
 VAR_GLOBAL CONSTANT
+	//Set max matrix size at compile time
 	cMaxRows:INT:=4;
 	cMaxCols:INT:=3;
 END_VAR]]></Declaration>

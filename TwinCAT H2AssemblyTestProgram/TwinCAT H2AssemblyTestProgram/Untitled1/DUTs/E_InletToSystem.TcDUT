@@ -4,6 +4,7 @@
     <Declaration><![CDATA[{attribute 'qualified_only'}
 {attribute 'strict'}
 {attribute 'to_string'}
+//Pathing Enum
 TYPE E_InletToSystem :
 (
 	Recirculation_From_Storage:=1,Hydrogen_Inlet:=2

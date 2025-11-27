@@ -2,6 +2,15 @@
 <TcSmProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4026.17">
 	<DataTypes>
 		<DataType>
+			<Name GUID="{50EA4FA2-E0F2-8A34-21BD-92F83555C0A5}" IecBaseType="true" AutoDeleteType="true">ARRAY [1..16] OF INT</Name>
+			<BitSize>256</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-000000000006}">INT</BaseType>
+			<ArrayInfo>
+				<LBound>1</LBound>
+				<Elements>16</Elements>
+			</ArrayInfo>
+		</DataType>
+		<DataType>
 			<Name GUID="{18071995-0000-0000-0000-002000000001}" IecBaseType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..0] OF BIT</Name>
 			<BitSize>1</BitSize>
 			<BaseType GUID="{18071995-0000-0000-0000-000000000010}">BIT</BaseType>
@@ -58,9 +67,21 @@
 		</System>
 		<Plc>
 			<Project GUID="{62F3C8BB-BCA0-40E5-BF03-2298E4B6F176}" Name="Untitled1" PrjFilePath="Untitled1\Untitled1.plcproj" TmcFilePath="Untitled1\Untitled1.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{D7569969-0A9A-A7B9-56A8-75A3A70E350F}" TmcPath="Untitled1\Untitled1.tmc">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{D2305A09-5F2A-ED9E-3EB5-8D9FA14CA1E2}" TmcPath="Untitled1\Untitled1.tmc">
 					<Name>Untitled1 Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
+					<Vars VarGrpType="1">
+						<Name>PlcTask Inputs</Name>
+						<Var>
+							<Name>GVL_IO.aPressRaw</Name>
+							<Comment><![CDATA[Sensor Inputs]]></Comment>
+							<Type GUID="{50EA4FA2-E0F2-8A34-21BD-92F83555C0A5}">ARRAY [1..16] OF INT</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.aTempRaw</Name>
+							<Type GUID="{50EA4FA2-E0F2-8A34-21BD-92F83555C0A5}">ARRAY [1..16] OF INT</Type>
+						</Var>
+					</Vars>
 					<UnrestoredVarLinks ImportTime="2025-11-25T12:04:17">
 						<OwnerA Name="InputDst" Prefix="TIPC^Untitled1^Untitled1 Instance" Type="1">
 							<OwnerB Name="TIID^Node 05^Node 05S0^Node 05S2">
@@ -2443,4 +2464,48 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 			</Device>
 		</Io>
 	</Project>
+	<Mappings>
+		<OwnerA Name="TIPC^Untitled1^Untitled1 Instance">
+			<OwnerB Name="TIID^Node 05^Node 05S0^Node 05S2">
+				<Link VarA="PlcTask Inputs^GVL_IO.aPressRaw[1]" VarB="AI Standard Channel 1^Value"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.aPressRaw[2]" VarB="AI Standard Channel 2^Value"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.aPressRaw[3]" VarB="AI Standard Channel 3^Value"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.aPressRaw[4]" VarB="AI Standard Channel 4^Value"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.aPressRaw[5]" VarB="AI Standard Channel 5^Value"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.aPressRaw[6]" VarB="AI Standard Channel 6^Value"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.aPressRaw[7]" VarB="AI Standard Channel 7^Value"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.aPressRaw[8]" VarB="AI Standard Channel 8^Value"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Node 05^Node 05S0^Node 05S4">
+				<Link VarA="PlcTask Inputs^GVL_IO.aPressRaw[10]" VarB="AI Standard Channel 2^Value"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.aPressRaw[11]" VarB="AI Standard Channel 3^Value"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.aPressRaw[12]" VarB="AI Standard Channel 4^Value"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.aPressRaw[13]" VarB="AI Standard Channel 5^Value"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.aPressRaw[14]" VarB="AI Standard Channel 8^Value"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.aPressRaw[15]" VarB="AI Standard Channel 6^Value"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.aPressRaw[16]" VarB="AI Standard Channel 7^Value"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.aPressRaw[9]" VarB="AI Standard Channel 1^Value"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Node 05^Node 05S0^Node 05S6">
+				<Link VarA="PlcTask Inputs^GVL_IO.aTempRaw[1]" VarB="AI Standard Channel 1^Value"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.aTempRaw[2]" VarB="AI Standard Channel 2^Value"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.aTempRaw[3]" VarB="AI Standard Channel 3^Value"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.aTempRaw[4]" VarB="AI Standard Channel 4^Value"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.aTempRaw[5]" VarB="AI Standard Channel 5^Value"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.aTempRaw[6]" VarB="AI Standard Channel 6^Value"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.aTempRaw[7]" VarB="AI Standard Channel 7^Value"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.aTempRaw[8]" VarB="AI Standard Channel 8^Value"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Node 05^Node 05S0^Node 05S8">
+				<Link VarA="PlcTask Inputs^GVL_IO.aTempRaw[10]" VarB="AI Standard Channel 2^Value"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.aTempRaw[11]" VarB="AI Standard Channel 3^Value"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.aTempRaw[12]" VarB="AI Standard Channel 4^Value"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.aTempRaw[13]" VarB="AI Standard Channel 5^Value"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.aTempRaw[14]" VarB="AI Standard Channel 8^Value"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.aTempRaw[15]" VarB="AI Standard Channel 6^Value"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.aTempRaw[16]" VarB="AI Standard Channel 7^Value"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.aTempRaw[9]" VarB="AI Standard Channel 1^Value"/>
+			</OwnerB>
+		</OwnerA>
+	</Mappings>
 </TcSmProject>

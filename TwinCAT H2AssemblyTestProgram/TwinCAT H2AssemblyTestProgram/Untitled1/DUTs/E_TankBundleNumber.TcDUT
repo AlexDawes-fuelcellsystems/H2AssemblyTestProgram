@@ -4,6 +4,7 @@
     <Declaration><![CDATA[{attribute 'qualified_only'}
 {attribute 'strict'}
 {attribute 'to_string'}
+//Pathing Enum
 TYPE E_TankBundleNumber :
 (
 	Bundle_Tank_1:=1,Bundle_Tank_2:=2,Bundle_Tank_3:=3,Bundle_Tank_4:=4

@@ -2,6 +2,7 @@
 <TcPlcObject Version="1.1.0.1">
   <DUT Name="ST_AnalogPressureTemp" Id="{442ec741-0c87-4196-8cca-7d8334582bc9}">
     <Declaration><![CDATA[TYPE ST_AnalogPressureTemp :
+	//Config struct for pressure/temp sensors
 STRUCT
 	rWarninglevel: REAL;
 	rErrorLevel: REAL;

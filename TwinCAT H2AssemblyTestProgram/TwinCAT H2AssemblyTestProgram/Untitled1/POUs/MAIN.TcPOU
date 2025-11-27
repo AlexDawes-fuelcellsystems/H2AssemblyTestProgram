@@ -40,7 +40,10 @@ VAR
 	bFillPathingSwitch:BOOL;
 	nFillRows:INT:=4;
 	nFillCols:INT:=3;	
-
+	
+	//Array of Pressure Transducers
+	aPT: ARRAY [1.. GVL_IO.cNumofPT] OF FB_PressureTransducer;
+	
 	//Standard Config Parameter Struct for Pressure and Temp sensors
 	stAnalogCfg : ST_AnalogPressureTemp;
 	
@@ -49,10 +52,14 @@ VAR
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[IF bInitialise THEN
+      <ST><![CDATA[//Run Initialise Method once on first cycle
+IF bInitialise THEN
 	M_Initalize();
 	bInitialise:=FALSE;
 END_IF
+
+//Update sensors from IO
+M_Sensors();
 
 //Calling FB_MAtrix for each of the three matrices of valves, Dispense, Inlet and FIlling.
 fbDispenseMatrix(bDeviceEnable:=bDispMatrixEnable,bDeviceReset:=bDispMatrixReset,
@@ -66,11 +73,23 @@ fbInletMatrix(bDeviceEnable:=bInletMatrixEnable,bDeviceReset:=bInletMatrixReset,
 fbFillMatrix(bDeviceEnable:=bFillMatrixEnable,bDeviceReset:=bFillMatrixReset,aConfig:=aFillMatrixConfig,
 	          st_path:=Fill_st_path,bSetCurrentPath:=bFillFindPath,bPathingOn:=bFillPathingSwitch,
 			  nRowSize:=nFillRows,nColSize:=nFillCols);
-				
 
+				
+//Update the inputs to the matrix functions and pressure sensors from GVLs
 M_UpdateFromHMI();	
 ]]></ST>
     </Implementation>
+    <Method Name="M_ActuateValves" Id="{05054825-7675-44cb-93b9-5418a0e91680}">
+      <Declaration><![CDATA[METHOD M_ActuateValves
+VAR_INPUT
+	rows:INT;
+	cols:INT;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="M_Initalize" Id="{c8c10e44-8587-4199-9743-e05feaa06a39}">
       <Declaration><![CDATA[METHOD PUBLIC M_Initalize 
 VAR
@@ -78,7 +97,8 @@ rows:INT;
 cols:INT;
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[///solenoids[1].MInitalize(tag := 'PT/TT-350-A-II',  hdasfgjhsdag
+        <ST><![CDATA[
+//Configure the pressure sensors
 	stAnalogCfg.rWarninglevel:=500;
 	stAnalogCfg.rErrorLevel:=525;
 	stAnalogCfg.rPressureMinSP:=0;
@@ -87,18 +107,45 @@ END_VAR]]></Declaration>
 	stAnalogCfg.rTemperatureMaxSP:=125;
 	stAnalogCfg.nRawMin:=0;
 	stAnalogCfg.nRawMax:=32767;
+//Configure the pressure sensors
+FOR rows:=1 TO GVL_IO.cNumofPT DO
+    aPT[rows].st_AnalogPressureTempdata:=stAnalogCfg;
+	apT[rows].sTag:=GVL_IO.sPTTags[rows];
+END_FOR
 
+
+//Initialise all matrices to be NC and to be un-energised
     FOR  rows:=1 TO cMaxRows DO
        FOR  cols:=1 TO cMaxCols DO
           aDispenseMatrixConfig[rows,cols].NormallyOpen:=FALSE;
 		  aInletMatrixConfig[rows,cols].NormallyOpen:=FALSE;
 		  aDispenseMatrixConfig[rows,cols].bOpen:=FALSE;
 		  aInletMatrixConfig[rows,cols].bOpen:=FALSE;
+		  aFillMatrixConfig[rows,cols].NormallyOpen:=FALSE;
+		  aFillMatrixConfig[rows,cols].bOpen:=FALSE;
        END_FOR
     END_FOR
 
     
 ]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_Sensors" Id="{8920a687-dbcd-44ce-acc2-10050478d6e7}">
+      <Declaration><![CDATA[METHOD M_Sensors
+VAR
+	nsensorNumber:INT;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[FOR nsensorNumber:=1 TO GVL_IO.cNumofPT DO
+	aPT[nsensorNumber](bDeviceEnable:=GVL_HMI.bEnableSensors,
+		               bDeviceReset:=GVL_HMI.bResetSensors,
+					   nSensorPressure:=GVL_IO.aPressRaw[nsensorNumber],
+					   nSensorTemperature:=GVL_IO.aTempRaw[nsensorNumber],
+					   rEngPressure=>GVL_HMI.aPV[nsensorNumber],
+					   rEngTemperature=>GVL_HMI.aTV[nsensorNumber],
+                       eDeviceState=>GVL_HMI.aSensorErrors[nsensorNumber]);			   
+END_FOR]]></ST>
       </Implementation>
     </Method>
     <Method Name="M_UpdateDispenseFromHMI" Id="{5551aa22-177e-4a8b-ba12-5a3e1e154657}">
@@ -109,15 +156,18 @@ VAR
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[//Variables for filling matrix updated from GVL here
+        <ST><![CDATA[//Variables for actuating the Dispense matrix updated from GVL here
 bDispMatrixEnable:=GVL_HMI.bDispTurnOnMatrix;
 bDispMatrixReset:=GVL_HMI.bDispResetMatrix;
 Disp_st_path.endPath:=GVL_HMI.eDispEndOfPath;
 Disp_st_path.startPath:=GVL_HMI.eDispStartOfPath;
 bDispFindPath:=GVL_HMI.bDispActuatePath;
 bDispPathingSwitch:=GVL_HMI.bDispTurnOnPathing;
+
+//Change the display state of the matrix valves on the HMI screen
 GVL_HMI.aDispStateofValves:=fbDispenseMatrix.aValveStates;
 
+//Condition to avoid manual control when pathing is on
 IF GVL_HMI.bDispTurnOnPathing THEN
 	RETURN;
 END_IF
@@ -136,15 +186,19 @@ VAR
 	cols:INT;
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[//Variables for inlet matrix are updated from here
+        <ST><![CDATA[//Variables for actuating the filling matrix are updated from GVL here
 bFillMatrixEnable:=GVL_HMI.bFillTurnOnMatrix;
 bFillMatrixReset:=GVL_HMI.bFillResetMatrix;
 bFillFindPath:=GVL_HMI.bFillActuatePath;
 bFillPathingSwitch:=GVL_HMI.bFillTurnOnPathing;
 Fill_st_path.endPath:=GVL_HMI.eFillEndOfPath;
 Fill_st_path.startPath:=GVL_HMI.eFillStartOfPath;
+
+//Change the display state of the matrix valves on the HMI screen
 GVL_HMI.aFillStateofValves:=fbFillMatrix.aValveStates;
 
+
+//Condition to avoid manual control when pathing is on
 IF GVL_HMI.bFillTurnOnPathing THEN
 	RETURN;
 END_IF
@@ -175,15 +229,18 @@ VAR
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[//Variables for inlet matrix are updated from here
+        <ST><![CDATA[//Variables for actuating the inlet matrix are updated from the GVL here
 bInletMatrixEnable:=GVL_HMI.bInletTurnOnMatrix;
 bInletMatrixReset:=GVL_HMI.bInletResetMatrix;
 bInletFindPath:=GVL_HMI.bInletActuatePath;
 bInletPathingSwitch:=GVL_HMI.bInbletTurnOnPathing;
 Inlet_st_path.endPath:=GVL_HMI.eInletEndOfPath;
 Inlet_st_path.startPath:=GVL_HMI.eInletStartOfPath;
+
+//Change the display state of the matrix valves on the HMI screen
 GVL_HMI.aInletStateofValves:=fbInletMatrix.aValveStates;
 
+//Condition to avoid manual control when pathing is on
 IF GVL_HMI.bInbletTurnOnPathing THEN
 	RETURN;
 END_IF

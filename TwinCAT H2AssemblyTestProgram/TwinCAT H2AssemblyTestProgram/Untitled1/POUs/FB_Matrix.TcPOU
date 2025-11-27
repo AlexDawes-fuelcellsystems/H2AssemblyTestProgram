@@ -3,24 +3,26 @@
   <POU Name="FB_Matrix" Id="{2c7f537e-a85d-49b4-9066-1d7397aeaf2d}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_Matrix EXTENDS FB_Device
 VAR_INPUT
-	st_path : ST_Path;
-	bSetCurrentPath:BOOL;
-	bPathingOn:BOOL;
-	nRowSize:INT;
-	nColSize:INT;
+	st_path : ST_Path;//INT struct to contain int value of path enums
+	bSetCurrentPath:BOOL;//Bool to actuate the selected path 
+	bPathingOn:BOOL;//BOOL to enable the path selection mode 
+	nRowSize:INT;//Matrix row size 
+	nColSize:INT;//Matrix Column size
 END_VAR
 VAR
-	aValves:ARRAY [1..4,1..3] OF FB_Solenoid;
-	iRows:INT;
-	iColumns:INT;
-	bOverallEnable:BOOL;
+	aValves:ARRAY [1..4,1..3] OF FB_Solenoid;//Instantiating Solenoid valves, max array size, can contain smaller arrays
+	iRows:INT;//Row variable for FOR loops to use
+	iColumns:INT;//Col variable for FOR loops to use
+	bOverallEnable:BOOL;//Internal variable used to assign device state to all instantiated solenoid valves
 END_VAR
 VAR_IN_OUT
-	aConfig:ARRAY[1..4,1..3] OF ST_SolenoidConfig;
+	aConfig:ARRAY[1..4,1..3] OF ST_SolenoidConfig;//Matrix config
 END_VAR
 VAR_OUTPUT
-	aValveStates : ARRAY [1..4,1..3] OF E_SolenoidState;
-END_VAR]]></Declaration>
+	aValveStates : ARRAY [1..4,1..3] OF E_SolenoidState;//State of valves
+	aValveCommands:ARRAY [1..4,1..3] OF BOOL;
+END_VAR
+]]></Declaration>
     <Implementation>
       <ST><![CDATA[M_EnableResetLogic();
 M_CyclicLogic();
@@ -41,13 +43,14 @@ END_IF
 
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[hr:=SUPER^.M_CyclicLogic();
+        <ST><![CDATA[//Call FB_Device M_Cyclic Logic
+hr:=SUPER^.M_CyclicLogic();
  IF bDeviceEnable THEN
    FOR iRows := 1 TO nRowSize DO
        FOR iColumns := 1 TO nColSize DO
            aValves[iRows, iColumns](bDeviceEnable:=bOverallEnable,
 		   bNormallyOpen:=aConfig[iRows,iColumns].NormallyOpen,
-           bCmdOpen:=aConfig[iRows,iColumns].bOpen);
+           bCmdOpen:=aConfig[iRows,iColumns].bOpen,bCoilEnergiseState=>aValveCommands[iRows,iColumns]);
        END_FOR
    END_FOR
    
@@ -64,6 +67,7 @@ FOR iRows := 1 TO nRowSize DO
        aValveStates[iRows, iColumns]:=aValves[iRows, iColumns].eSolenoidState;
    END_FOR
 END_FOR
+
 ]]></ST>
       </Implementation>
     </Method>

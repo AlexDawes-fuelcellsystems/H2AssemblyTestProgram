@@ -7,7 +7,7 @@ VAR_INPUT
 	bCmdOpen:BOOL;// True if Valve should be opened
 END_VAR
 VAR
-	bTheoreticallyOpen:BOOL;
+	bTheoreticallyOpen:BOOL;//Internal variable to control state of the valve, true when valve is open
 END_VAR
 VAR_OUTPUT
 	bCoilEnergiseState:BOOL;//Signal sent to coil to energise
@@ -15,7 +15,8 @@ VAR_OUTPUT
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[IF bCmdOpen THEN
+      <ST><![CDATA[//Call method open or close depending on command to valve
+IF bCmdOpen THEN
 	M_Open();
 ELSE
     M_Close();
@@ -25,7 +26,8 @@ END_IF]]></ST>
       <Declaration><![CDATA[METHOD M_CheckState 
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF bTheoreticallyOpen THEN
+        <ST><![CDATA[//Return the state enum of the valve 
+IF bTheoreticallyOpen THEN
 	eSolenoidState := E_SolenoidState.Open;
 ELSE
 	eSolenoidState := E_SolenoidState.Closed;
@@ -37,7 +39,9 @@ END_IF]]></ST>
 
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[hr:=SUPER^.M_CyclicLogic();
+        <ST><![CDATA[//Call base M_Cyclic logic from FB_Device
+hr:=SUPER^.M_CyclicLogic();
+//Close the valve if the device is enabled
 IF bDeviceEnable THEN
 	IF bNormallyOpen THEN
 		bCoilEnergiseState := TRUE;
@@ -58,7 +62,9 @@ M_CheckState();]]></ST>
 
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[hr:=SUPER^.M_CyclicLogic();
+        <ST><![CDATA[////Call base M_Cyclic logic from FB_Device
+hr:=SUPER^.M_CyclicLogic();
+//Open the valve if the device is enabled
 IF bDeviceEnable THEN
 	IF NOT bNormallyOpen THEN
 		bCoilEnergiseState := TRUE;

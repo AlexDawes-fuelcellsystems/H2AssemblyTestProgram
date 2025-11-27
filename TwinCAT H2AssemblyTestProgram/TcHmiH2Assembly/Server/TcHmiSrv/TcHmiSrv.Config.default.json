@@ -55,6 +55,39 @@
                 ],
                 "type": "integer"
             },
+            "ADS-PLC1.E_ErrorState": {
+                "attributes": {
+                    "generate_implicit_init_function": "",
+                    "qualified_only": "",
+                    "strict": "",
+                    "to_string": ""
+                },
+                "enum": [
+                    0,
+                    1,
+                    2,
+                    3
+                ],
+                "options": [
+                    {
+                        "label": "Healthy",
+                        "value": 0
+                    },
+                    {
+                        "label": "Warning",
+                        "value": 1
+                    },
+                    {
+                        "label": "Alarm",
+                        "value": 2
+                    },
+                    {
+                        "label": "Disabled",
+                        "value": 3
+                    }
+                ],
+                "type": "integer"
+            },
             "ADS-PLC1.E_InletToSystem": {
                 "attributes": {
                     "generate_implicit_init_function": "",
@@ -1640,6 +1673,186 @@
             },
             "USEMAPPING": true
         },
+        "ADS.PLC1.GVL_HMI.aPV.0": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aPV[0]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aPV.1": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aPV[1]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aSensorErrors.0": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aSensorErrors[0]",
+            "SCHEMA": {
+                "$ref": "tchmi:server#/definitions/ADS-PLC1.E_ErrorState"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aSensorErrors.1": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aSensorErrors[1]",
+            "SCHEMA": {
+                "$ref": "tchmi:server#/definitions/ADS-PLC1.E_ErrorState"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aSensorErrors.10": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aSensorErrors[10]",
+            "SCHEMA": {
+                "$ref": "tchmi:server#/definitions/ADS-PLC1.E_ErrorState"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aSensorErrors.11": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aSensorErrors[11]",
+            "SCHEMA": {
+                "$ref": "tchmi:server#/definitions/ADS-PLC1.E_ErrorState"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aSensorErrors.12": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aSensorErrors[12]",
+            "SCHEMA": {
+                "$ref": "tchmi:server#/definitions/ADS-PLC1.E_ErrorState"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aSensorErrors.13": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aSensorErrors[13]",
+            "SCHEMA": {
+                "$ref": "tchmi:server#/definitions/ADS-PLC1.E_ErrorState"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aSensorErrors.14": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aSensorErrors[14]",
+            "SCHEMA": {
+                "$ref": "tchmi:server#/definitions/ADS-PLC1.E_ErrorState"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aSensorErrors.15": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aSensorErrors[15]",
+            "SCHEMA": {
+                "$ref": "tchmi:server#/definitions/ADS-PLC1.E_ErrorState"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aSensorErrors.2": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aSensorErrors[2]",
+            "SCHEMA": {
+                "$ref": "tchmi:server#/definitions/ADS-PLC1.E_ErrorState"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aSensorErrors.3": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aSensorErrors[3]",
+            "SCHEMA": {
+                "$ref": "tchmi:server#/definitions/ADS-PLC1.E_ErrorState"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aSensorErrors.4": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aSensorErrors[4]",
+            "SCHEMA": {
+                "$ref": "tchmi:server#/definitions/ADS-PLC1.E_ErrorState"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aSensorErrors.5": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aSensorErrors[5]",
+            "SCHEMA": {
+                "$ref": "tchmi:server#/definitions/ADS-PLC1.E_ErrorState"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aSensorErrors.6": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aSensorErrors[6]",
+            "SCHEMA": {
+                "$ref": "tchmi:server#/definitions/ADS-PLC1.E_ErrorState"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aSensorErrors.7": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aSensorErrors[7]",
+            "SCHEMA": {
+                "$ref": "tchmi:server#/definitions/ADS-PLC1.E_ErrorState"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aSensorErrors.8": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aSensorErrors[8]",
+            "SCHEMA": {
+                "$ref": "tchmi:server#/definitions/ADS-PLC1.E_ErrorState"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aSensorErrors.9": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aSensorErrors[9]",
+            "SCHEMA": {
+                "$ref": "tchmi:server#/definitions/ADS-PLC1.E_ErrorState"
+            },
+            "USEMAPPING": true
+        },
         "ADS.PLC1.GVL_HMI.aStateofValves.0.0": {
             "ACCESS": 3,
             "DOMAIN": "ADS",
@@ -1760,6 +1973,26 @@
             },
             "USEMAPPING": true
         },
+        "ADS.PLC1.GVL_HMI.aTV.0": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aTV[0]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aTV.1": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aTV[1]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
         "ADS.PLC1.GVL_HMI.bActuatePath": {
             "ACCESS": 3,
             "DOMAIN": "ADS",
@@ -1807,6 +2040,23 @@
             "MAPPING": "PLC1::GVL_HMI::bDispTurnOnPathing",
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.bEnableSensors": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::bEnableSensors",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "comment": "Variables to enable and reset Sensors"
+                    }
+                ]
             },
             "USEMAPPING": true
         },
@@ -1875,6 +2125,16 @@
             "DOMAIN": "ADS",
             "DYNAMIC": true,
             "MAPPING": "PLC1::GVL_HMI::bResetMatrix",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.bResetSensors": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::bResetSensors",
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
@@ -5088,6 +5348,24 @@
                 "ADS.PLC1.GVL_HMI.aManualValveSelection.3.0": 3,
                 "ADS.PLC1.GVL_HMI.aManualValveSelection.3.1": 3,
                 "ADS.PLC1.GVL_HMI.aManualValveSelection.3.2": 3,
+                "ADS.PLC1.GVL_HMI.aPV.0": 3,
+                "ADS.PLC1.GVL_HMI.aPV.1": 3,
+                "ADS.PLC1.GVL_HMI.aSensorErrors.0": 3,
+                "ADS.PLC1.GVL_HMI.aSensorErrors.1": 3,
+                "ADS.PLC1.GVL_HMI.aSensorErrors.10": 3,
+                "ADS.PLC1.GVL_HMI.aSensorErrors.11": 3,
+                "ADS.PLC1.GVL_HMI.aSensorErrors.12": 3,
+                "ADS.PLC1.GVL_HMI.aSensorErrors.13": 3,
+                "ADS.PLC1.GVL_HMI.aSensorErrors.14": 3,
+                "ADS.PLC1.GVL_HMI.aSensorErrors.15": 3,
+                "ADS.PLC1.GVL_HMI.aSensorErrors.2": 3,
+                "ADS.PLC1.GVL_HMI.aSensorErrors.3": 3,
+                "ADS.PLC1.GVL_HMI.aSensorErrors.4": 3,
+                "ADS.PLC1.GVL_HMI.aSensorErrors.5": 3,
+                "ADS.PLC1.GVL_HMI.aSensorErrors.6": 3,
+                "ADS.PLC1.GVL_HMI.aSensorErrors.7": 3,
+                "ADS.PLC1.GVL_HMI.aSensorErrors.8": 3,
+                "ADS.PLC1.GVL_HMI.aSensorErrors.9": 3,
                 "ADS.PLC1.GVL_HMI.aStateofValves.0.0": 3,
                 "ADS.PLC1.GVL_HMI.aStateofValves.0.1": 3,
                 "ADS.PLC1.GVL_HMI.aStateofValves.0.2": 3,
@@ -5100,11 +5378,14 @@
                 "ADS.PLC1.GVL_HMI.aStateofValves.3.0": 3,
                 "ADS.PLC1.GVL_HMI.aStateofValves.3.1": 3,
                 "ADS.PLC1.GVL_HMI.aStateofValves.3.2": 3,
+                "ADS.PLC1.GVL_HMI.aTV.0": 3,
+                "ADS.PLC1.GVL_HMI.aTV.1": 3,
                 "ADS.PLC1.GVL_HMI.bActuatePath": 3,
                 "ADS.PLC1.GVL_HMI.bDispActuatePath": 3,
                 "ADS.PLC1.GVL_HMI.bDispResetMatrix": 3,
                 "ADS.PLC1.GVL_HMI.bDispTurnOnMatrix": 3,
                 "ADS.PLC1.GVL_HMI.bDispTurnOnPathing": 3,
+                "ADS.PLC1.GVL_HMI.bEnableSensors": 3,
                 "ADS.PLC1.GVL_HMI.bFillActuatePath": 3,
                 "ADS.PLC1.GVL_HMI.bFillTurnOnMatrix": 3,
                 "ADS.PLC1.GVL_HMI.bFillTurnOnPathing": 3,
@@ -5112,6 +5393,7 @@
                 "ADS.PLC1.GVL_HMI.bInletActuatePath": 3,
                 "ADS.PLC1.GVL_HMI.bInletTurnOnMatrix": 3,
                 "ADS.PLC1.GVL_HMI.bResetMatrix": 3,
+                "ADS.PLC1.GVL_HMI.bResetSensors": 3,
                 "ADS.PLC1.GVL_HMI.bTurnOnMatrix": 3,
                 "ADS.PLC1.GVL_HMI.bTurnOnPathing": 3,
                 "ADS.PLC1.GVL_HMI.eDispEndOfPath": 3,

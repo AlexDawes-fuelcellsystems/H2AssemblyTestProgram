@@ -3,13 +3,14 @@
   <POU Name="FB_PressureTransducer" Id="{4a351574-9fd7-451d-b391-c9b46c5a302c}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_PressureTransducer EXTENDS FB_Device
 VAR_INPUT
-	nSensorPressure: INT;
-	nSensorTemperature:INT;
-	st_AnalogPressureTempdata:ST_AnalogPressureTemp;
+	nSensorPressure: INT; //Pressure analog input
+	nSensorTemperature:INT;//Temperature analog input 
+	st_AnalogPressureTempdata:ST_AnalogPressureTemp;//Configuration struct 
+	sTag : T_MaxString;
 END_VAR
 VAR_OUTPUT
-	rEngPressure:REAL;
-	rEngTemperature:REAL;
+	rEngPressure:REAL;//Pressure in BAR.
+	rEngTemperature:REAL;//Temperature in Degrees C.
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -24,16 +25,19 @@ END_VAR
 
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[hr:=SUPER^.M_CyclicLogic();
+        <ST><![CDATA[//Call M_CyclicLogic from FB_Device 
+hr:=SUPER^.M_CyclicLogic();
 IF bDeviceEnable THEN
-	//Normalise the analog inputs
+	//Normalise the analog inputs 
    rNormPressure    := (INT_TO_REAL(nSensorPressure)    - INT_TO_REAL(st_AnalogPressureTempdata.nRawMin)) / (INT_TO_REAL(st_AnalogPressureTempdata.nRawMax) - INT_TO_REAL(st_AnalogPressureTempdata.nRawMin));
    rNormTemperature := (INT_TO_REAL(nSensorTemperature) - INT_TO_REAL(st_AnalogPressureTempdata.nRawMin)) / (INT_TO_REAL(st_AnalogPressureTempdata.nRawMax) - INT_TO_REAL(st_AnalogPressureTempdata.nRawMin));
    
-   //Scale analog inputs to the Engineering process values for Pressure and Temperature
+   //Scale analog inputs to the Engineering process values, using config struct parameters
    rEngPressure:=st_AnalogPressureTempdata.rPressureMinSP + rNormPressure * (st_AnalogPressureTempdata.rPressureMaxSP - st_AnalogPressureTempdata.rPressureMinSP);
    rEngTemperature:=st_AnalogPressureTempdata.rTemperatureMinSP + rNormTemperature * (st_AnalogPressureTempdata.rTemperatureMaxSP - st_AnalogPressureTempdata.rTemperatureMinSP);
 END_IF
+
+//Evaluate pressure state 
 M_PressureState();]]></ST>
       </Implementation>
     </Method>
@@ -42,7 +46,8 @@ M_PressureState();]]></ST>
 
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF (rEngPressure > 500) AND (rEngPressure < 525) THEN
+        <ST><![CDATA[//Evaluate pressure value against warning and error values.
+IF (rEngPressure > 500) AND (rEngPressure < 525) THEN
 	bWarning:=TRUE;
 ELSIF rEngPressure > 525 THEN
 	bError:=TRUE;
