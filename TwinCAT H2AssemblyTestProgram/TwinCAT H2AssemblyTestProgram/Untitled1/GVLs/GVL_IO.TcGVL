@@ -29,9 +29,10 @@ VAR_GLOBAL
     aTempRaw AT %I* : ARRAY[1..cNumofPT]  OF INT;
 	
 	//Solenoid Outputs
-	aInletMAtrixValveCmds: ARRAY [1..2,1..3] OF BOOL;
-	aFillMatrixValveCmds: ARRAY [1..4,1..3] OF BOOL;
-	aDispenseMatrixValveCmds: ARRAY [1..4,1..3] OF BOOL;
+	aInletMAtrixValveCmds AT %Q* : ARRAY [1..2,1..3] OF BOOL;
+	aFillMatrixValveCmds AT %Q*: ARRAY [1..4,1..3] OF BOOL;
+	aDispenseMatrixValveCmds AT %Q*: ARRAY [1..4,1..3] OF BOOL;
+
 
 END_VAR]]></Declaration>
   </GVL>

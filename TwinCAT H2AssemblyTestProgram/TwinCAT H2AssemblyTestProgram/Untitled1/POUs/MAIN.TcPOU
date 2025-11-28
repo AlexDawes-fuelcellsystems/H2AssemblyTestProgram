@@ -58,8 +58,9 @@ IF bInitialise THEN
 	bInitialise:=FALSE;
 END_IF
 
-//Update sensors from IO
+//Update to/from IO
 M_Sensors();
+M_Solenoids();
 
 //Calling FB_MAtrix for each of the three matrices of valves, Dispense, Inlet and FIlling.
 fbDispenseMatrix(bDeviceEnable:=bDispMatrixEnable,bDeviceReset:=bDispMatrixReset,
@@ -79,17 +80,6 @@ fbFillMatrix(bDeviceEnable:=bFillMatrixEnable,bDeviceReset:=bFillMatrixReset,aCo
 M_UpdateFromHMI();	
 ]]></ST>
     </Implementation>
-    <Method Name="M_ActuateValves" Id="{05054825-7675-44cb-93b9-5418a0e91680}">
-      <Declaration><![CDATA[METHOD M_ActuateValves
-VAR_INPUT
-	rows:INT;
-	cols:INT;
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[]]></ST>
-      </Implementation>
-    </Method>
     <Method Name="M_Initalize" Id="{c8c10e44-8587-4199-9743-e05feaa06a39}">
       <Declaration><![CDATA[METHOD PUBLIC M_Initalize 
 VAR
@@ -97,8 +87,7 @@ rows:INT;
 cols:INT;
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[
-//Configure the pressure sensors
+        <ST><![CDATA[//Configure the pressure sensors
 	stAnalogCfg.rWarninglevel:=500;
 	stAnalogCfg.rErrorLevel:=525;
 	stAnalogCfg.rPressureMinSP:=0;
@@ -146,6 +135,34 @@ END_VAR
 					   rEngTemperature=>GVL_HMI.aTV[nsensorNumber],
                        eDeviceState=>GVL_HMI.aSensorErrors[nsensorNumber]);			   
 END_FOR]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_Solenoids" Id="{95ac1a41-351a-471d-81b4-82419464a043}">
+      <Declaration><![CDATA[METHOD M_Solenoids
+VAR
+	rows:INT;
+	cols:INT;
+END_VAR
+
+VAR
+	aInletMAtrixValveCmds: INT;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//Update IO for valve commands
+FOR rows:=1 TO 2 DO
+	FOR cols:=1 TO 3 DO
+	    GVL_IO.aInletMAtrixValveCmds[rows,cols]:= fbInletMatrix.aValveCommands[rows,cols];
+	END_FOR
+END_FOR
+FOR rows:=1 TO 4 DO
+	FOR cols:=1 TO 3 DO
+	    GVL_IO.aFillMatrixValveCmds[rows,cols]:= fbFillMatrix.aValveCommands[rows,cols];
+		GVL_IO.aDispenseMatrixValveCmds[rows,cols]:= fbDispenseMatrix.aValveCommands[rows,cols];
+	END_FOR
+END_FOR
+
+
+]]></ST>
       </Implementation>
     </Method>
     <Method Name="M_UpdateDispenseFromHMI" Id="{5551aa22-177e-4a8b-ba12-5a3e1e154657}">

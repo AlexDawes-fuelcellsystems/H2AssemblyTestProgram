@@ -1693,6 +1693,146 @@
             },
             "USEMAPPING": true
         },
+        "ADS.PLC1.GVL_HMI.aPV.10": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aPV[10]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aPV.11": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aPV[11]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aPV.12": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aPV[12]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aPV.13": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aPV[13]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aPV.14": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aPV[14]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aPV.15": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aPV[15]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aPV.2": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aPV[2]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aPV.3": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aPV[3]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aPV.4": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aPV[4]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aPV.5": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aPV[5]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aPV.6": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aPV[6]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aPV.7": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aPV[7]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aPV.8": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aPV[8]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aPV.9": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aPV[9]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
         "ADS.PLC1.GVL_HMI.aSensorErrors.0": {
             "ACCESS": 3,
             "DOMAIN": "ADS",
@@ -1988,6 +2128,146 @@
             "DOMAIN": "ADS",
             "DYNAMIC": true,
             "MAPPING": "PLC1::GVL_HMI::aTV[1]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aTV.10": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aTV[10]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aTV.11": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aTV[11]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aTV.12": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aTV[12]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aTV.13": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aTV[13]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aTV.14": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aTV[14]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aTV.15": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aTV[15]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aTV.2": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aTV[2]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aTV.3": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aTV[3]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aTV.4": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aTV[4]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aTV.5": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aTV[5]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aTV.6": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aTV[6]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aTV.7": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aTV[7]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aTV.8": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aTV[8]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.aTV.9": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::aTV[9]",
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
@@ -5350,6 +5630,20 @@
                 "ADS.PLC1.GVL_HMI.aManualValveSelection.3.2": 3,
                 "ADS.PLC1.GVL_HMI.aPV.0": 3,
                 "ADS.PLC1.GVL_HMI.aPV.1": 3,
+                "ADS.PLC1.GVL_HMI.aPV.10": 3,
+                "ADS.PLC1.GVL_HMI.aPV.11": 3,
+                "ADS.PLC1.GVL_HMI.aPV.12": 3,
+                "ADS.PLC1.GVL_HMI.aPV.13": 3,
+                "ADS.PLC1.GVL_HMI.aPV.14": 3,
+                "ADS.PLC1.GVL_HMI.aPV.15": 3,
+                "ADS.PLC1.GVL_HMI.aPV.2": 3,
+                "ADS.PLC1.GVL_HMI.aPV.3": 3,
+                "ADS.PLC1.GVL_HMI.aPV.4": 3,
+                "ADS.PLC1.GVL_HMI.aPV.5": 3,
+                "ADS.PLC1.GVL_HMI.aPV.6": 3,
+                "ADS.PLC1.GVL_HMI.aPV.7": 3,
+                "ADS.PLC1.GVL_HMI.aPV.8": 3,
+                "ADS.PLC1.GVL_HMI.aPV.9": 3,
                 "ADS.PLC1.GVL_HMI.aSensorErrors.0": 3,
                 "ADS.PLC1.GVL_HMI.aSensorErrors.1": 3,
                 "ADS.PLC1.GVL_HMI.aSensorErrors.10": 3,
@@ -5380,6 +5674,20 @@
                 "ADS.PLC1.GVL_HMI.aStateofValves.3.2": 3,
                 "ADS.PLC1.GVL_HMI.aTV.0": 3,
                 "ADS.PLC1.GVL_HMI.aTV.1": 3,
+                "ADS.PLC1.GVL_HMI.aTV.10": 3,
+                "ADS.PLC1.GVL_HMI.aTV.11": 3,
+                "ADS.PLC1.GVL_HMI.aTV.12": 3,
+                "ADS.PLC1.GVL_HMI.aTV.13": 3,
+                "ADS.PLC1.GVL_HMI.aTV.14": 3,
+                "ADS.PLC1.GVL_HMI.aTV.15": 3,
+                "ADS.PLC1.GVL_HMI.aTV.2": 3,
+                "ADS.PLC1.GVL_HMI.aTV.3": 3,
+                "ADS.PLC1.GVL_HMI.aTV.4": 3,
+                "ADS.PLC1.GVL_HMI.aTV.5": 3,
+                "ADS.PLC1.GVL_HMI.aTV.6": 3,
+                "ADS.PLC1.GVL_HMI.aTV.7": 3,
+                "ADS.PLC1.GVL_HMI.aTV.8": 3,
+                "ADS.PLC1.GVL_HMI.aTV.9": 3,
                 "ADS.PLC1.GVL_HMI.bActuatePath": 3,
                 "ADS.PLC1.GVL_HMI.bDispActuatePath": 3,
                 "ADS.PLC1.GVL_HMI.bDispResetMatrix": 3,

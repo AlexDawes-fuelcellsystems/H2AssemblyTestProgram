@@ -11,6 +11,32 @@
 			</ArrayInfo>
 		</DataType>
 		<DataType>
+			<Name GUID="{8FCE232A-E305-E678-C6D2-87B4686F74DC}" IecBaseType="true" AutoDeleteType="true">ARRAY [1..2,1..3] OF BOOL</Name>
+			<BitSize>48</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</BaseType>
+			<ArrayInfo>
+				<LBound>1</LBound>
+				<Elements>2</Elements>
+			</ArrayInfo>
+			<ArrayInfo>
+				<LBound>1</LBound>
+				<Elements>3</Elements>
+			</ArrayInfo>
+		</DataType>
+		<DataType>
+			<Name GUID="{7B642F66-174D-1276-8A7E-1847EF0EE342}" IecBaseType="true" AutoDeleteType="true">ARRAY [1..4,1..3] OF BOOL</Name>
+			<BitSize>96</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</BaseType>
+			<ArrayInfo>
+				<LBound>1</LBound>
+				<Elements>4</Elements>
+			</ArrayInfo>
+			<ArrayInfo>
+				<LBound>1</LBound>
+				<Elements>3</Elements>
+			</ArrayInfo>
+		</DataType>
+		<DataType>
 			<Name GUID="{18071995-0000-0000-0000-002000000001}" IecBaseType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..0] OF BIT</Name>
 			<BitSize>1</BitSize>
 			<BaseType GUID="{18071995-0000-0000-0000-000000000010}">BIT</BaseType>
@@ -67,9 +93,25 @@
 		</System>
 		<Plc>
 			<Project GUID="{62F3C8BB-BCA0-40E5-BF03-2298E4B6F176}" Name="Untitled1" PrjFilePath="Untitled1\Untitled1.plcproj" TmcFilePath="Untitled1\Untitled1.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{FD33B050-6973-D075-FEEE-EAC2C2D0FA50}" TmcPath="Untitled1\Untitled1.tmc">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{050F2E78-DF3E-E8BA-C9F8-30AE24DB432A}" TmcPath="Untitled1\Untitled1.tmc">
 					<Name>Untitled1 Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
+					<Vars VarGrpType="2" AreaNo="1">
+						<Name>PlcTask Outputs</Name>
+						<Var>
+							<Name>GVL_IO.aInletMAtrixValveCmds</Name>
+							<Comment><![CDATA[Solenoid Outputs]]></Comment>
+							<Type GUID="{8FCE232A-E305-E678-C6D2-87B4686F74DC}">ARRAY [1..2,1..3] OF BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.aFillMatrixValveCmds</Name>
+							<Type GUID="{7B642F66-174D-1276-8A7E-1847EF0EE342}">ARRAY [1..4,1..3] OF BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.aDispenseMatrixValveCmds</Name>
+							<Type GUID="{7B642F66-174D-1276-8A7E-1847EF0EE342}">ARRAY [1..4,1..3] OF BOOL</Type>
+						</Var>
+					</Vars>
 					<Vars VarGrpType="1">
 						<Name>PlcTask Inputs</Name>
 						<Var>
@@ -2505,6 +2547,34 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 				<Link VarA="PlcTask Inputs^GVL_IO.aTempRaw[15]" VarB="AI Standard Channel 6^Value"/>
 				<Link VarA="PlcTask Inputs^GVL_IO.aTempRaw[16]" VarB="AI Standard Channel 7^Value"/>
 				<Link VarA="PlcTask Inputs^GVL_IO.aTempRaw[9]" VarB="AI Standard Channel 1^Value"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Node 06^Node 06S0^Node 06S10">
+				<Link VarA="PlcTask Outputs^GVL_IO.aFillMatrixValveCmds[1,1]" VarB="Channel 1^Output"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.aFillMatrixValveCmds[2,1]" VarB="Channel 2^Output"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.aFillMatrixValveCmds[3,1]" VarB="Channel 3^Output"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.aFillMatrixValveCmds[4,1]" VarB="Channel 4^Output"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Node 06^Node 06S0^Node 06S2">
+				<Link VarA="PlcTask Outputs^GVL_IO.aInletMAtrixValveCmds[2,1]" VarB="Channel 1^Output"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.aInletMAtrixValveCmds[2,2]" VarB="Channel 2^Output"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.aInletMAtrixValveCmds[2,3]" VarB="Channel 3^Output"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Node 06^Node 06S0^Node 06S4">
+				<Link VarA="PlcTask Outputs^GVL_IO.aInletMAtrixValveCmds[1,1]" VarB="Channel 1^Output"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.aInletMAtrixValveCmds[1,2]" VarB="Channel 2^Output"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.aInletMAtrixValveCmds[1,3]" VarB="Channel 3^Output"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Node 06^Node 06S0^Node 06S6">
+				<Link VarA="PlcTask Outputs^GVL_IO.aFillMatrixValveCmds[1,3]" VarB="Channel 1^Output"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.aFillMatrixValveCmds[2,3]" VarB="Channel 2^Output"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.aFillMatrixValveCmds[3,3]" VarB="Channel 3^Output"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.aFillMatrixValveCmds[4,3]" VarB="Channel 4^Output"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Node 06^Node 06S0^Node 06S8">
+				<Link VarA="PlcTask Outputs^GVL_IO.aFillMatrixValveCmds[1,2]" VarB="Channel 1^Output"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.aFillMatrixValveCmds[2,2]" VarB="Channel 2^Output"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.aFillMatrixValveCmds[3,2]" VarB="Channel 3^Output"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.aFillMatrixValveCmds[4,2]" VarB="Channel 4^Output"/>
 			</OwnerB>
 		</OwnerA>
 	</Mappings>
