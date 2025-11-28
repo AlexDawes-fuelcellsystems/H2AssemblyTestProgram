@@ -26,11 +26,7 @@ END_VAR
     <Implementation>
       <ST><![CDATA[M_EnableResetLogic();
 M_CyclicLogic();
-IF bPathingOn THEN
-	M_DispensePathing();
-ELSE
-	M_ManualControl();
-END_IF
+
 
 
 
@@ -40,20 +36,51 @@ END_IF
     </Implementation>
     <Method Name="M_CyclicLogic" Id="{f1b117f3-667e-4a24-a226-6ce2e5fb34e4}">
       <Declaration><![CDATA[METHOD M_CyclicLogic : HRESULT
-
-]]></Declaration>
+VAR
+ r2, c2   : INT;
+END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[//Call FB_Device M_Cyclic Logic
 hr:=SUPER^.M_CyclicLogic();
+
+IF bDeviceEnable AND bPathingON THEN
+	M_DispensePathing();
+END_IF
+
+// --- SAFETY: only one open per row and per column ---
+FOR iRows := 1 TO nRowSize DO
+    FOR iColumns := 1 TO nColSize DO
+        IF aConfig[iRows, iColumns].bOpen THEN
+
+            // Close others in same row
+            FOR c2 := 1 TO nColSize DO
+                IF c2 <> iColumns THEN
+                    aConfig[iRows, c2].bOpen := FALSE;
+                END_IF
+            END_FOR
+
+            // Close others in same column
+            FOR r2 := 1 TO nRowSize DO
+                IF r2 <> iRows THEN
+                    aConfig[r2, iColumns].bOpen := FALSE;
+                END_IF
+            END_FOR
+
+        END_IF
+    END_FOR
+END_FOR
+
+
  IF bDeviceEnable THEN
    FOR iRows := 1 TO nRowSize DO
        FOR iColumns := 1 TO nColSize DO
-           aValves[iRows, iColumns](bDeviceEnable:=bOverallEnable,
-		   bNormallyOpen:=aConfig[iRows,iColumns].NormallyOpen,
-           bCmdOpen:=aConfig[iRows,iColumns].bOpen,bCoilEnergiseState=>aValveCommands[iRows,iColumns]);
+           aValves[iRows, iColumns](
+              bDeviceEnable:=bOverallEnable,
+		      bNormallyOpen:=aConfig[iRows,iColumns].NormallyOpen,
+              bCmdOpen:=aConfig[iRows,iColumns].bOpen,
+              bCoilEnergiseState=>aValveCommands[iRows,iColumns]);
        END_FOR
    END_FOR
-   
  ELSE
 	 FOR iRows := 1 TO nRowSize DO
        FOR iColumns := 1 TO nColSize DO
@@ -79,11 +106,16 @@ VAR
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF bDeviceEnable THEN
-	IF bSetCurrentPath THEN
-       aConfig[nRowToOpen,nColToOpen].bOpen:=TRUE;
-    END_IF
-END_IF]]></ST>
+        <ST><![CDATA[IF bSetCurrentPath THEN
+	// Clear all valves in active area (Next update to allow for diagonal valves to open)
+    FOR iRows := 1 TO nRowSize DO
+        FOR iColumns := 1 TO nColSize DO
+            aConfig[iRows, iColumns].bOpen := FALSE;
+        END_FOR
+    END_FOR
+   aConfig[nRowToOpen,nColToOpen].bOpen:=TRUE;
+END_IF
+]]></ST>
       </Implementation>
     </Method>
     <Method Name="M_EnableResetLogic" Id="{7d457710-3a0c-4071-bb2d-81ff18c2698c}">
@@ -105,19 +137,6 @@ IF bDeviceReset THEN
 END_IF
 
 ]]></ST>
-      </Implementation>
-    </Method>
-    <Method Name="M_ManualControl" Id="{0be0b670-86a1-4a84-85ca-54c8277a37d4}">
-      <Declaration><![CDATA[METHOD M_ManualControl 
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[IF NOT bPathingOn AND bDeviceEnable THEN
-   FOR iRows := 1 TO 4 DO
-       FOR iColumns := 1 TO 3 DO
-           aValves[iRows, iColumns](bCmdOpen:=aConfig[iRows,iColumns].bOpen);
-       END_FOR
-   END_FOR
-END_IF]]></ST>
       </Implementation>
     </Method>
   </POU>
