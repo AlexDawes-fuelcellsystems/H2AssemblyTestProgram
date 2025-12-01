@@ -47,18 +47,18 @@ IF bDeviceEnable AND bPathingON THEN
 	M_DispensePathing();
 END_IF
 
-// --- SAFETY: only one open per row and per column ---
+//Only allow one valve open per row and column
 FOR iRows := 1 TO nRowSize DO
     FOR iColumns := 1 TO nColSize DO
         IF aConfig[iRows, iColumns].bOpen THEN
-
+			
             // Close others in same row
             FOR c2 := 1 TO nColSize DO
                 IF c2 <> iColumns THEN
                     aConfig[iRows, c2].bOpen := FALSE;
                 END_IF
             END_FOR
-
+			
             // Close others in same column
             FOR r2 := 1 TO nRowSize DO
                 IF r2 <> iRows THEN
@@ -70,8 +70,6 @@ FOR iRows := 1 TO nRowSize DO
     END_FOR
 END_FOR
 
-
- IF bDeviceEnable THEN
    FOR iRows := 1 TO nRowSize DO
        FOR iColumns := 1 TO nColSize DO
            aValves[iRows, iColumns](
@@ -79,21 +77,10 @@ END_FOR
 		      bNormallyOpen:=aConfig[iRows,iColumns].NormallyOpen,
               bCmdOpen:=aConfig[iRows,iColumns].bOpen,
               bCoilEnergiseState=>aValveCommands[iRows,iColumns]);
+			  aValveStates[iRows, iColumns]:=aValves[iRows, iColumns].eSolenoidState;
        END_FOR
    END_FOR
- ELSE
-	 FOR iRows := 1 TO nRowSize DO
-       FOR iColumns := 1 TO nColSize DO
-           aValves[iRows, iColumns](bDeviceEnable:=bOverallEnable);
-       END_FOR
-     END_FOR
- END_IF
- 
-FOR iRows := 1 TO nRowSize DO
-   FOR iColumns := 1 TO nColSize DO
-       aValveStates[iRows, iColumns]:=aValves[iRows, iColumns].eSolenoidState;
-   END_FOR
-END_FOR
+
 
 ]]></ST>
       </Implementation>
@@ -107,7 +94,7 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF bSetCurrentPath THEN
-	// Clear all valves in active area (Next update to allow for diagonal valves to open)
+	// Clear all valves in active area 
     FOR iRows := 1 TO nRowSize DO
         FOR iColumns := 1 TO nColSize DO
             aConfig[iRows, iColumns].bOpen := FALSE;
@@ -129,9 +116,6 @@ IF bDeviceReset THEN
        FOR iColumns := 1 TO nColSize DO
            aValves[iRows, iColumns](bDeviceReset:=fbTrig.Q);
 		   aConfig[iRows,iColumns].bOpen:=FALSE;
-		   GVL_HMI.aDispManualValveSelection[iRows,iColumns]:=FALSE;
-		   GVL_HMI.aInletManualValveSelection[iRows,iColumns]:=FALSE;
-		   GVL_HMI.aFillManualValveSelection[iRows,iColumns]:=FALSE;
        END_FOR
     END_FOR
 END_IF

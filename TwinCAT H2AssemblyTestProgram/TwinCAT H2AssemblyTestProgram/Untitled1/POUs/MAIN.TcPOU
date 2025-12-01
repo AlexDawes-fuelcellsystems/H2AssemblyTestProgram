@@ -2,15 +2,10 @@
 <TcPlcObject Version="1.1.0.1">
   <POU Name="MAIN" Id="{606a3699-021a-464e-b575-9f2f01835131}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM MAIN
-VAR CONSTANT
-	//Constants to set maximum matrix size at compile time
-	cMaxRows:INT:=4;
-	cMaxCols:INT:=3;
-END_VAR
 VAR
 	//Configure Dispense Matrix [4,3]
 	fbDispenseMatrix:FB_Matrix;
-	aDispenseMatrixConfig : ARRAY [1..cMaxRows,1..cMaxCols] OF ST_SolenoidConfig;
+	aDispenseMatrixConfig : ARRAY [1..GVL_HMI.cMaxRows,1..GVL_HMI.cMaxCols] OF ST_SolenoidConfig;
 	bDispMatrixEnable:BOOL;
 	bDispMatrixReset:BOOL;
 	Disp_st_path : ST_Path;
@@ -21,7 +16,7 @@ VAR
 	
 	//Configure Inlet Matrix [2,3]
 	fbInletMatrix:FB_Matrix;
-	aInletMatrixConfig: ARRAY [1..cMaxRows,1..cMaxCols] OF ST_SolenoidConfig;
+	aInletMatrixConfig: ARRAY [1..GVL_HMI.cMaxRows,1..GVL_HMI.cMaxCols] OF ST_SolenoidConfig;
 	bInletMatrixEnable:BOOL;
 	bInletMatrixReset:BOOL;
 	Inlet_st_path : ST_Path;
@@ -32,7 +27,7 @@ VAR
 	
 	//Configure Filling Matrix [4,3]
 	fbFillMatrix:FB_Matrix;
-	aFillMatrixConfig : ARRAY [1..cMaxRows,1..cMaxCols] OF ST_SolenoidConfig;
+	aFillMatrixConfig : ARRAY [1..GVL_HMI.cMaxRows,1..GVL_HMI.cMaxCols] OF ST_SolenoidConfig;
 	bFillMatrixEnable:BOOL;
 	bFillMatrixReset:BOOL;
 	Fill_st_path : ST_Path;
@@ -61,6 +56,8 @@ END_IF
 //Update to/from IO
 M_Sensors();
 M_Solenoids();
+//Update From HMI
+M_UpdateFromHMI();	
 
 //Calling FB_MAtrix for each of the three matrices of valves, Dispense, Inlet and FIlling.
 fbDispenseMatrix(bDeviceEnable:=bDispMatrixEnable,bDeviceReset:=bDispMatrixReset,
@@ -75,11 +72,41 @@ fbFillMatrix(bDeviceEnable:=bFillMatrixEnable,bDeviceReset:=bFillMatrixReset,aCo
 	          st_path:=Fill_st_path,bSetCurrentPath:=bFillFindPath,bPathingOn:=bFillPathingSwitch,
 			  nRowSize:=nFillRows,nColSize:=nFillCols);
 
-				
-//Update the inputs to the matrix functions and pressure sensors from GVLs
-M_UpdateFromHMI();	
-]]></ST>
+//Re-Update valve GVL variables from internal saftey logic
+M_CleanHMI();]]></ST>
     </Implementation>
+    <Method Name="M_CleanHMI" Id="{dc0c917a-29fb-4fe9-9454-5c7004a311f7}">
+      <Declaration><![CDATA[METHOD M_CleanHMI
+VAR
+    row : INT;
+    col : INT;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[// Dispense matrix
+FOR row := 1 TO nDispenseRows DO
+    FOR col := 1 TO nDispenseCols DO
+        GVL_HMI.aDispManualValveSelection[row, col] :=
+            aDispenseMatrixConfig[row, col].bOpen;
+    END_FOR
+END_FOR
+
+// Inlet matrix
+FOR row := 1 TO nInletRows DO
+    FOR col := 1 TO nInletCols DO
+        GVL_HMI.aInletManualValveSelection[row, col] :=
+            aInletMatrixConfig[row, col].bOpen;
+    END_FOR
+END_FOR
+
+// Fill matrix
+FOR row := 1 TO nFillRows DO
+    FOR col := 1 TO nFillCols DO
+        GVL_HMI.aFillManualValveSelection[row, col] :=
+            aFillMatrixConfig[row, col].bOpen;
+    END_FOR
+END_FOR]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="M_Initalize" Id="{c8c10e44-8587-4199-9743-e05feaa06a39}">
       <Declaration><![CDATA[METHOD PUBLIC M_Initalize 
 VAR
@@ -104,8 +131,8 @@ END_FOR
 
 
 //Initialise all matrices to be NC and to be un-energised
-    FOR  rows:=1 TO cMaxRows DO
-       FOR  cols:=1 TO cMaxCols DO
+    FOR  rows:=1 TO GVL_HMI.cMaxRows DO
+       FOR  cols:=1 TO GVL_HMI.cMaxCols DO
           aDispenseMatrixConfig[rows,cols].NormallyOpen:=FALSE;
 		  aInletMatrixConfig[rows,cols].NormallyOpen:=FALSE;
 		  aDispenseMatrixConfig[rows,cols].bOpen:=FALSE;
@@ -166,7 +193,7 @@ END_FOR
       </Implementation>
     </Method>
     <Method Name="M_UpdateDispenseFromHMI" Id="{5551aa22-177e-4a8b-ba12-5a3e1e154657}">
-      <Declaration><![CDATA[METHOD M_UpdateDispenseFromHMI
+      <Declaration><![CDATA[METHOD PRIVATE M_UpdateDispenseFromHMI
 VAR
 	rows:INT;
 	cols:INT;
@@ -184,6 +211,14 @@ bDispPathingSwitch:=GVL_HMI.bDispTurnOnPathing;
 //Change the display state of the matrix valves on the HMI screen
 GVL_HMI.aDispStateofValves:=fbDispenseMatrix.aValveStates;
 
+IF bDispMatrixReset THEN
+    FOR rows := 1 TO nDispenseRows DO
+        FOR cols := 1 TO nDispenseCols DO
+            GVL_HMI.aDispManualValveSelection[rows,cols] := FALSE;
+        END_FOR
+    END_FOR
+END_IF
+
 //Condition to avoid manual control when pathing is on
 IF GVL_HMI.bDispTurnOnPathing THEN
 	RETURN;
@@ -197,7 +232,7 @@ END_FOR
       </Implementation>
     </Method>
     <Method Name="M_UpdateFillFromHMI" Id="{1f387af1-a8e8-4464-8a9a-5150149a1400}">
-      <Declaration><![CDATA[METHOD M_UpdateFillFromHMI
+      <Declaration><![CDATA[METHOD PRIVATE M_UpdateFillFromHMI
 VAR
 	rows:INT;
 	cols:INT;
@@ -214,6 +249,13 @@ Fill_st_path.startPath:=GVL_HMI.eFillStartOfPath;
 //Change the display state of the matrix valves on the HMI screen
 GVL_HMI.aFillStateofValves:=fbFillMatrix.aValveStates;
 
+IF bFillMatrixReset THEN
+    FOR rows := 1 TO nFillRows DO
+        FOR cols := 1 TO nFillCols DO
+            GVL_HMI.aFillManualValveSelection[rows,cols] := FALSE;
+        END_FOR
+    END_FOR
+END_IF
 
 //Condition to avoid manual control when pathing is on
 IF GVL_HMI.bFillTurnOnPathing THEN
@@ -232,6 +274,10 @@ END_FOR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[//Update each matrix Independently
+GVL_HMI.bDispResetMatrix:=GVL_HMI.bResetAllValves;
+GVL_HMI.bFillResetMatrix:=GVL_HMI.bResetAllValves;
+GVL_HMI.bInletResetMatrix:=GVL_HMI.bResetAllValves;
+
 M_UpdateDispenseFromHMI();
 M_UpdateInletFromHMI();
 M_UpdateFillFromHMI();
@@ -239,7 +285,7 @@ M_UpdateFillFromHMI();
       </Implementation>
     </Method>
     <Method Name="M_UpdateInletFromHMI" Id="{c16b0c66-cb74-42d1-a703-df3168c8abc9}">
-      <Declaration><![CDATA[METHOD M_UpdateInletFromHMI
+      <Declaration><![CDATA[METHOD PRIVATE M_UpdateInletFromHMI
 VAR
 	rows:INT;
 	cols:INT;
@@ -256,6 +302,14 @@ Inlet_st_path.startPath:=GVL_HMI.eInletStartOfPath;
 
 //Change the display state of the matrix valves on the HMI screen
 GVL_HMI.aInletStateofValves:=fbInletMatrix.aValveStates;
+
+IF bInletMatrixReset THEN
+    FOR rows := 1 TO nInletRows DO
+        FOR cols := 1 TO nInletCols DO
+            GVL_HMI.aInletManualValveSelection[rows,cols] := FALSE;
+        END_FOR
+    END_FOR
+END_IF
 
 //Condition to avoid manual control when pathing is on
 IF GVL_HMI.bInbletTurnOnPathing THEN

@@ -47,9 +47,9 @@ M_PressureState();]]></ST>
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[//Evaluate pressure value against warning and error values.
-IF (rEngPressure > 500) AND (rEngPressure < 525) THEN
+IF (rEngPressure > st_AnalogPressureTempdata.rWarninglevel) AND (rEngPressure < st_AnalogPressureTempdata.rErrorLevel) THEN
 	bWarning:=TRUE;
-ELSIF rEngPressure > 525 THEN
+ELSIF rEngPressure > st_AnalogPressureTempdata.rErrorLevel THEN
 	bError:=TRUE;
 ELSE 
 	bWarning:=FALSE;

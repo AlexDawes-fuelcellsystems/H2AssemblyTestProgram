@@ -44,6 +44,9 @@ VAR_GLOBAL
 	aPV:  ARRAY[1..GVL_IO.cNumofPT] OF REAL;
 	aTV:  ARRAY[1..GVL_IO.cNumofPT] OF REAL;
 	
+	//Overall Valve Reset
+	bResetAllValves:BOOL;
+	
 END_VAR
 VAR_GLOBAL CONSTANT
 	//Set max matrix size at compile time
