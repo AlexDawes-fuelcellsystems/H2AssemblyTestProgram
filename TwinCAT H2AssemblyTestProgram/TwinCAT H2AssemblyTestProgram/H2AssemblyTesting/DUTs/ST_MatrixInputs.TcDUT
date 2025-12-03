@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <DUT Name="ST_MatrixInputs" Id="{132ec304-7199-4183-a52f-8a1f2b2a10fc}">
+    <Declaration><![CDATA[TYPE ST_MatrixInputs :
+STRUCT
+	aManualValveSelection: ARRAY [1..GVL_HMI.cMaxRows,1..GVL_HMI.cMaxCols] OF BOOL;
+	bTurnOnMatrix:BOOL;
+	bResetMatrix:BOOL;
+	bTurnOnPathing:BOOL;
+	bActuatePath:BOOL;
+	aStateofValves: ARRAY[1..GVL_HMI.cMaxRows,1..GVL_HMI.cMaxCols] OF E_SolenoidState;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

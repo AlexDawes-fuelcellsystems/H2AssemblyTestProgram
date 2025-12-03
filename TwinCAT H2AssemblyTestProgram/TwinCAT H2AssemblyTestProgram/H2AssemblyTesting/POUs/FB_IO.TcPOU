@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="FB_IO" Id="{1c9b80c2-f6a7-4a98-9c0f-22ba5373f0a7}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK PUBLIC FB_IO
+VAR_INPUT
+	inlet:FB_matrix;
+	fill:FB_matrix;
+	dispense:FB_matrix;
+	PTTT: ARRAY [1.. GVL_IO.cNumofPT] OF FB_PressureTransducer;
+END_VAR
+VAR
+	nsensorNumber:INT;
+	rows:INT;
+	cols:INT;
+	aInletMAtrixValveCmds: INT;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[M_PTTTransducers();
+M_Solenoids();]]></ST>
+    </Implementation>
+    <Folder Name="Actuators" Id="{0a74f44c-a186-4f5d-abba-c1f92f894549}" />
+    <Folder Name="Sensors" Id="{2415513d-42f8-4814-955f-fcef3eafc61a}" />
+    <Method Name="M_PTTTransducers" Id="{db9ee37e-2b9d-4ae2-ba7d-052f24f151f3}" FolderPath="Sensors\">
+      <Declaration><![CDATA[METHOD M_PTTTransducers : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[FOR nsensorNumber:=1 TO GVL_IO.cNumofPT DO
+	PTTT[nsensorNumber](bDeviceReset:=GVL_HMI.bResetSensors,
+					   nSensorPressure:=GVL_IO.aPressRaw[nsensorNumber],
+					   nSensorTemperature:=GVL_IO.aTempRaw[nsensorNumber],
+					   rEngPressure=>GVL_HMI.aPV[nsensorNumber],
+					   rEngTemperature=>GVL_HMI.aTV[nsensorNumber],
+                       eDeviceState=>GVL_HMI.aSensorErrors[nsensorNumber]);			   
+END_FOR]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_Solenoids" Id="{dbd95f87-3564-46ed-86ee-3bfcb091fedb}" FolderPath="Actuators\">
+      <Declaration><![CDATA[METHOD M_Solenoids : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//Update IO for valve commands
+FOR rows:=1 TO GVL_HMI.cInletRows DO
+	FOR cols:=1 TO GVL_HMI.cInletCols DO
+	    GVL_IO.aInletMAtrixValveCmds[rows,cols]:= inlet.aValveCommands[rows,cols];
+	END_FOR
+END_FOR
+FOR rows:=1 TO GVL_HMI.cMaxRows DO
+	FOR cols:=1 TO GVL_HMI.cMaxCols DO
+	    GVL_IO.aFillMatrixValveCmds[rows,cols]:= fill.aValveCommands[rows,cols];
+		GVL_IO.aDispenseMatrixValveCmds[rows,cols]:= Dispense.aValveCommands[rows,cols];
+	END_FOR
+END_FOR
+
+]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

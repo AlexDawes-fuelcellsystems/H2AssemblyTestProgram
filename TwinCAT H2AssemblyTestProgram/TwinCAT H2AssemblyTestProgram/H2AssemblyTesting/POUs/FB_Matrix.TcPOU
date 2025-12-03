@@ -1,0 +1,209 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="FB_Matrix" Id="{2c7f537e-a85d-49b4-9066-1d7397aeaf2d}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_Matrix EXTENDS FB_Device
+VAR
+	st_path : ST_Path;//INT struct to contain int value of path enums
+	bSetCurrentPath:BOOL;//Bool to actuate the selected path 
+	bPathingOn:BOOL;//BOOL to enable the path selection mode 
+	aValves:ARRAY [1..GVL_HMI.cMaxRows,1..GVL_HMI.cMaxCols] OF FB_Solenoid;//Instantiating Solenoid valves, max array size, can contain smaller arrays
+	iRows:INT;//Row variable for FOR loops to use
+	iColumns:INT;//Col variable for FOR loops to use
+	bOverallEnable:BOOL;//Internal variable used to assign device state to all instantiated solenoid valves
+	nRowSize:INT;//Matrix row size 
+	nColSize:INT;//Matrix Column size
+END_VAR
+VAR_IN_OUT
+	aConfig:ARRAY[1..GVL_HMI.cMaxRows,1..GVL_HMI.cMaxCols] OF ST_SolenoidConfig;//Matrix config
+END_VAR
+VAR_OUTPUT
+	aValveStates : ARRAY [1..GVL_HMI.cMaxRows,1..GVL_HMI.cMaxCols] OF E_SolenoidState;//State of valves
+	aValveCommands:ARRAY [1..GVL_HMI.cMaxRows,1..GVL_HMI.cMaxCols] OF BOOL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[M_CyclicLogic();
+
+
+
+
+
+
+]]></ST>
+    </Implementation>
+    <Folder Name="Helpers" Id="{affafabf-63a7-4d47-af2f-1e46b7a62349}" />
+    <Folder Name="UpdateHMI" Id="{ee31b11f-ca8d-44c7-a9ea-4341b50fea06}" />
+    <Method Name="M_CyclicLogic" Id="{f1b117f3-667e-4a24-a226-6ce2e5fb34e4}">
+      <Declaration><![CDATA[METHOD M_CyclicLogic : HRESULT
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//Call FB_Device M_Cyclic Logic
+hr:=SUPER^.M_CyclicLogic();
+M_EnableResetLogic();
+IF bDeviceEnable AND bPathingON THEN
+	M_DispensePathing();
+END_IF
+
+M_SafteyLogic();
+
+   FOR iRows := 1 TO nRowSize DO
+       FOR iColumns := 1 TO nColSize DO
+           aValves[iRows, iColumns](
+              bDeviceEnable:=bOverallEnable,
+		      bNormallyOpen:=aConfig[iRows,iColumns].NormallyOpen,
+              bCmdOpen:=aConfig[iRows,iColumns].bOpen,
+              bCoilEnergiseState=>aValveCommands[iRows,iColumns]);
+			  aValveStates[iRows, iColumns]:=aValves[iRows, iColumns].eSolenoidState;
+       END_FOR
+   END_FOR
+
+
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_DispensePathing" Id="{1de2314d-8795-4c7a-99e8-ef133b9b0aae}" FolderPath="Helpers\">
+      <Declaration><![CDATA[METHOD PRIVATE M_DispensePathing : BOOL
+VAR
+	nRowToOpen: INT :=(st_path.startPath);
+	nColToOpen: INT :=(st_path.endPath);
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF bSetCurrentPath THEN
+	// Clear all valves in active area 
+    FOR iRows := 1 TO nRowSize DO
+        FOR iColumns := 1 TO nColSize DO
+            aConfig[iRows, iColumns].bOpen := FALSE;
+        END_FOR
+    END_FOR
+   aConfig[nRowToOpen,nColToOpen].bOpen:=TRUE;
+END_IF
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_EnableResetLogic" Id="{7d457710-3a0c-4071-bb2d-81ff18c2698c}" FolderPath="Helpers\">
+      <Declaration><![CDATA[METHOD PRIVATE M_EnableResetLogic : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//Set up variables and logic to reset and enable valve FB's created by FB_Matrix
+bOverallEnable:=bDeviceEnable;
+IF bDeviceReset THEN
+    FOR iRows := 1 TO nRowSize DO
+       FOR iColumns := 1 TO nColSize DO
+           aValves[iRows, iColumns](bDeviceReset:=fbTrig.Q);
+		   aConfig[iRows,iColumns].bOpen:=FALSE;
+       END_FOR
+    END_FOR
+END_IF
+
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_Initialise" Id="{b6845553-0029-4656-a1bd-7834880a3011}">
+      <Declaration><![CDATA[METHOD M_Initialise : BOOL
+VAR_INPUT
+	nRows:INT;//Matrix row size 
+	nCols:INT;//Matrix Column size
+END_VAR
+VAR
+    x:INT;
+	y:INT;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[	nRowSize:=nRows;
+	nColSize:=nCols;
+FOR x:= 1 TO nRowSize DO
+    FOR y := 1 TO nColSize DO
+        aConfig[x, y].bOpen        := FALSE;
+        aConfig[x, y].NormallyOpen := FALSE;
+    END_FOR
+END_FOR]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_SafteyLogic" Id="{26eb4e20-bab8-4714-b3f4-1f4a9495da1f}" FolderPath="Helpers\">
+      <Declaration><![CDATA[METHOD PRIVATE M_SafteyLogic : BOOL
+VAR
+ r2, c2   : INT;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//Only allow one valve open per row and column
+FOR iRows := 1 TO nRowSize DO
+    FOR iColumns := 1 TO nColSize DO
+        IF aConfig[iRows, iColumns].bOpen THEN
+			
+            // Close others in same row
+            FOR c2 := 1 TO nColSize DO
+                IF c2 <> iColumns THEN
+                    aConfig[iRows, c2].bOpen := FALSE;
+                END_IF
+            END_FOR
+			
+            // Close others in same column
+            FOR r2 := 1 TO nRowSize DO
+                IF r2 <> iRows THEN
+                    aConfig[r2, iColumns].bOpen := FALSE;
+                END_IF
+            END_FOR
+
+        END_IF
+    END_FOR
+END_FOR]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_UpdateFromHMI" Id="{0dd2dd93-79c3-40ae-ae80-11e4ace9b23f}" FolderPath="UpdateHMI\">
+      <Declaration><![CDATA[METHOD PUBLIC M_UpdateFromHMI : BOOL
+VAR_IN_OUT
+	stHMI:ST_MatrixInputs;
+END_VAR
+VAR_INPUT
+	nStartOfPath : INT; 
+    nEndOfPath   : INT;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[bDeviceEnable:=stHMI.bTurnOnMatrix;
+bDeviceReset:=stHMI.bResetMatrix OR GVL_HMI.bResetAllValves;
+bPathingOn:=stHMI.bTurnOnPathing;
+bSetCurrentPath:=stHMI.bActuatePath;
+st_path.startPath:= nStartOfPath;
+st_path.endPath:= nEndOfPath;
+
+FOR iRows := 1 TO nRowSize DO
+    FOR iColumns := 1 TO nColSize DO
+        stHMI.aStateOfValves[iRows, iColumns] := aValveStates[iRows, iColumns];
+    END_FOR
+END_FOR
+
+IF bDeviceReset THEN
+    FOR iRows := 1 TO nRowSize DO
+        FOR iColumns := 1 TO nColSize DO
+            stHMI.aManualValveSelection[iRows, iColumns] := FALSE;
+        END_FOR
+    END_FOR
+END_IF
+
+IF bPathingOn THEN;
+	RETURN;
+END_IF
+FOR iRows := 1 TO nRowSize DO
+    FOR iColumns := 1 TO nColSize DO
+        aConfig[iRows, iColumns].bOpen := stHMI.aManualValveSelection[iRows, iColumns];
+    END_FOR
+END_FOR]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_UpdateToHMI" Id="{8b123d14-1367-46e4-a2c9-25715e7e8900}" FolderPath="UpdateHMI\">
+      <Declaration><![CDATA[METHOD PUBLIC M_UpdateToHMI : BOOL
+VAR_IN_OUT
+    stHMI : ST_MatrixInputs;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[FOR iRows := 1 TO GVL_HMI.cmaxRows DO
+    FOR iColumns := 1 TO GVL_HMI.cMaxCols DO
+        stHMI.aManualValveSelection[iRows,iColumns]:=aConfig[iRows,iColumns].bOpen;
+    END_FOR
+END_FOR]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

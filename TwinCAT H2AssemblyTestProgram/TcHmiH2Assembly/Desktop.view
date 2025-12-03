@@ -1,5 +1,5 @@
-<div id="Desktop" data-tchmi-type="TcHmi.Controls.System.TcHmiView" data-tchmi-top="0" data-tchmi-left="0" data-tchmi-width-mode="Content" data-tchmi-min-width="100" data-tchmi-min-width-unit="%" data-tchmi-height-mode="Content" data-tchmi-min-height="100" data-tchmi-min-height-unit="%" data-tchmi-creator-viewport-width="1280" data-tchmi-creator-viewport-height="1024" data-tchmi-zindex="1">
-  <div id="TcHmiToggleButton_1" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleButton" data-tchmi-height="50" data-tchmi-height-unit="px" data-tchmi-left="810" data-tchmi-left-unit="px" data-tchmi-text="Enable Matrix Operation" data-tchmi-top="15" data-tchmi-top-unit="px" data-tchmi-width="50" data-tchmi-width-unit="px" data-tchmi-word-wrap="True" data-tchmi-is-enabled="True" data-tchmi-state-symbol="%s%ADS.PLC1.GVL_HMI.bDispTurnOnMatrix%/s%" data-tchmi-zindex="6">
+<div id="Desktop" data-tchmi-type="TcHmi.Controls.System.TcHmiView" data-tchmi-top="0" data-tchmi-left="26" data-tchmi-width-mode="Content" data-tchmi-min-width="100" data-tchmi-min-width-unit="%" data-tchmi-height-mode="Content" data-tchmi-min-height="100" data-tchmi-min-height-unit="%" data-tchmi-creator-viewport-width="1280" data-tchmi-creator-viewport-height="1024" data-tchmi-zindex="2">
+  <div id="TcHmiToggleButton_1" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleButton" data-tchmi-height="50" data-tchmi-height-unit="px" data-tchmi-left="810" data-tchmi-left-unit="px" data-tchmi-text="Enable Matrix Operation" data-tchmi-top="15" data-tchmi-top-unit="px" data-tchmi-width="50" data-tchmi-width-unit="px" data-tchmi-word-wrap="True" data-tchmi-is-enabled="True" data-tchmi-state-symbol="%s%ADS.PLC1.GVL_HMI.stDispHMI.bTurnOnMatrix%/s%" data-tchmi-zindex="6">
 
 
 </div>
@@ -25,20 +25,20 @@
 </script>
 
 </div>
-<div id="TcHmiToggleButton_2" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleButton" data-tchmi-height="34" data-tchmi-height-unit="px" data-tchmi-left="183" data-tchmi-left-unit="px" data-tchmi-text="Reset All Valves" data-tchmi-top="87" data-tchmi-top-unit="px" data-tchmi-width="82" data-tchmi-width-unit="px" data-tchmi-word-wrap="True" data-tchmi-state-symbol="%s%ADS.PLC1.GVL_HMI.bResetAllValves%/s%" data-tchmi-zindex="6">
+<div id="TcHmiToggleButton_2" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleButton" data-tchmi-height="34" data-tchmi-height-unit="px" data-tchmi-left="147" data-tchmi-left-unit="px" data-tchmi-text="Reset All Valves" data-tchmi-top="30" data-tchmi-top-unit="px" data-tchmi-width="82" data-tchmi-width-unit="px" data-tchmi-word-wrap="True" data-tchmi-state-symbol="%s%ADS.PLC1.GVL_HMI.bResetAllValves%/s%" data-tchmi-zindex="6">
 </div>
-<div id="TcHmiToggleButton_3" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleButton" data-tchmi-height="50" data-tchmi-height-unit="px" data-tchmi-left="950" data-tchmi-left-unit="px" data-tchmi-text="Actuate Path" data-tchmi-top="15" data-tchmi-top-unit="px" data-tchmi-width="50" data-tchmi-width-unit="px" data-tchmi-word-wrap="True" data-tchmi-state-symbol="%s%ADS.PLC1.GVL_HMI.bDispActuatePath%/s%" data-tchmi-zindex="6">
+<div id="TcHmiToggleButton_3" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleButton" data-tchmi-height="50" data-tchmi-height-unit="px" data-tchmi-left="950" data-tchmi-left-unit="px" data-tchmi-text="Actuate Path" data-tchmi-top="15" data-tchmi-top-unit="px" data-tchmi-width="50" data-tchmi-width-unit="px" data-tchmi-word-wrap="True" data-tchmi-state-symbol="%s%ADS.PLC1.GVL_HMI.stDispHMI.bActuatePath%/s%" data-tchmi-zindex="6">
 </div>
-<div id="TcHmiToggleButton_4" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleButton" data-tchmi-height="50" data-tchmi-height-unit="px" data-tchmi-left="880" data-tchmi-left-unit="px" data-tchmi-text="Turn On Pathing" data-tchmi-top="15" data-tchmi-top-unit="px" data-tchmi-width="50" data-tchmi-width-unit="px" data-tchmi-word-wrap="rue&quot;" data-tchmi-state-symbol="%s%ADS.PLC1.GVL_HMI.bDispTurnOnPathing%/s%" data-tchmi-zindex="6">
+<div id="TcHmiToggleButton_4" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleButton" data-tchmi-height="50" data-tchmi-height-unit="px" data-tchmi-left="880" data-tchmi-left-unit="px" data-tchmi-text="Turn On Pathing" data-tchmi-top="15" data-tchmi-top-unit="px" data-tchmi-width="50" data-tchmi-width-unit="px" data-tchmi-word-wrap="rue&quot;" data-tchmi-state-symbol="%s%ADS.PLC1.GVL_HMI.stDispHMI.bTurnOnPathing%/s%" data-tchmi-zindex="6">
 </div>
-<div id="TcHmiToggleButton_5" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleButton" data-tchmi-height="30" data-tchmi-height-unit="px" data-tchmi-left="784" data-tchmi-left-unit="px" data-tchmi-text="Valve [1,1]" data-tchmi-top="483" data-tchmi-top-unit="px" data-tchmi-width-unit="px" data-tchmi-word-wrap="True"   data-tchmi-state-symbol="%s%ADS.PLC1.GVL_HMI.aDispManualValveSelection.0.0%/s%" data-tchmi-zindex="6">
+<div id="TcHmiToggleButton_5" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleButton" data-tchmi-height="30" data-tchmi-height-unit="px" data-tchmi-left="784" data-tchmi-left-unit="px" data-tchmi-text="Valve [1,1]" data-tchmi-top="483" data-tchmi-top-unit="px" data-tchmi-width-unit="px" data-tchmi-word-wrap="True"   data-tchmi-state-symbol="%s%ADS.PLC1.GVL_HMI.stDispHMI.aManualValveSelection.0.0%/s%" data-tchmi-zindex="6">
 
 
 
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%s%ADS.PLC1.GVL_HMI.aDispStateofValves.0.0%/s%",
+    "event": "%s%ADS.PLC1.GVL_HMI.stDispHMI.aStateofValves.0.0%/s%",
     "actions": [
       {
         "objectType": "SwitchCase",
@@ -46,7 +46,7 @@
         "compare": {
           "objectType": "Symbol",
           "valueType": "tchmi:server#/definitions/ADS-PLC1.E_SolenoidState",
-          "symbolExpression": "%s%ADS.PLC1.GVL_HMI.aDispStateofValves.0.0%/s%"
+          "symbolExpression": "%s%ADS.PLC1.GVL_HMI.stDispHMI.aStateofValves.0.0%/s%"
         },
         "cases": [
           {
@@ -101,12 +101,12 @@
 ]
 </script>
 </div>
-<div id="TcHmiToggleButton_7" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleButton" data-tchmi-height="30" data-tchmi-height-unit="px" data-tchmi-left="923" data-tchmi-left-unit="px" data-tchmi-text="Valve [1,3]" data-tchmi-top="483" data-tchmi-top-unit="px" data-tchmi-width-unit="px" data-tchmi-word-wrap="True" data-tchmi-state-symbol="%s%ADS.PLC1.GVL_HMI.aDispManualValveSelection.0.2%/s%" data-tchmi-zindex="6">
+<div id="TcHmiToggleButton_7" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleButton" data-tchmi-height="30" data-tchmi-height-unit="px" data-tchmi-left="923" data-tchmi-left-unit="px" data-tchmi-text="Valve [1,3]" data-tchmi-top="483" data-tchmi-top-unit="px" data-tchmi-width-unit="px" data-tchmi-word-wrap="True" data-tchmi-state-symbol="%s%ADS.PLC1.GVL_HMI.stDispHMI.aManualValveSelection.0.2%/s%" data-tchmi-zindex="6">
 
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%s%ADS.PLC1.GVL_HMI.aDispStateofValves.0.2%/s%",
+    "event": "%s%ADS.PLC1.GVL_HMI.stDispHMI.aStateofValves.0.2%/s%",
     "actions": [
       {
         "objectType": "SwitchCase",
@@ -114,7 +114,7 @@
         "compare": {
           "objectType": "Symbol",
           "valueType": "tchmi:server#/definitions/ADS-PLC1.E_SolenoidState",
-          "symbolExpression": "%s%ADS.PLC1.GVL_HMI.aDispStateofValves.0.2%/s%"
+          "symbolExpression": "%s%ADS.PLC1.GVL_HMI.stDispHMI.aStateofValves.0.2%/s%"
         },
         "cases": [
           {
@@ -169,14 +169,14 @@
 ]
 </script>
 </div>
-<div id="TcHmiToggleButton_8" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleButton" data-tchmi-height="30" data-tchmi-height-unit="px" data-tchmi-left="784" data-tchmi-left-unit="px" data-tchmi-text="Valve [2,1" data-tchmi-top="549" data-tchmi-top-unit="px" data-tchmi-width-unit="&quot;p" data-tchmi-word-wrap="&quot;Tru" data-tchmi-state-symbol="%s%ADS.PLC1.GVL_HMI.aDispManualValveSelection.1.0%/s%" data-tchmi-zindex="6">
+<div id="TcHmiToggleButton_8" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleButton" data-tchmi-height="30" data-tchmi-height-unit="px" data-tchmi-left="784" data-tchmi-left-unit="px" data-tchmi-text="Valve [2,1" data-tchmi-top="549" data-tchmi-top-unit="px" data-tchmi-width-unit="&quot;p" data-tchmi-word-wrap="&quot;Tru" data-tchmi-state-symbol="%s%ADS.PLC1.GVL_HMI.stDispHMI.aManualValveSelection.1.0%/s%" data-tchmi-zindex="6">
 
 
 
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%s%ADS.PLC1.GVL_HMI.aDispStateofValves.1.0%/s%",
+    "event": "%s%ADS.PLC1.GVL_HMI.stDispHMI.aStateofValves.1.0%/s%",
     "actions": [
       {
         "objectType": "SwitchCase",
@@ -184,7 +184,7 @@
         "compare": {
           "objectType": "Symbol",
           "valueType": "tchmi:server#/definitions/ADS-PLC1.E_SolenoidState",
-          "symbolExpression": "%s%ADS.PLC1.GVL_HMI.aDispStateofValves.1.0%/s%"
+          "symbolExpression": "%s%ADS.PLC1.GVL_HMI.stDispHMI.aStateofValves.1.0%/s%"
         },
         "cases": [
           {
@@ -239,12 +239,12 @@
 ]
 </script>
 </div>
-<div id="TcHmiToggleButton_9" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleButton" data-tchmi-height="30" data-tchmi-height-unit="px" data-tchmi-left="857" data-tchmi-left-unit="px" data-tchmi-text="Valve [2,2]" data-tchmi-top="549" data-tchmi-top-unit="px" data-tchmi-width-unit="px" data-tchmi-word-wrap="True" data-tchmi-state-symbol="%s%ADS.PLC1.GVL_HMI.aDispManualValveSelection.1.1%/s%" data-tchmi-zindex="6">
+<div id="TcHmiToggleButton_9" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleButton" data-tchmi-height="30" data-tchmi-height-unit="px" data-tchmi-left="857" data-tchmi-left-unit="px" data-tchmi-text="Valve [2,2]" data-tchmi-top="549" data-tchmi-top-unit="px" data-tchmi-width-unit="px" data-tchmi-word-wrap="True" data-tchmi-state-symbol="%s%ADS.PLC1.GVL_HMI.stDispHMI.aManualValveSelection.1.1%/s%" data-tchmi-zindex="6">
 
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%s%ADS.PLC1.GVL_HMI.aDispStateofValves.1.1%/s%",
+    "event": "%s%ADS.PLC1.GVL_HMI.stDispHMI.aStateofValves.1.1%/s%",
     "actions": [
       {
         "objectType": "SwitchCase",
@@ -252,7 +252,7 @@
         "compare": {
           "objectType": "Symbol",
           "valueType": "tchmi:server#/definitions/ADS-PLC1.E_SolenoidState",
-          "symbolExpression": "%s%ADS.PLC1.GVL_HMI.aDispStateofValves.1.1%/s%"
+          "symbolExpression": "%s%ADS.PLC1.GVL_HMI.stDispHMI.aStateofValves.1.1%/s%"
         },
         "cases": [
           {
@@ -307,12 +307,12 @@
 ]
 </script>
 </div>
-<div id="TcHmiToggleButton_10" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleButton" data-tchmi-height="30" data-tchmi-height-unit="px" data-tchmi-left="923" data-tchmi-left-unit="px" data-tchmi-text="Valve [2,3]" data-tchmi-top="549" data-tchmi-top-unit="px" data-tchmi-width-unit="px" data-tchmi-word-wrap="True" data-tchmi-state-symbol="%s%ADS.PLC1.GVL_HMI.aDispManualValveSelection.1.2%/s%" data-tchmi-zindex="6">
+<div id="TcHmiToggleButton_10" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleButton" data-tchmi-height="30" data-tchmi-height-unit="px" data-tchmi-left="923" data-tchmi-left-unit="px" data-tchmi-text="Valve [2,3]" data-tchmi-top="549" data-tchmi-top-unit="px" data-tchmi-width-unit="px" data-tchmi-word-wrap="True" data-tchmi-state-symbol="%s%ADS.PLC1.GVL_HMI.stDispHMI.aManualValveSelection.1.2%/s%" data-tchmi-zindex="6">
 
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%s%ADS.PLC1.GVL_HMI.aDispStateofValves.1.2%/s%",
+    "event": "%s%ADS.PLC1.GVL_HMI.stDispHMI.aStateofValves.1.2%/s%",
     "actions": [
       {
         "objectType": "SwitchCase",
@@ -320,7 +320,7 @@
         "compare": {
           "objectType": "Symbol",
           "valueType": "tchmi:server#/definitions/ADS-PLC1.E_SolenoidState",
-          "symbolExpression": "%s%ADS.PLC1.GVL_HMI.aDispStateofValves.1.2%/s%"
+          "symbolExpression": "%s%ADS.PLC1.GVL_HMI.stDispHMI.aStateofValves.1.2%/s%"
         },
         "cases": [
           {
@@ -375,12 +375,12 @@
 ]
 </script>
 </div>
-<div id="TcHmiToggleButton_11" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleButton" data-tchmi-height="30" data-tchmi-height-unit="px" data-tchmi-left="784" data-tchmi-left-unit="px" data-tchmi-text="valve [3,1]" data-tchmi-top="619" data-tchmi-top-unit="px" data-tchmi-width-unit="px" data-tchmi-word-wrap="True" data-tchmi-state-symbol="%s%ADS.PLC1.GVL_HMI.aDispManualValveSelection.2.0%/s%" data-tchmi-zindex="6">
+<div id="TcHmiToggleButton_11" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleButton" data-tchmi-height="30" data-tchmi-height-unit="px" data-tchmi-left="784" data-tchmi-left-unit="px" data-tchmi-text="valve [3,1]" data-tchmi-top="619" data-tchmi-top-unit="px" data-tchmi-width-unit="px" data-tchmi-word-wrap="True" data-tchmi-state-symbol="%s%ADS.PLC1.GVL_HMI.stDispHMI.aManualValveSelection.2.0%/s%" data-tchmi-zindex="6">
 
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%s%ADS.PLC1.GVL_HMI.aDispStateofValves.2.0%/s%",
+    "event": "%s%ADS.PLC1.GVL_HMI.stDispHMI.aStateofValves.2.0%/s%",
     "actions": [
       {
         "objectType": "SwitchCase",
@@ -388,7 +388,7 @@
         "compare": {
           "objectType": "Symbol",
           "valueType": "tchmi:server#/definitions/ADS-PLC1.E_SolenoidState",
-          "symbolExpression": "%s%ADS.PLC1.GVL_HMI.aDispStateofValves.2.0%/s%"
+          "symbolExpression": "%s%ADS.PLC1.GVL_HMI.stDispHMI.aStateofValves.2.0%/s%"
         },
         "cases": [
           {
@@ -443,12 +443,12 @@
 ]
 </script>
 </div>
-<div id="TcHmiToggleButton_12" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleButton" data-tchmi-height="30" data-tchmi-height-unit="px" data-tchmi-left="857" data-tchmi-left-unit="px" data-tchmi-text="Valve [3,2]" data-tchmi-top="619" data-tchmi-top-unit="px" data-tchmi-width-unit="px" data-tchmi-word-wrap="True" data-tchmi-state-symbol="%s%ADS.PLC1.GVL_HMI.aDispManualValveSelection.2.1%/s%" data-tchmi-zindex="6">
+<div id="TcHmiToggleButton_12" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleButton" data-tchmi-height="30" data-tchmi-height-unit="px" data-tchmi-left="857" data-tchmi-left-unit="px" data-tchmi-text="Valve [3,2]" data-tchmi-top="619" data-tchmi-top-unit="px" data-tchmi-width-unit="px" data-tchmi-word-wrap="True" data-tchmi-state-symbol="%s%ADS.PLC1.GVL_HMI.stDispHMI.aManualValveSelection.2.1%/s%" data-tchmi-zindex="6">
 
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%s%ADS.PLC1.GVL_HMI.aDispStateofValves.2.1%/s%",
+    "event": "%s%ADS.PLC1.GVL_HMI.stDispHMI.aStateofValves.2.1%/s%",
     "actions": [
       {
         "objectType": "SwitchCase",
@@ -456,7 +456,7 @@
         "compare": {
           "objectType": "Symbol",
           "valueType": "tchmi:server#/definitions/ADS-PLC1.E_SolenoidState",
-          "symbolExpression": "%s%ADS.PLC1.GVL_HMI.aDispStateofValves.2.1%/s%"
+          "symbolExpression": "%s%ADS.PLC1.GVL_HMI.stDispHMI.aStateofValves.2.1%/s%"
         },
         "cases": [
           {
@@ -511,12 +511,12 @@
 ]
 </script>
 </div>
-<div id="TcHmiToggleButton_13" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleButton" data-tchmi-height="30" data-tchmi-height-unit="px" data-tchmi-left="923" data-tchmi-left-unit="px" data-tchmi-text="Valve [3,3]" data-tchmi-top="619" data-tchmi-top-unit="px" data-tchmi-width-unit="px" data-tchmi-word-wrap="True" data-tchmi-state-symbol="%s%ADS.PLC1.GVL_HMI.aDispManualValveSelection.2.2%/s%" data-tchmi-zindex="6">
+<div id="TcHmiToggleButton_13" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleButton" data-tchmi-height="30" data-tchmi-height-unit="px" data-tchmi-left="923" data-tchmi-left-unit="px" data-tchmi-text="Valve [3,3]" data-tchmi-top="619" data-tchmi-top-unit="px" data-tchmi-width-unit="px" data-tchmi-word-wrap="True" data-tchmi-state-symbol="%s%ADS.PLC1.GVL_HMI.stDispHMI.aManualValveSelection.2.2%/s%" data-tchmi-zindex="6">
 
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%s%ADS.PLC1.GVL_HMI.aDispStateofValves.2.2%/s%",
+    "event": "%s%ADS.PLC1.GVL_HMI.stDispHMI.aStateofValves.2.2%/s%",
     "actions": [
       {
         "objectType": "SwitchCase",
@@ -524,7 +524,7 @@
         "compare": {
           "objectType": "Symbol",
           "valueType": "tchmi:server#/definitions/ADS-PLC1.E_SolenoidState",
-          "symbolExpression": "%s%ADS.PLC1.GVL_HMI.aDispStateofValves.2.2%/s%"
+          "symbolExpression": "%s%ADS.PLC1.GVL_HMI.stDispHMI.aStateofValves.2.2%/s%"
         },
         "cases": [
           {
@@ -579,12 +579,12 @@
 ]
 </script>
 </div>
-<div id="TcHmiToggleButton_14" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleButton" data-tchmi-height="30" data-tchmi-height-unit="px" data-tchmi-left="784" data-tchmi-left-unit="px" data-tchmi-text="Valve [4,1]" data-tchmi-top="693" data-tchmi-top-unit="px" data-tchmi-width-unit="px" data-tchmi-word-wrap="True" data-tchmi-state-symbol="%s%ADS.PLC1.GVL_HMI.aDispManualValveSelection.3.0%/s%" data-tchmi-zindex="6">
+<div id="TcHmiToggleButton_14" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleButton" data-tchmi-height="30" data-tchmi-height-unit="px" data-tchmi-left="784" data-tchmi-left-unit="px" data-tchmi-text="Valve [4,1]" data-tchmi-top="693" data-tchmi-top-unit="px" data-tchmi-width-unit="px" data-tchmi-word-wrap="True" data-tchmi-state-symbol="%s%ADS.PLC1.GVL_HMI.stDispHMI.aManualValveSelection.3.0%/s%" data-tchmi-zindex="6">
 
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%s%ADS.PLC1.GVL_HMI.aDispStateofValves.3.0%/s%",
+    "event": "%s%ADS.PLC1.GVL_HMI.stDispHMI.aStateofValves.3.0%/s%",
     "actions": [
       {
         "objectType": "SwitchCase",
@@ -592,7 +592,7 @@
         "compare": {
           "objectType": "Symbol",
           "valueType": "tchmi:server#/definitions/ADS-PLC1.E_SolenoidState",
-          "symbolExpression": "%s%ADS.PLC1.GVL_HMI.aDispStateofValves.3.0%/s%"
+          "symbolExpression": "%s%ADS.PLC1.GVL_HMI.stDispHMI.aStateofValves.3.0%/s%"
         },
         "cases": [
           {
@@ -647,12 +647,12 @@
 ]
 </script>
 </div>
-<div id="TcHmiToggleButton_15" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleButton" data-tchmi-height="30" data-tchmi-height-unit="px" data-tchmi-left="857" data-tchmi-left-unit="px" data-tchmi-text="Valve [4,2]" data-tchmi-top="693" data-tchmi-top-unit="px" data-tchmi-width-unit="px" data-tchmi-word-wrap="True" data-tchmi-state-symbol="%s%ADS.PLC1.GVL_HMI.aDispManualValveSelection.3.1%/s%" data-tchmi-zindex="6">
+<div id="TcHmiToggleButton_15" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleButton" data-tchmi-height="30" data-tchmi-height-unit="px" data-tchmi-left="857" data-tchmi-left-unit="px" data-tchmi-text="Valve [4,2]" data-tchmi-top="693" data-tchmi-top-unit="px" data-tchmi-width-unit="px" data-tchmi-word-wrap="True" data-tchmi-state-symbol="%s%ADS.PLC1.GVL_HMI.stDispHMI.aManualValveSelection.3.1%/s%" data-tchmi-zindex="6">
 
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%s%ADS.PLC1.GVL_HMI.aDispStateofValves.3.1%/s%",
+    "event": "%s%ADS.PLC1.GVL_HMI.stDispHMI.aStateofValves.3.1%/s%",
     "actions": [
       {
         "objectType": "SwitchCase",
@@ -660,7 +660,7 @@
         "compare": {
           "objectType": "Symbol",
           "valueType": "tchmi:server#/definitions/ADS-PLC1.E_SolenoidState",
-          "symbolExpression": "%s%ADS.PLC1.GVL_HMI.aDispStateofValves.3.1%/s%"
+          "symbolExpression": "%s%ADS.PLC1.GVL_HMI.stDispHMI.aStateofValves.3.1%/s%"
         },
         "cases": [
           {
@@ -715,12 +715,12 @@
 ]
 </script>
 </div>
-<div id="TcHmiToggleButton_16" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleButton" data-tchmi-height="30" data-tchmi-height-unit="px" data-tchmi-left="923" data-tchmi-left-unit="px" data-tchmi-text="Valve [4,3]" data-tchmi-top="693" data-tchmi-top-unit="px" data-tchmi-width-unit="px" data-tchmi-word-wrap="True" data-tchmi-state-symbol="%s%ADS.PLC1.GVL_HMI.aDispManualValveSelection.3.2%/s%" data-tchmi-zindex="6">
+<div id="TcHmiToggleButton_16" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleButton" data-tchmi-height="30" data-tchmi-height-unit="px" data-tchmi-left="923" data-tchmi-left-unit="px" data-tchmi-text="Valve [4,3]" data-tchmi-top="693" data-tchmi-top-unit="px" data-tchmi-width-unit="px" data-tchmi-word-wrap="True" data-tchmi-state-symbol="%s%ADS.PLC1.GVL_HMI.stDispHMI.aManualValveSelection.3.2%/s%" data-tchmi-zindex="6">
 
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%s%ADS.PLC1.GVL_HMI.aDispStateofValves.3.2%/s%",
+    "event": "%s%ADS.PLC1.GVL_HMI.stDispHMI.aStateofValves.3.2%/s%",
     "actions": [
       {
         "objectType": "SwitchCase",
@@ -728,7 +728,7 @@
         "compare": {
           "objectType": "Symbol",
           "valueType": "tchmi:server#/definitions/ADS-PLC1.E_SolenoidState",
-          "symbolExpression": "%s%ADS.PLC1.GVL_HMI.aDispStateofValves.3.2%/s%"
+          "symbolExpression": "%s%ADS.PLC1.GVL_HMI.stDispHMI.aStateofValves.3.2%/s%"
         },
         "cases": [
           {
@@ -783,11 +783,11 @@
 ]
 </script>
 </div>
-<div id="TcHmiToggleButton_17" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleButton" data-tchmi-height="30" data-tchmi-height-unit="px" data-tchmi-left="214" data-tchmi-left-unit="px" data-tchmi-text="Valve [1,1]" data-tchmi-top="170" data-tchmi-top-unit="px" data-tchmi-width="50" data-tchmi-width-unit="px" data-tchmi-word-wrap="True" data-tchmi-state-symbol="%s%ADS.PLC1.GVL_HMI.aInletManualValveSelection.0.0%/s%" data-tchmi-zindex="6">
+<div id="TcHmiToggleButton_17" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleButton" data-tchmi-height="30" data-tchmi-height-unit="px" data-tchmi-left="214" data-tchmi-left-unit="px" data-tchmi-text="Valve [1,1]" data-tchmi-top="170" data-tchmi-top-unit="px" data-tchmi-width="50" data-tchmi-width-unit="px" data-tchmi-word-wrap="True" data-tchmi-zindex="6" data-tchmi-state-symbol="%s%ADS.PLC1.GVL_HMI.stInletHMI.aManualValveSelection.0.0%/s%">
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%s%ADS.PLC1.GVL_HMI.aInletStateofValves.0.0%/s%",
+    "event": "%s%ADS.PLC1.GVL_HMI.stInletHMI.aStateofValves.0.0%/s%",
     "actions": [
       {
         "objectType": "SwitchCase",
@@ -795,7 +795,7 @@
         "compare": {
           "objectType": "Symbol",
           "valueType": "tchmi:server#/definitions/ADS-PLC1.E_SolenoidState",
-          "symbolExpression": "%s%ADS.PLC1.GVL_HMI.aInletStateofValves.0.0%/s%"
+          "symbolExpression": "%s%ADS.PLC1.GVL_HMI.stInletHMI.aStateofValves.0.0%/s%"
         },
         "cases": [
           {
@@ -850,11 +850,11 @@
 ]
 </script>
 </div>
-<div id="TcHmiToggleButton_19" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleButton" data-tchmi-height="30" data-tchmi-height-unit="px" data-tchmi-left="216" data-tchmi-left-unit="px" data-tchmi-text="Valve[2,1]" data-tchmi-top="230" data-tchmi-top-unit="px" data-tchmi-width="50" data-tchmi-width-unit="px" data-tchmi-word-wrap="rue&quot;" data-tchmi-state-symbol="%s%ADS.PLC1.GVL_HMI.aInletManualValveSelection.1.0%/s%" data-tchmi-zindex="6">
+<div id="TcHmiToggleButton_19" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleButton" data-tchmi-height="30" data-tchmi-height-unit="px" data-tchmi-left="216" data-tchmi-left-unit="px" data-tchmi-text="Valve[2,1]" data-tchmi-top="230" data-tchmi-top-unit="px" data-tchmi-width="50" data-tchmi-width-unit="px" data-tchmi-word-wrap="rue&quot;" data-tchmi-state-symbol="%s%ADS.PLC1.GVL_HMI.stInletHMI.aManualValveSelection.1.0%/s%" data-tchmi-zindex="6">
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%s%ADS.PLC1.GVL_HMI.aInletStateofValves.1.0%/s%",
+    "event": "%s%ADS.PLC1.GVL_HMI.stInletHMI.aStateofValves.1.0%/s%",
     "actions": [
       {
         "objectType": "SwitchCase",
@@ -862,7 +862,7 @@
         "compare": {
           "objectType": "Symbol",
           "valueType": "tchmi:server#/definitions/ADS-PLC1.E_SolenoidState",
-          "symbolExpression": "%s%ADS.PLC1.GVL_HMI.aInletStateofValves.1.0%/s%"
+          "symbolExpression": "%s%ADS.PLC1.GVL_HMI.stInletHMI.aStateofValves.1.0%/s%"
         },
         "cases": [
           {
@@ -917,21 +917,21 @@
 ]
 </script>
 </div>
-<div id="TcHmiToggleButton_20" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleButton" data-tchmi-height="30" data-tchmi-height-unit="px" data-tchmi-left="348" data-tchmi-left-unit="px" data-tchmi-text="Valve [1,3]" data-tchmi-top="170" data-tchmi-top-unit="px" data-tchmi-width="50" data-tchmi-width-unit="px" data-tchmi-word-wrap="True" data-tchmi-state-symbol="%s%ADS.PLC1.GVL_HMI.aInletManualValveSelection.0.2%/s%" data-tchmi-zindex="6">
+<div id="TcHmiToggleButton_20" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleButton" data-tchmi-height="30" data-tchmi-height-unit="px" data-tchmi-left="348" data-tchmi-left-unit="px" data-tchmi-text="Valve [1,3]" data-tchmi-top="170" data-tchmi-top-unit="px" data-tchmi-width="50" data-tchmi-width-unit="px" data-tchmi-word-wrap="True" data-tchmi-zindex="6" data-tchmi-state-symbol="%s%ADS.PLC1.GVL_HMI.stInletHMI.aManualValveSelection.0.2%/s%">
 
 
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%s%ADS.PLC1.GVL_HMI.aInletStateofValves.0.2%/s%",
+    "event": "%s%ADS.PLC1.GVL_HMI.stInletHMI.aStateofValves.0.2%/s%",
     "actions": [
       {
         "objectType": "SwitchCase",
         "active": true,
         "compare": {
           "objectType": "Symbol",
-          "valueType": "tchmi:general#/definitions/String",
-          "symbolExpression": "%s%ADS.PLC1.GVL_HMI.aInletStateofValves.0.2%/s%"
+          "valueType": "tchmi:server#/definitions/ADS-PLC1.E_SolenoidState",
+          "symbolExpression": "%s%ADS.PLC1.GVL_HMI.stInletHMI.aStateofValves.0.2%/s%"
         },
         "cases": [
           {
@@ -986,11 +986,11 @@
 ]
 </script>
 </div>
-<div id="TcHmiToggleButton_21" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleButton" data-tchmi-height="30" data-tchmi-height-unit="px" data-tchmi-left="281" data-tchmi-left-unit="px" data-tchmi-text="valve [2,2]" data-tchmi-top="230" data-tchmi-top-unit="px" data-tchmi-width="50" data-tchmi-width-unit="px" data-tchmi-word-wrap="True" data-tchmi-state-symbol="%s%ADS.PLC1.GVL_HMI.aInletManualValveSelection.1.1%/s%" data-tchmi-zindex="6">
+<div id="TcHmiToggleButton_21" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleButton" data-tchmi-height="30" data-tchmi-height-unit="px" data-tchmi-left="281" data-tchmi-left-unit="px" data-tchmi-text="valve [2,2]" data-tchmi-top="230" data-tchmi-top-unit="px" data-tchmi-width="50" data-tchmi-width-unit="px" data-tchmi-word-wrap="True" data-tchmi-state-symbol="%s%ADS.PLC1.GVL_HMI.stInletHMI.aManualValveSelection.1.1%/s%" data-tchmi-zindex="6">
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%s%ADS.PLC1.GVL_HMI.aInletStateofValves.1.1%/s%",
+    "event": "%s%ADS.PLC1.GVL_HMI.stInletHMI.aStateofValves.1.1%/s%",
     "actions": [
       {
         "objectType": "SwitchCase",
@@ -998,7 +998,7 @@
         "compare": {
           "objectType": "Symbol",
           "valueType": "tchmi:server#/definitions/ADS-PLC1.E_SolenoidState",
-          "symbolExpression": "%s%ADS.PLC1.GVL_HMI.aInletStateofValves.1.1%/s%"
+          "symbolExpression": "%s%ADS.PLC1.GVL_HMI.stInletHMI.aStateofValves.1.1%/s%"
         },
         "cases": [
           {
@@ -1053,11 +1053,11 @@
 ]
 </script>
 </div>
-<div id="TcHmiToggleButton_22" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleButton" data-tchmi-height="30" data-tchmi-height-unit="px" data-tchmi-left="348" data-tchmi-left-unit="px" data-tchmi-text="Valve [2,3]" data-tchmi-top="230" data-tchmi-top-unit="px" data-tchmi-width="50" data-tchmi-width-unit="px" data-tchmi-word-wrap="True" data-tchmi-state-symbol="%s%ADS.PLC1.GVL_HMI.aInletManualValveSelection.1.2%/s%" data-tchmi-zindex="6">
+<div id="TcHmiToggleButton_22" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleButton" data-tchmi-height="30" data-tchmi-height-unit="px" data-tchmi-left="348" data-tchmi-left-unit="px" data-tchmi-text="Valve [2,3]" data-tchmi-top="230" data-tchmi-top-unit="px" data-tchmi-width="50" data-tchmi-width-unit="px" data-tchmi-word-wrap="True" data-tchmi-state-symbol="%s%ADS.PLC1.GVL_HMI.stInletHMI.aManualValveSelection.1.2%/s%" data-tchmi-zindex="6">
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%s%ADS.PLC1.GVL_HMI.aInletStateofValves.1.2%/s%",
+    "event": "%s%ADS.PLC1.GVL_HMI.stInletHMI.aStateofValves.1.2%/s%",
     "actions": [
       {
         "objectType": "SwitchCase",
@@ -1065,7 +1065,7 @@
         "compare": {
           "objectType": "Symbol",
           "valueType": "tchmi:server#/definitions/ADS-PLC1.E_SolenoidState",
-          "symbolExpression": "%s%ADS.PLC1.GVL_HMI.aInletStateofValves.1.2%/s%"
+          "symbolExpression": "%s%ADS.PLC1.GVL_HMI.stInletHMI.aStateofValves.1.2%/s%"
         },
         "cases": [
           {
@@ -1142,7 +1142,7 @@
 </script>
 
 </div>
-<div id="TcHmiToggleButton_23" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleButton" data-tchmi-height="50" data-tchmi-height-unit="px" data-tchmi-left="341" data-tchmi-left-unit="px" data-tchmi-text="nable Matrix Operation&quot;" data-tchmi-top="15" data-tchmi-top-unit="px" data-tchmi-width="50" data-tchmi-width-unit="px" data-tchmi-word-wrap="rue&quot;" data-tchmi-is-enabled="rue&quot;" data-tchmi-state-symbol="%s%ADS.PLC1.GVL_HMI.bInletTurnOnMatrix%/s%" data-tchmi-zindex="6">
+<div id="TcHmiToggleButton_23" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleButton" data-tchmi-height="50" data-tchmi-height-unit="px" data-tchmi-left="341" data-tchmi-left-unit="px" data-tchmi-text="nable Matrix Operation&quot;" data-tchmi-top="15" data-tchmi-top-unit="px" data-tchmi-width="50" data-tchmi-width-unit="px" data-tchmi-word-wrap="rue&quot;" data-tchmi-is-enabled="rue&quot;" data-tchmi-state-symbol="%s%ADS.PLC1.GVL_HMI.stInletHMI.bTurnOnMatrix%/s%" data-tchmi-zindex="6">
 </div>
 <div id="TcHmiCombobox_5" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiCombobox" data-tchmi-auto-focus-out="True" data-tchmi-combobox-text="Select" data-tchmi-height="25" data-tchmi-height-unit="px" data-tchmi-left="435" data-tchmi-left-unit="px" data-tchmi-top="75" data-tchmi-top-unit="px" data-tchmi-width="90" data-tchmi-width-unit="px" data-tchmi-enum-data-symbol="%s%ADS.PLC1.GVL_HMI.eInletEndOfPath%/s%" data-tchmi-zindex="6">
 <script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
@@ -1166,15 +1166,15 @@
 </script>
 
 </div>
-<div id="TcHmiToggleButton_24" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleButton" data-tchmi-height="50" data-tchmi-height-unit="px" data-tchmi-left="475" data-tchmi-left-unit="px" data-tchmi-text="Actuate Path" data-tchmi-top="15" data-tchmi-top-unit="px" data-tchmi-width="50" data-tchmi-width-unit="px" data-tchmi-word-wrap="True" data-tchmi-state-symbol="%s%ADS.PLC1.GVL_HMI.bInletActuatePath%/s%" data-tchmi-zindex="6">
+<div id="TcHmiToggleButton_24" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleButton" data-tchmi-height="50" data-tchmi-height-unit="px" data-tchmi-left="475" data-tchmi-left-unit="px" data-tchmi-text="Actuate Path" data-tchmi-top="15" data-tchmi-top-unit="px" data-tchmi-width="50" data-tchmi-width-unit="px" data-tchmi-word-wrap="True" data-tchmi-zindex="6" data-tchmi-state-symbol="%s%ADS.PLC1.GVL_HMI.stInletHMI.bActuatePath%/s%">
 </div>
-<div id="TcHmiToggleButton_25" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleButton" data-tchmi-height="50" data-tchmi-height-unit="px" data-tchmi-left="408" data-tchmi-left-unit="px" data-tchmi-text="Turn On Pathing" data-tchmi-top="15" data-tchmi-top-unit="px" data-tchmi-width="50" data-tchmi-width-unit="px" data-tchmi-word-wrap="True" data-tchmi-state-symbol="%s%ADS.PLC1.GVL_HMI.bInbletTurnOnPathing%/s%" data-tchmi-zindex="6">
+<div id="TcHmiToggleButton_25" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleButton" data-tchmi-height="50" data-tchmi-height-unit="px" data-tchmi-left="408" data-tchmi-left-unit="px" data-tchmi-text="Turn On Pathing" data-tchmi-top="15" data-tchmi-top-unit="px" data-tchmi-width="50" data-tchmi-width-unit="px" data-tchmi-word-wrap="True" data-tchmi-zindex="6" data-tchmi-state-symbol="%s%ADS.PLC1.GVL_HMI.stInletHMI.bTurnOnPathing%/s%">
 </div>
-<div id="TcHmiToggleButton_26" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleButton" data-tchmi-height="30" data-tchmi-height-unit="px" data-tchmi-left="857" data-tchmi-left-unit="px" data-tchmi-text="Valve [1,2]" data-tchmi-top="483" data-tchmi-top-unit="px" data-tchmi-width-unit="px" data-tchmi-word-wrap="rue&quot;" data-tchmi-state-symbol="%s%ADS.PLC1.GVL_HMI.aDispManualValveSelection.0.1%/s%" data-tchmi-zindex="6">
+<div id="TcHmiToggleButton_26" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleButton" data-tchmi-height="30" data-tchmi-height-unit="px" data-tchmi-left="857" data-tchmi-left-unit="px" data-tchmi-text="Valve [1,2]" data-tchmi-top="483" data-tchmi-top-unit="px" data-tchmi-width-unit="px" data-tchmi-word-wrap="rue&quot;" data-tchmi-state-symbol="%s%ADS.PLC1.GVL_HMI.stDispHMI.aManualValveSelection.0.1%/s%" data-tchmi-zindex="6">
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%s%ADS.PLC1.GVL_HMI.aDispStateofValves.0.1%/s%",
+    "event": "%s%ADS.PLC1.GVL_HMI.stDispHMI.aStateofValves.0.1%/s%",
     "actions": [
       {
         "objectType": "SwitchCase",
@@ -1182,7 +1182,7 @@
         "compare": {
           "objectType": "Symbol",
           "valueType": "tchmi:server#/definitions/ADS-PLC1.E_SolenoidState",
-          "symbolExpression": "%s%ADS.PLC1.GVL_HMI.aDispStateofValves.0.1%/s%"
+          "symbolExpression": "%s%ADS.PLC1.GVL_HMI.stDispHMI.aStateofValves.0.1%/s%"
         },
         "cases": [
           {
@@ -1237,11 +1237,11 @@
 ]
 </script>
 </div>
-<div id="TcHmiToggleButton_27" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleButton" data-tchmi-height="30" data-tchmi-height-unit="px" data-tchmi-left="281" data-tchmi-left-unit="px" data-tchmi-text="Valve [1,1]" data-tchmi-top="170" data-tchmi-top-unit="px" data-tchmi-width="50" data-tchmi-width-unit="px" data-tchmi-word-wrap="True" data-tchmi-state-symbol="%s%ADS.PLC1.GVL_HMI.aInletManualValveSelection.0.1%/s%" data-tchmi-zindex="6">
+<div id="TcHmiToggleButton_27" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleButton" data-tchmi-height="30" data-tchmi-height-unit="px" data-tchmi-left="281" data-tchmi-left-unit="px" data-tchmi-text="Valve [1,1]" data-tchmi-top="170" data-tchmi-top-unit="px" data-tchmi-width="50" data-tchmi-width-unit="px" data-tchmi-word-wrap="True" data-tchmi-zindex="6" data-tchmi-state-symbol="%s%ADS.PLC1.GVL_HMI.stInletHMI.aManualValveSelection.0.1%/s%">
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%s%ADS.PLC1.GVL_HMI.aInletStateofValves.0.1%/s%",
+    "event": "%s%ADS.PLC1.GVL_HMI.stInletHMI.aStateofValves.0.1%/s%",
     "actions": [
       {
         "objectType": "SwitchCase",
@@ -1249,7 +1249,7 @@
         "compare": {
           "objectType": "Symbol",
           "valueType": "tchmi:server#/definitions/ADS-PLC1.E_SolenoidState",
-          "symbolExpression": "%s%ADS.PLC1.GVL_HMI.aInletStateofValves.0.1%/s%"
+          "symbolExpression": "%s%ADS.PLC1.GVL_HMI.stInletHMI.aStateofValves.0.1%/s%"
         },
         "cases": [
           {
@@ -1304,11 +1304,11 @@
 ]
 </script>
 </div>
-<div id="TcHmiToggleButton_28" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleButton" data-tchmi-height="30" data-tchmi-height-unit="px" data-tchmi-left="535" data-tchmi-left-unit="px" data-tchmi-text="Valve [1,1]" data-tchmi-top="483" data-tchmi-top-unit="px" data-tchmi-width-unit="px" data-tchmi-word-wrap="True" data-tchmi-state-symbol="%s%ADS.PLC1.GVL_HMI.aFillManualValveSelection.0.0%/s%" data-tchmi-zindex="6">
+<div id="TcHmiToggleButton_28" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleButton" data-tchmi-height="30" data-tchmi-height-unit="px" data-tchmi-left="535" data-tchmi-left-unit="px" data-tchmi-text="Valve [1,1]" data-tchmi-top="483" data-tchmi-top-unit="px" data-tchmi-width-unit="px" data-tchmi-word-wrap="True" data-tchmi-state-symbol="%s%ADS.PLC1.GVL_HMI.stFillHMI.aManualValveSelection.0.0%/s%" data-tchmi-zindex="6">
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%s%ADS.PLC1.GVL_HMI.aFillStateofValves.0.0%/s%",
+    "event": "%s%ADS.PLC1.GVL_HMI.stFillHMI.aStateofValves.0.0%/s%",
     "actions": [
       {
         "objectType": "SwitchCase",
@@ -1316,7 +1316,7 @@
         "compare": {
           "objectType": "Symbol",
           "valueType": "tchmi:server#/definitions/ADS-PLC1.E_SolenoidState",
-          "symbolExpression": "%s%ADS.PLC1.GVL_HMI.aFillStateofValves.0.0%/s%"
+          "symbolExpression": "%s%ADS.PLC1.GVL_HMI.stFillHMI.aStateofValves.0.0%/s%"
         },
         "cases": [
           {
@@ -1371,11 +1371,11 @@
 ]
 </script>
 </div>
-<div id="TcHmiToggleButton_29" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleButton" data-tchmi-height="30" data-tchmi-height-unit="px" data-tchmi-left="674" data-tchmi-left-unit="px" data-tchmi-text="Valve [1,3]" data-tchmi-top="483" data-tchmi-top-unit="px" data-tchmi-width-unit="px" data-tchmi-word-wrap="True" data-tchmi-state-symbol="%s%ADS.PLC1.GVL_HMI.aFillManualValveSelection.0.2%/s%" data-tchmi-zindex="6">
+<div id="TcHmiToggleButton_29" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleButton" data-tchmi-height="30" data-tchmi-height-unit="px" data-tchmi-left="674" data-tchmi-left-unit="px" data-tchmi-text="Valve [1,3]" data-tchmi-top="483" data-tchmi-top-unit="px" data-tchmi-width-unit="px" data-tchmi-word-wrap="True" data-tchmi-state-symbol="%s%ADS.PLC1.GVL_HMI.stFillHMI.aManualValveSelection.0.2%/s%" data-tchmi-zindex="6">
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%s%ADS.PLC1.GVL_HMI.aFillStateofValves.0.2%/s%",
+    "event": "%s%ADS.PLC1.GVL_HMI.stFillHMI.aStateofValves.0.2%/s%",
     "actions": [
       {
         "objectType": "SwitchCase",
@@ -1383,7 +1383,7 @@
         "compare": {
           "objectType": "Symbol",
           "valueType": "tchmi:server#/definitions/ADS-PLC1.E_SolenoidState",
-          "symbolExpression": "%s%ADS.PLC1.GVL_HMI.aFillStateofValves.0.2%/s%"
+          "symbolExpression": "%s%ADS.PLC1.GVL_HMI.stFillHMI.aStateofValves.0.2%/s%"
         },
         "cases": [
           {
@@ -1438,11 +1438,11 @@
 ]
 </script>
 </div>
-<div id="TcHmiToggleButton_30" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleButton" data-tchmi-height="30" data-tchmi-height-unit="px" data-tchmi-left="535" data-tchmi-left-unit="px" data-tchmi-text="Valve [2,1" data-tchmi-top="549" data-tchmi-top-unit="px" data-tchmi-width-unit="&quot;p" data-tchmi-word-wrap="&quot;Tru" data-tchmi-state-symbol="%s%ADS.PLC1.GVL_HMI.aFillManualValveSelection.1.0%/s%" data-tchmi-zindex="6">
+<div id="TcHmiToggleButton_30" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleButton" data-tchmi-height="30" data-tchmi-height-unit="px" data-tchmi-left="535" data-tchmi-left-unit="px" data-tchmi-text="Valve [2,1" data-tchmi-top="549" data-tchmi-top-unit="px" data-tchmi-width-unit="&quot;p" data-tchmi-word-wrap="&quot;Tru" data-tchmi-state-symbol="%s%ADS.PLC1.GVL_HMI.stFillHMI.aManualValveSelection.1.0%/s%" data-tchmi-zindex="6">
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%s%ADS.PLC1.GVL_HMI.aFillStateofValves.1.0%/s%",
+    "event": "%s%ADS.PLC1.GVL_HMI.stFillHMI.aStateofValves.1.0%/s%",
     "actions": [
       {
         "objectType": "SwitchCase",
@@ -1450,7 +1450,7 @@
         "compare": {
           "objectType": "Symbol",
           "valueType": "tchmi:server#/definitions/ADS-PLC1.E_SolenoidState",
-          "symbolExpression": "%s%ADS.PLC1.GVL_HMI.aFillStateofValves.1.0%/s%"
+          "symbolExpression": "%s%ADS.PLC1.GVL_HMI.stFillHMI.aStateofValves.1.0%/s%"
         },
         "cases": [
           {
@@ -1505,11 +1505,11 @@
 ]
 </script>
 </div>
-<div id="TcHmiToggleButton_31" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleButton" data-tchmi-height="30" data-tchmi-height-unit="px" data-tchmi-left="608" data-tchmi-left-unit="px" data-tchmi-text="Valve [2,2]" data-tchmi-top="549" data-tchmi-top-unit="px" data-tchmi-width-unit="px" data-tchmi-word-wrap="True" data-tchmi-state-symbol="%s%ADS.PLC1.GVL_HMI.aFillManualValveSelection.1.1%/s%" data-tchmi-zindex="6">
+<div id="TcHmiToggleButton_31" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleButton" data-tchmi-height="30" data-tchmi-height-unit="px" data-tchmi-left="608" data-tchmi-left-unit="px" data-tchmi-text="Valve [2,2]" data-tchmi-top="549" data-tchmi-top-unit="px" data-tchmi-width-unit="px" data-tchmi-word-wrap="True" data-tchmi-state-symbol="%s%ADS.PLC1.GVL_HMI.stFillHMI.aManualValveSelection.1.1%/s%" data-tchmi-zindex="6">
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%s%ADS.PLC1.GVL_HMI.aFillStateofValves.1.1%/s%",
+    "event": "%s%ADS.PLC1.GVL_HMI.stFillHMI.aStateofValves.1.1%/s%",
     "actions": [
       {
         "objectType": "SwitchCase",
@@ -1517,7 +1517,7 @@
         "compare": {
           "objectType": "Symbol",
           "valueType": "tchmi:server#/definitions/ADS-PLC1.E_SolenoidState",
-          "symbolExpression": "%s%ADS.PLC1.GVL_HMI.aFillStateofValves.1.1%/s%"
+          "symbolExpression": "%s%ADS.PLC1.GVL_HMI.stFillHMI.aStateofValves.1.1%/s%"
         },
         "cases": [
           {
@@ -1572,11 +1572,11 @@
 ]
 </script>
 </div>
-<div id="TcHmiToggleButton_32" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleButton" data-tchmi-height="30" data-tchmi-height-unit="px" data-tchmi-left="674" data-tchmi-left-unit="px" data-tchmi-text="Valve [2,3]" data-tchmi-top="549" data-tchmi-top-unit="px" data-tchmi-width-unit="px" data-tchmi-word-wrap="True" data-tchmi-state-symbol="%s%ADS.PLC1.GVL_HMI.aFillManualValveSelection.1.2%/s%" data-tchmi-zindex="6">
+<div id="TcHmiToggleButton_32" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleButton" data-tchmi-height="30" data-tchmi-height-unit="px" data-tchmi-left="674" data-tchmi-left-unit="px" data-tchmi-text="Valve [2,3]" data-tchmi-top="549" data-tchmi-top-unit="px" data-tchmi-width-unit="px" data-tchmi-word-wrap="True" data-tchmi-state-symbol="%s%ADS.PLC1.GVL_HMI.stFillHMI.aManualValveSelection.1.2%/s%" data-tchmi-zindex="6">
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%s%ADS.PLC1.GVL_HMI.aFillStateofValves.1.2%/s%",
+    "event": "%s%ADS.PLC1.GVL_HMI.stFillHMI.aStateofValves.1.2%/s%",
     "actions": [
       {
         "objectType": "SwitchCase",
@@ -1584,7 +1584,7 @@
         "compare": {
           "objectType": "Symbol",
           "valueType": "tchmi:general#/definitions/String",
-          "symbolExpression": "%f%%s%ADS.PLC1.GVL_HMI.aFillStateofValves.1.2%/s%%/f%"
+          "symbolExpression": "%f%%s%ADS.PLC1.GVL_HMI.stFillHMI.aStateofValves.1.2%/s%%/f%"
         },
         "cases": [
           {
@@ -1639,11 +1639,11 @@
 ]
 </script>
 </div>
-<div id="TcHmiToggleButton_33" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleButton" data-tchmi-height="30" data-tchmi-height-unit="px" data-tchmi-left="535" data-tchmi-left-unit="px" data-tchmi-text="valve [3,1]" data-tchmi-top="619" data-tchmi-top-unit="px" data-tchmi-width-unit="px" data-tchmi-word-wrap="True" data-tchmi-state-symbol="%s%ADS.PLC1.GVL_HMI.aFillManualValveSelection.2.0%/s%" data-tchmi-zindex="6">
+<div id="TcHmiToggleButton_33" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleButton" data-tchmi-height="30" data-tchmi-height-unit="px" data-tchmi-left="535" data-tchmi-left-unit="px" data-tchmi-text="valve [3,1]" data-tchmi-top="619" data-tchmi-top-unit="px" data-tchmi-width-unit="px" data-tchmi-word-wrap="True" data-tchmi-state-symbol="%s%ADS.PLC1.GVL_HMI.stFillHMI.aManualValveSelection.2.0%/s%" data-tchmi-zindex="6">
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%s%ADS.PLC1.GVL_HMI.aFillStateofValves.2.0%/s%",
+    "event": "%s%ADS.PLC1.GVL_HMI.stFillHMI.aStateofValves.2.0%/s%",
     "actions": [
       {
         "objectType": "SwitchCase",
@@ -1651,7 +1651,7 @@
         "compare": {
           "objectType": "Symbol",
           "valueType": "tchmi:server#/definitions/ADS-PLC1.E_SolenoidState",
-          "symbolExpression": "%s%ADS.PLC1.GVL_HMI.aFillStateofValves.2.0%/s%"
+          "symbolExpression": "%s%ADS.PLC1.GVL_HMI.stFillHMI.aStateofValves.2.0%/s%"
         },
         "cases": [
           {
@@ -1706,11 +1706,11 @@
 ]
 </script>
 </div>
-<div id="TcHmiToggleButton_34" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleButton" data-tchmi-height="30" data-tchmi-height-unit="px" data-tchmi-left="608" data-tchmi-left-unit="px" data-tchmi-text="Valve [3,2]" data-tchmi-top="619" data-tchmi-top-unit="px" data-tchmi-width-unit="px" data-tchmi-word-wrap="True" data-tchmi-state-symbol="%s%ADS.PLC1.GVL_HMI.aFillManualValveSelection.2.1%/s%" data-tchmi-zindex="6">
+<div id="TcHmiToggleButton_34" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleButton" data-tchmi-height="30" data-tchmi-height-unit="px" data-tchmi-left="608" data-tchmi-left-unit="px" data-tchmi-text="Valve [3,2]" data-tchmi-top="619" data-tchmi-top-unit="px" data-tchmi-width-unit="px" data-tchmi-word-wrap="True" data-tchmi-state-symbol="%s%ADS.PLC1.GVL_HMI.stFillHMI.aManualValveSelection.2.1%/s%" data-tchmi-zindex="6">
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%s%ADS.PLC1.GVL_HMI.aFillStateofValves.2.1%/s%",
+    "event": "%s%ADS.PLC1.GVL_HMI.stFillHMI.aStateofValves.2.1%/s%",
     "actions": [
       {
         "objectType": "SwitchCase",
@@ -1718,7 +1718,7 @@
         "compare": {
           "objectType": "Symbol",
           "valueType": "tchmi:server#/definitions/ADS-PLC1.E_SolenoidState",
-          "symbolExpression": "%s%ADS.PLC1.GVL_HMI.aFillStateofValves.2.1%/s%"
+          "symbolExpression": "%s%ADS.PLC1.GVL_HMI.stFillHMI.aStateofValves.2.1%/s%"
         },
         "cases": [
           {
@@ -1773,11 +1773,11 @@
 ]
 </script>
 </div>
-<div id="TcHmiToggleButton_35" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleButton" data-tchmi-height="30" data-tchmi-height-unit="px" data-tchmi-left="674" data-tchmi-left-unit="px" data-tchmi-text="Valve [3,3]" data-tchmi-top="619" data-tchmi-top-unit="px" data-tchmi-width-unit="px" data-tchmi-word-wrap="True" data-tchmi-state-symbol="%s%ADS.PLC1.GVL_HMI.aFillManualValveSelection.2.2%/s%" data-tchmi-zindex="6">
+<div id="TcHmiToggleButton_35" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleButton" data-tchmi-height="30" data-tchmi-height-unit="px" data-tchmi-left="674" data-tchmi-left-unit="px" data-tchmi-text="Valve [3,3]" data-tchmi-top="619" data-tchmi-top-unit="px" data-tchmi-width-unit="px" data-tchmi-word-wrap="True" data-tchmi-state-symbol="%s%ADS.PLC1.GVL_HMI.stFillHMI.aManualValveSelection.2.2%/s%" data-tchmi-zindex="6">
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%s%ADS.PLC1.GVL_HMI.aFillStateofValves.2.2%/s%",
+    "event": "%s%ADS.PLC1.GVL_HMI.stFillHMI.aStateofValves.2.2%/s%",
     "actions": [
       {
         "objectType": "SwitchCase",
@@ -1785,7 +1785,7 @@
         "compare": {
           "objectType": "Symbol",
           "valueType": "tchmi:server#/definitions/ADS-PLC1.E_SolenoidState",
-          "symbolExpression": "%s%ADS.PLC1.GVL_HMI.aFillStateofValves.2.2%/s%"
+          "symbolExpression": "%s%ADS.PLC1.GVL_HMI.stFillHMI.aStateofValves.2.2%/s%"
         },
         "cases": [
           {
@@ -1840,11 +1840,11 @@
 ]
 </script>
 </div>
-<div id="TcHmiToggleButton_36" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleButton" data-tchmi-height="30" data-tchmi-height-unit="px" data-tchmi-left="535" data-tchmi-left-unit="px" data-tchmi-text="Valve [4,1]" data-tchmi-top="693" data-tchmi-top-unit="px" data-tchmi-width-unit="px" data-tchmi-word-wrap="True" data-tchmi-state-symbol="%s%ADS.PLC1.GVL_HMI.aFillManualValveSelection.3.0%/s%" data-tchmi-zindex="6">
+<div id="TcHmiToggleButton_36" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleButton" data-tchmi-height="30" data-tchmi-height-unit="px" data-tchmi-left="535" data-tchmi-left-unit="px" data-tchmi-text="Valve [4,1]" data-tchmi-top="693" data-tchmi-top-unit="px" data-tchmi-width-unit="px" data-tchmi-word-wrap="True" data-tchmi-state-symbol="%s%ADS.PLC1.GVL_HMI.stFillHMI.aManualValveSelection.3.0%/s%" data-tchmi-zindex="6">
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%s%ADS.PLC1.GVL_HMI.aFillStateofValves.3.0%/s%",
+    "event": "%s%ADS.PLC1.GVL_HMI.stFillHMI.aStateofValves.3.0%/s%",
     "actions": [
       {
         "objectType": "SwitchCase",
@@ -1852,7 +1852,7 @@
         "compare": {
           "objectType": "Symbol",
           "valueType": "tchmi:server#/definitions/ADS-PLC1.E_SolenoidState",
-          "symbolExpression": "%s%ADS.PLC1.GVL_HMI.aFillStateofValves.3.0%/s%"
+          "symbolExpression": "%s%ADS.PLC1.GVL_HMI.stFillHMI.aStateofValves.3.0%/s%"
         },
         "cases": [
           {
@@ -1907,11 +1907,11 @@
 ]
 </script>
 </div>
-<div id="TcHmiToggleButton_37" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleButton" data-tchmi-height="30" data-tchmi-height-unit="px" data-tchmi-left="608" data-tchmi-left-unit="px" data-tchmi-text="Valve [4,2]" data-tchmi-top="693" data-tchmi-top-unit="px" data-tchmi-width-unit="px" data-tchmi-word-wrap="True" data-tchmi-state-symbol="%s%ADS.PLC1.GVL_HMI.aFillManualValveSelection.3.1%/s%" data-tchmi-zindex="6">
+<div id="TcHmiToggleButton_37" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleButton" data-tchmi-height="30" data-tchmi-height-unit="px" data-tchmi-left="608" data-tchmi-left-unit="px" data-tchmi-text="Valve [4,2]" data-tchmi-top="693" data-tchmi-top-unit="px" data-tchmi-width-unit="px" data-tchmi-word-wrap="True" data-tchmi-state-symbol="%s%ADS.PLC1.GVL_HMI.stFillHMI.aManualValveSelection.3.1%/s%" data-tchmi-zindex="6">
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%s%ADS.PLC1.GVL_HMI.aFillStateofValves.3.1%/s%",
+    "event": "%s%ADS.PLC1.GVL_HMI.stFillHMI.aStateofValves.3.1%/s%",
     "actions": [
       {
         "objectType": "SwitchCase",
@@ -1919,7 +1919,7 @@
         "compare": {
           "objectType": "Symbol",
           "valueType": "tchmi:server#/definitions/ADS-PLC1.E_SolenoidState",
-          "symbolExpression": "%s%ADS.PLC1.GVL_HMI.aFillStateofValves.3.1%/s%"
+          "symbolExpression": "%s%ADS.PLC1.GVL_HMI.stFillHMI.aStateofValves.3.1%/s%"
         },
         "cases": [
           {
@@ -1974,11 +1974,11 @@
 ]
 </script>
 </div>
-<div id="TcHmiToggleButton_38" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleButton" data-tchmi-height="30" data-tchmi-height-unit="px" data-tchmi-left="674" data-tchmi-left-unit="px" data-tchmi-text="Valve [4,3]" data-tchmi-top="693" data-tchmi-top-unit="px" data-tchmi-width-unit="px" data-tchmi-word-wrap="True" data-tchmi-state-symbol="%s%ADS.PLC1.GVL_HMI.aFillManualValveSelection.3.2%/s%" data-tchmi-zindex="6">
+<div id="TcHmiToggleButton_38" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleButton" data-tchmi-height="30" data-tchmi-height-unit="px" data-tchmi-left="674" data-tchmi-left-unit="px" data-tchmi-text="Valve [4,3]" data-tchmi-top="693" data-tchmi-top-unit="px" data-tchmi-width-unit="px" data-tchmi-word-wrap="True" data-tchmi-state-symbol="%s%ADS.PLC1.GVL_HMI.stFillHMI.aManualValveSelection.3.2%/s%" data-tchmi-zindex="6">
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%s%ADS.PLC1.GVL_HMI.aFillStateofValves.3.2%/s%",
+    "event": "%s%ADS.PLC1.GVL_HMI.stFillHMI.aStateofValves.3.2%/s%",
     "actions": [
       {
         "objectType": "SwitchCase",
@@ -1986,7 +1986,7 @@
         "compare": {
           "objectType": "Symbol",
           "valueType": "tchmi:server#/definitions/ADS-PLC1.E_SolenoidState",
-          "symbolExpression": "%s%ADS.PLC1.GVL_HMI.aFillStateofValves.3.2%/s%"
+          "symbolExpression": "%s%ADS.PLC1.GVL_HMI.stFillHMI.aStateofValves.3.2%/s%"
         },
         "cases": [
           {
@@ -2041,11 +2041,11 @@
 ]
 </script>
 </div>
-<div id="TcHmiToggleButton_39" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleButton" data-tchmi-height="30" data-tchmi-height-unit="px" data-tchmi-left="608" data-tchmi-left-unit="px" data-tchmi-text="Valve [1,2]" data-tchmi-top="483" data-tchmi-top-unit="px" data-tchmi-width-unit="px" data-tchmi-word-wrap="rue&quot;" data-tchmi-state-symbol="%s%ADS.PLC1.GVL_HMI.aFillManualValveSelection.0.1%/s%" data-tchmi-zindex="6">
+<div id="TcHmiToggleButton_39" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleButton" data-tchmi-height="30" data-tchmi-height-unit="px" data-tchmi-left="608" data-tchmi-left-unit="px" data-tchmi-text="Valve [1,2]" data-tchmi-top="483" data-tchmi-top-unit="px" data-tchmi-width-unit="px" data-tchmi-word-wrap="rue&quot;" data-tchmi-state-symbol="%s%ADS.PLC1.GVL_HMI.stFillHMI.aManualValveSelection.0.1%/s%" data-tchmi-zindex="6">
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%s%ADS.PLC1.GVL_HMI.aFillStateofValves.0.1%/s%",
+    "event": "%s%ADS.PLC1.GVL_HMI.stFillHMI.aStateofValves.0.1%/s%",
     "actions": [
       {
         "objectType": "SwitchCase",
@@ -2053,7 +2053,7 @@
         "compare": {
           "objectType": "Symbol",
           "valueType": "tchmi:server#/definitions/ADS-PLC1.E_SolenoidState",
-          "symbolExpression": "%s%ADS.PLC1.GVL_HMI.aFillStateofValves.0.1%/s%"
+          "symbolExpression": "%s%ADS.PLC1.GVL_HMI.stFillHMI.aStateofValves.0.1%/s%"
         },
         "cases": [
           {
@@ -2108,7 +2108,7 @@
 ]
 </script>
 </div>
-<div id="TcHmiToggleButton_40" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleButton" data-tchmi-height="50" data-tchmi-height-unit="px" data-tchmi-left="574" data-tchmi-left-unit="px" data-tchmi-text="Enable Matrix Operation" data-tchmi-top="15" data-tchmi-top-unit="px" data-tchmi-width="50" data-tchmi-width-unit="px" data-tchmi-word-wrap="True" data-tchmi-is-enabled="True" data-tchmi-state-symbol="%s%ADS.PLC1.GVL_HMI.bFillTurnOnMatrix%/s%" data-tchmi-zindex="6">
+<div id="TcHmiToggleButton_40" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleButton" data-tchmi-height="50" data-tchmi-height-unit="px" data-tchmi-left="574" data-tchmi-left-unit="px" data-tchmi-text="Enable Matrix Operation" data-tchmi-top="15" data-tchmi-top-unit="px" data-tchmi-width="50" data-tchmi-width-unit="px" data-tchmi-word-wrap="True" data-tchmi-is-enabled="True" data-tchmi-state-symbol="%s%ADS.PLC1.GVL_HMI.stFillHMI.bTurnOnMatrix%/s%" data-tchmi-zindex="6">
 </div>
 <div id="TcHmiCombobox_7" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiCombobox" data-tchmi-auto-focus-out="True" data-tchmi-combobox-text="Select" data-tchmi-height="25" data-tchmi-height-unit="px" data-tchmi-left="673" data-tchmi-left-unit="px" data-tchmi-top="81" data-tchmi-top-unit="px" data-tchmi-width="90" data-tchmi-width-unit="px" data-tchmi-enum-data-symbol="%s%ADS.PLC1.GVL_HMI.eFillStartOfPath%/s%" data-tchmi-zindex="6">
 <script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
@@ -2132,9 +2132,9 @@
 </script>
 
 </div>
-<div id="TcHmiToggleButton_41" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleButton" data-tchmi-height="50" data-tchmi-height-unit="px" data-tchmi-left="713" data-tchmi-left-unit="px" data-tchmi-text="Actuate Path" data-tchmi-top="15" data-tchmi-top-unit="px" data-tchmi-width="50" data-tchmi-width-unit="px" data-tchmi-word-wrap="True" data-tchmi-state-symbol="%s%ADS.PLC1.GVL_HMI.bFillActuatePath%/s%" data-tchmi-zindex="6">
+<div id="TcHmiToggleButton_41" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleButton" data-tchmi-height="50" data-tchmi-height-unit="px" data-tchmi-left="713" data-tchmi-left-unit="px" data-tchmi-text="Actuate Path" data-tchmi-top="15" data-tchmi-top-unit="px" data-tchmi-width="50" data-tchmi-width-unit="px" data-tchmi-word-wrap="True" data-tchmi-state-symbol="%s%ADS.PLC1.GVL_HMI.stFillHMI.bActuatePath%/s%" data-tchmi-zindex="6">
 </div>
-<div id="TcHmiToggleButton_42" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleButton" data-tchmi-height="50" data-tchmi-height-unit="px" data-tchmi-left="647" data-tchmi-left-unit="px" data-tchmi-text="Turn On Pathing" data-tchmi-top="15" data-tchmi-top-unit="px" data-tchmi-width="50" data-tchmi-width-unit="px" data-tchmi-word-wrap="rue&quot;" data-tchmi-state-symbol="%s%ADS.PLC1.GVL_HMI.bFillTurnOnPathing%/s%" data-tchmi-zindex="6">
+<div id="TcHmiToggleButton_42" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleButton" data-tchmi-height="50" data-tchmi-height-unit="px" data-tchmi-left="647" data-tchmi-left-unit="px" data-tchmi-text="Turn On Pathing" data-tchmi-top="15" data-tchmi-top-unit="px" data-tchmi-width="50" data-tchmi-width-unit="px" data-tchmi-word-wrap="rue&quot;" data-tchmi-state-symbol="%s%ADS.PLC1.GVL_HMI.stFillHMI.bTurnOnPathing%/s%" data-tchmi-zindex="6">
 </div>
 
 <script data-tchmi-target-attribute="data-tchmi-border-color" type="application/json">
@@ -2160,9 +2160,7 @@
 </div>
 <div id="TcHmiTextblock_3" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="26" data-tchmi-height-unit="px" data-tchmi-left="839" data-tchmi-left-unit="px" data-tchmi-text="Dispense Matrix Controls" data-tchmi-top="110" data-tchmi-top-unit="px" data-tchmi-width="124" data-tchmi-width-unit="px" data-tchmi-word-wrap="True" data-tchmi-zindex="6">
 </div>
-<div id="TcHmiToggleSwitch_1" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleSwitch" data-tchmi-height="26" data-tchmi-height-unit="px" data-tchmi-left="60" data-tchmi-left-unit="px" data-tchmi-text="Enable Sensors" data-tchmi-top="22" data-tchmi-top-unit="px" data-tchmi-width="100" data-tchmi-width-unit="px" data-tchmi-state-symbol="%s%ADS.PLC1.GVL_HMI.bEnableSensors%/s%" data-tchmi-zindex="3">
-</div>
-<div id="TcHmiToggleButton_43" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleButton" data-tchmi-height="47" data-tchmi-height-unit="px" data-tchmi-left="183" data-tchmi-left-unit="px" data-tchmi-text="Reset Sensors" data-tchmi-top="22" data-tchmi-top-unit="px" data-tchmi-width="60" data-tchmi-width-unit="px" data-tchmi-word-wrap="True" data-tchmi-state-symbol="%s%ADS.PLC1.GVL_HMI.bResetSensors%/s%" data-tchmi-zindex="3">
+<div id="TcHmiToggleButton_43" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleButton" data-tchmi-height="47" data-tchmi-height-unit="px" data-tchmi-left="71" data-tchmi-left-unit="px" data-tchmi-text="Reset Sensors" data-tchmi-top="30" data-tchmi-top-unit="px" data-tchmi-width="60" data-tchmi-width-unit="px" data-tchmi-word-wrap="True" data-tchmi-state-symbol="%s%ADS.PLC1.GVL_HMI.bResetSensors%/s%" data-tchmi-zindex="3">
 </div>
 <div id="TcHmiRectangle_4" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiRectangle" data-tchmi-height="104" data-tchmi-height-unit="px" data-tchmi-left="204" data-tchmi-left-unit="px" data-tchmi-top="163" data-tchmi-top-unit="px" data-tchmi-width="204" data-tchmi-width-unit="px" data-tchmi-zindex="2">
 </div>
@@ -3622,7 +3620,7 @@
 ]
 </script>
 </div>
-<div id="TcHmiTextbox_1" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="20" data-tchmi-height-unit="px" data-tchmi-horizontal-scroll="Auto" data-tchmi-left="26" data-tchmi-left-unit="px" data-tchmi-reset-to-last-valid-value="True" data-tchmi-text="%s%ADS.PLC1.GVL_HMI.aPV.0%/s%" data-tchmi-top="257" data-tchmi-top-unit="px" data-tchmi-vertical-scroll="Auto" data-tchmi-width="45" data-tchmi-width-unit="px" data-tchmi-zindex="2">
+<div id="TcHmiTextbox_1" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="20" data-tchmi-height-unit="px" data-tchmi-horizontal-scroll="Auto" data-tchmi-left="26" data-tchmi-left-unit="px" data-tchmi-reset-to-last-valid-value="True" data-tchmi-top="257" data-tchmi-top-unit="px" data-tchmi-vertical-scroll="Auto" data-tchmi-width="45" data-tchmi-width-unit="px" data-tchmi-zindex="2" data-tchmi-auto-select-text="True" data-tchmi-auto-focus-out="False" data-tchmi-text="%s%ADS.PLC1.GVL_HMI.aPV.0%/s%">
 <script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
 {
   "top": 3,

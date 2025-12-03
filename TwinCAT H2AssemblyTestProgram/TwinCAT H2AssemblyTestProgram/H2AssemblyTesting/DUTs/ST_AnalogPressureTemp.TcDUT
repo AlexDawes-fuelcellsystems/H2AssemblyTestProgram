@@ -4,12 +4,12 @@
     <Declaration><![CDATA[TYPE ST_AnalogPressureTemp :
 	//Config struct for pressure/temp sensors
 STRUCT
-	rWarninglevel: REAL;
-	rErrorLevel: REAL;
-	rPressureMaxSP:REAL;
-	rPressureMinSP:REAL;
-	rTemperatureMaxSP:REAL;
-	rTemperatureMinSP:REAL;
+	rWarninglevel: LREAL;
+	rErrorLevel: LREAL;
+	rPressureMaxSP:LREAL;
+	rPressureMinSP:LREAL;
+	rTemperatureMaxSP:LREAL;
+	rTemperatureMinSP:LREAL;
 	nRawMax:INT;
 	nRawMin:INT;
 END_STRUCT

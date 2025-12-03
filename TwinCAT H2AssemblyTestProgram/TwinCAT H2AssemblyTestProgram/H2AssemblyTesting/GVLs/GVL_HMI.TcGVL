@@ -4,46 +4,25 @@
     <Declaration><![CDATA[{attribute 'qualified_only'}
 VAR_GLOBAL
 	//Variables for the dispensing matrix
-	aDispManualValveSelection : ARRAY [1..4,1..3] OF BOOL;
-	bDispTurnOnMatrix: BOOL;
-	bDispResetMatrix:BOOL;
-	bDispTurnOnPathing:BOOL;
-	bDispActuatePath:BOOL;
 	eDispStartOfPath: E_TankBundleNumber;
 	eDispEndOfPath:E_OutletNumber;
-	aDispStateofValves: ARRAY[1..cMaxRows,1..cMaxCols] OF E_SolenoidState;
-	
 	//Variables for the inlet matrix
-    aInletManualValveSelection : ARRAY [1..2,1..3] OF BOOL;
-	bInletTurnOnMatrix: BOOL;
-	bInletResetMatrix:BOOL;
-	bInbletTurnOnPathing:BOOL;
-	bInletActuatePath:BOOL;
 	eInletStartOfPath: E_InletToSystem;
 	eInletEndOfPath:E_CompressionStages;
-	aInletStateofValves: ARRAY[1..cMaxRows,1..cMaxCols] OF E_SolenoidState;
-	
-	//Variables for the Filling Matrix
-	aFillManualValveSelection : ARRAY [1..4,1..3] OF BOOL;
-	bFillTurnOnMatrix: BOOL;
-	bFillResetMatrix:BOOL;
-	bFillTurnOnPathing:BOOL;
-	bFillActuatePath:BOOL;
+	//Variables for the Filling Matri
 	eFillStartOfPath: E_TankBundleNumber;
 	eFillEndOfPath:E_CompressionStages;
-	aFillStateofValves: ARRAY[1..cMaxRows,1..cMaxCols] OF E_SolenoidState;
-	
-	//Variables to enable and reset Sensors
-	bEnableSensors:BOOL;
+	//Input Structs for HMI to valve matrices
+	stDispHMI:ST_MatrixInputs;
+	stInletHMI : ST_MatrixInputs;
+    stFillHMI  : ST_MatrixInputs;
+	//Variable reset Sensors
 	bResetSensors:BOOL;
-	
-	//Sensor Error states
+	//Sensor Error states to display on HMI
 	aSensorErrors :  ARRAY[1..GVL_IO.cNumofPT] OF E_ErrorState;
-	
 	//Sensor Engineering values
 	aPV:  ARRAY[1..GVL_IO.cNumofPT] OF REAL;
 	aTV:  ARRAY[1..GVL_IO.cNumofPT] OF REAL;
-	
 	//Overall Valve Reset
 	bResetAllValves:BOOL;
 	
@@ -52,6 +31,16 @@ VAR_GLOBAL CONSTANT
 	//Set max matrix size at compile time
 	cMaxRows:INT:=4;
 	cMaxCols:INT:=3;
+	cInletRows:INT:=2;
+	cInletCols:INT:=3;
+    cWarninglevel:LREAL:=500;
+    cErrorLevel:LREAL:=525;
+    cPressureMinSP:LREAL:=0;
+    cPressureMaxSP:LREAL:=1000;
+    cTemperatureMinSP:LREAL:=-40;
+    cTemperatureMaxSP:LREAL:=125;
+    cRawMin:	INT:=0;
+    cRawMax:	INT:=32767;
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>

@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="MAIN" Id="{606a3699-021a-464e-b575-9f2f01835131}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM MAIN
+VAR
+	//Matrix instances
+	fbDispenseMatrix:FB_Matrix;
+	fbInletMatrix:FB_Matrix;
+	fbFillMatrix:FB_Matrix;
+	//Config struct containing config data for all matrices, passed by reference to each FB_Matrix instance
+	stMAtrixConfigs:ST_MatrixConfigs;
+	//Instance of fbIO for IO updates
+	fbIO:FB_IO;
+	aPT: ARRAY [1.. GVL_IO.cNumofPT] OF FB_PressureTransducer;
+	//Initialising Boolean 
+	bInitialise:BOOL:=TRUE;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[//Run Initialise Method once on first cycle
+IF bInitialise THEN
+	M_Initalize();
+	bInitialise:=FALSE;
+END_IF
+//Update to/from IO
+fbIO(inlet:=fbInletMatrix,fill:=fbFillMatrix,dispense:=fbDispenseMatrix,PTTT:=aPT);
+//Update From HMI
+M_UpdateFromHMI();	
+//Calling FB_Matrix for each of the three matrices of valves, Dispense, Inlet and FIlling.
+fbDispenseMatrix(aConfig:=stMAtrixConfigs.DispenseConfig);
+fbFillMatrix(aConfig:=stMAtrixConfigs.FillConfig);
+fbInletMatrix(aConfig:=stMAtrixConfigs.InletConfig);
+//Re-Update valve GVL variables from internal saftey logic
+M_UpdateToHMI();
+]]></ST>
+    </Implementation>
+    <Folder Name="HMI_Updates" Id="{6a391c12-a86f-41a0-abbe-695c56b3d320}" />
+    <Folder Name="Initialisation" Id="{322e65f6-6812-4258-aaf1-27d3c73b96d9}" />
+    <Method Name="M_Initalize" Id="{c8c10e44-8587-4199-9743-e05feaa06a39}" FolderPath="Initialisation\">
+      <Declaration><![CDATA[METHOD PUBLIC M_Initalize 
+VAR
+rows:INT;
+cols:INT;
+//Standard Config Parameter Struct for FB_PressureTransducers
+stAnalogCfg : ST_AnalogPressureTemp;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//Configure the pressure sensors
+	stAnalogCfg.rWarninglevel:=GVL_HMI.cWarninglevel;
+	stAnalogCfg.rErrorLevel:=GVL_HMI.cErrorLevel;
+	stAnalogCfg.rPressureMinSP:=GVL_HMI.cPressureMinSP;
+	stAnalogCfg.rPressureMaxSP:=GVL_HMI.cPressureMaxSP;
+	stAnalogCfg.rTemperatureMinSP:=GVL_HMI.cTemperatureMinSP;
+	stAnalogCfg.rTemperatureMaxSP:=GVL_HMI.cTemperatureMaxSP;
+	stAnalogCfg.nRawMin:=GVL_HMI.cRawMin;
+	stAnalogCfg.nRawMax:=GVL_HMI.cRawMax;
+
+//Configure the pressure sensors
+FOR rows:=1 TO GVL_IO.cNumofPT DO
+    aPT[rows].M_Init(stCfg:=stAnalogCfg,sTag:=GVL_IO.sPTTags[rows]);
+END_FOR
+
+// Initialise all matrices to be NC and to be un-energised
+    fbDispenseMatrix(aConFig:=stMAtrixConfigs.DispenseConfig);
+    fbFillMatrix(aConfig:=stMAtrixConfigs.FillConfig);
+    fbInletMatrix(aConfig:=stMAtrixConfigs.InletConfig);
+//Initialise matrices 
+fbInletMatrix.M_Initialise(nRows:=GVL_HMI.cInletRows,nCols:=GVL_HMI.cInletCols);
+fbDispenseMatrix.M_Initialise(nRows:=GVL_HMI.cMaxRows,nCols:=GVL_HMI.cMaxCols);
+fbFillMatrix.M_Initialise(nRows:=GVL_HMI.cMaxRows,nCols:=GVL_HMI.cMaxCols);
+
+
+    
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_UpdateFromHMI" Id="{8779a328-bd71-463f-a457-6702a1e02170}" FolderPath="HMI_Updates\">
+      <Declaration><![CDATA[METHOD M_UpdateFromHMI
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//Update each matrix using its update method
+fbDispenseMAtrix.M_UpdateFromHMI(stHMI:=GVL_HMI.stDispHMI,
+	                             nStartOfPath:=GVL_HMI.eDispStartOfPath,
+								 nEndOfPath:=GVL_HMI.eDispEndOfPath);
+								 
+fbFillMatrix.M_UpdateFromHMI(stHMI:=GVL_HMI.stFillHMI,
+	                             nStartOfPath:=GVL_HMI.eFillStartOfPath,
+								 nEndOfPath:=GVL_HMI.eFillEndOfPath);
+								 
+fbInletMatrix.M_UpdateFromHMI(stHMI:=GVL_HMI.stInletHMI,
+	                             nStartOfPath:=GVL_HMI.eInletStartOfPath,
+								 nEndOfPath:=GVL_HMI.eInletEndOfPath);]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_UpdateToHMI" Id="{dc0c917a-29fb-4fe9-9454-5c7004a311f7}" FolderPath="HMI_Updates\">
+      <Declaration><![CDATA[METHOD M_UpdateToHMI
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[fbDispenseMatrix.M_UpdateToHMI(stHMI:=GVL_HMI.stDispHMI);
+fbFillMatrix.M_UpdateToHMI(stHMI:=GVL_HMI.stFillHMI);
+fbInletMatrix.M_UpdateToHMI(stHMI:=GVL_HMI.stInletHMI);]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

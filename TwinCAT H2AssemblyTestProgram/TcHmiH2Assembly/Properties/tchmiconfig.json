@@ -55,6 +55,11 @@
       "name": "Fonts/Fonts.css",
       "description": "",
       "type": "Stylesheet"
+    },
+    {
+      "name": "Functions/Format.js",
+      "description": "",
+      "type": "JavaScript"
     }
   ],
   "userControls": [],
@@ -67,7 +72,11 @@
       "preloadBindings": false
     }
   ],
-  "userFunctions": [],
+  "userFunctions": [
+    {
+      "url": "Functions/Format.js"
+    }
+  ],
   "symbols": {
     "internal": {},
     "themedResources": {},

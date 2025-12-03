@@ -41,6 +41,19 @@ END_IF
 M_PressureState();]]></ST>
       </Implementation>
     </Method>
+    <Method Name="M_Init" Id="{5bb119d5-2d47-42ee-aeec-56f042c26262}">
+      <Declaration><![CDATA[METHOD M_Init : BOOL
+VAR_INPUT
+	stCfg : ST_AnalogPressureTemp;
+    sTag  : T_MaxString;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[st_AnalogPressureTempdata:=stCfg;
+bDeviceEnable:=TRUE;
+THIS^.sTag:=sTag;]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="M_PressureState" Id="{5a80939a-4228-4bfa-a79b-b4ef01743c70}">
       <Declaration><![CDATA[METHOD M_PressureState : BOOL
 
