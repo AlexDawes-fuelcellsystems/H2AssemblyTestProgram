@@ -44,12 +44,23 @@ M_PressureState();]]></ST>
     <Method Name="M_Init" Id="{5bb119d5-2d47-42ee-aeec-56f042c26262}">
       <Declaration><![CDATA[METHOD M_Init : BOOL
 VAR_INPUT
-	stCfg : ST_AnalogPressureTemp;
     sTag  : T_MaxString;
 END_VAR
-]]></Declaration>
+VAR
+	stCfg : ST_AnalogPressureTemp;
+END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[st_AnalogPressureTempdata:=stCfg;
+        <ST><![CDATA[//COnfigure the config struct parameters
+stCfg.rWarninglevel:=GVL_HMI.cWarninglevel;
+stCfg.rErrorLevel:=GVL_HMI.cErrorLevel;
+stCfg.rPressureMinSP:=GVL_HMI.cPressureMinSP;
+stCfg.rPressureMaxSP:=GVL_HMI.cPressureMaxSP;
+stCfg.rTemperatureMinSP:=GVL_HMI.cTemperatureMinSP;
+stCfg.rTemperatureMaxSP:=GVL_HMI.cTemperatureMaxSP;
+stCfg.nRawMin:=GVL_HMI.cRawMin;
+stCfg.nRawMax:=GVL_HMI.cRawMax;
+
+st_AnalogPressureTempdata:=stCfg;
 bDeviceEnable:=TRUE;
 THIS^.sTag:=sTag;]]></ST>
       </Implementation>

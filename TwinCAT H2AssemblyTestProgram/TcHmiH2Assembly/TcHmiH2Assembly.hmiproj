@@ -154,6 +154,12 @@
     <Content Include="Functions\Format.js">
       <SubType>Content</SubType>
     </Content>
+    <Content Include="Images\Manifest\Content1.content">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Images\Manifest\{545A5085-31FC-4507-A6AA-FCEB0C62E9FC}.png">
+      <SubType>Content</SubType>
+    </Content>
     <Content Include="Server\TcHmiLua\TcHmiLua.Config.default.json">
       <SubType>Content</SubType>
     </Content>
@@ -303,30 +309,6 @@
       <Visible>true</Visible>
     </Content>
     <Content Include="Images\Beckhoff_Logo.svg">
-      <SubType>Content</SubType>
-      <Visible>true</Visible>
-    </Content>
-    <Content Include="Images\Manifest\launcher-icon-0-75x.png">
-      <SubType>Content</SubType>
-      <Visible>true</Visible>
-    </Content>
-    <Content Include="Images\Manifest\launcher-icon-1-5x.png">
-      <SubType>Content</SubType>
-      <Visible>true</Visible>
-    </Content>
-    <Content Include="Images\Manifest\launcher-icon-1x.png">
-      <SubType>Content</SubType>
-      <Visible>true</Visible>
-    </Content>
-    <Content Include="Images\Manifest\launcher-icon-2x.png">
-      <SubType>Content</SubType>
-      <Visible>true</Visible>
-    </Content>
-    <Content Include="Images\Manifest\launcher-icon-3x.png">
-      <SubType>Content</SubType>
-      <Visible>true</Visible>
-    </Content>
-    <Content Include="Images\Manifest\launcher-icon-4x.png">
       <SubType>Content</SubType>
       <Visible>true</Visible>
     </Content>

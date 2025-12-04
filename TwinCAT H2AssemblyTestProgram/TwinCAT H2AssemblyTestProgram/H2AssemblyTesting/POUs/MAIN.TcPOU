@@ -45,22 +45,13 @@ cols:INT;
 stAnalogCfg : ST_AnalogPressureTemp;
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[//Configure the pressure sensors
-	stAnalogCfg.rWarninglevel:=GVL_HMI.cWarninglevel;
-	stAnalogCfg.rErrorLevel:=GVL_HMI.cErrorLevel;
-	stAnalogCfg.rPressureMinSP:=GVL_HMI.cPressureMinSP;
-	stAnalogCfg.rPressureMaxSP:=GVL_HMI.cPressureMaxSP;
-	stAnalogCfg.rTemperatureMinSP:=GVL_HMI.cTemperatureMinSP;
-	stAnalogCfg.rTemperatureMaxSP:=GVL_HMI.cTemperatureMaxSP;
-	stAnalogCfg.nRawMin:=GVL_HMI.cRawMin;
-	stAnalogCfg.nRawMax:=GVL_HMI.cRawMax;
-
-//Configure the pressure sensors
+        <ST><![CDATA[
+//Configure + initialise the pressure sensors
 FOR rows:=1 TO GVL_IO.cNumofPT DO
-    aPT[rows].M_Init(stCfg:=stAnalogCfg,sTag:=GVL_IO.sPTTags[rows]);
+    aPT[rows].M_Init(sTag:=GVL_IO.sPTTags[rows]);
 END_FOR
 
-// Initialise all matrices to be NC and to be un-energised
+// Pass each aConfig location to matrix instances
     fbDispenseMatrix(aConFig:=stMAtrixConfigs.DispenseConfig);
     fbFillMatrix(aConfig:=stMAtrixConfigs.FillConfig);
     fbInletMatrix(aConfig:=stMAtrixConfigs.InletConfig);

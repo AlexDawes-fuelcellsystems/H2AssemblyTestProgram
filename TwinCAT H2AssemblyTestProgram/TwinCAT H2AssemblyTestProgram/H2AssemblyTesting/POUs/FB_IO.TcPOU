@@ -6,7 +6,6 @@ VAR_INPUT
 	inlet:FB_matrix;
 	fill:FB_matrix;
 	dispense:FB_matrix;
-	PTTT: ARRAY [1.. GVL_IO.cNumofPT] OF FB_PressureTransducer;
 END_VAR
 VAR
 	nsensorNumber:INT;
@@ -14,7 +13,9 @@ VAR
 	cols:INT;
 	aInletMAtrixValveCmds: INT;
 END_VAR
-]]></Declaration>
+VAR_IN_OUT
+		PTTT: ARRAY [1.. GVL_IO.cNumofPT] OF FB_PressureTransducer;
+END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[M_PTTTransducers();
 M_Solenoids();]]></ST>

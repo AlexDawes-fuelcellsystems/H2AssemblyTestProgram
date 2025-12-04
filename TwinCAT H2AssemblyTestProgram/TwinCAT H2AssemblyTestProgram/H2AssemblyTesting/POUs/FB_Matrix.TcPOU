@@ -110,8 +110,10 @@ VAR
 	y:INT;
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[	nRowSize:=nRows;
+        <ST><![CDATA[//Set size of matrix	
+    nRowSize:=nRows;
 	nColSize:=nCols;
+//Initialise aConfig as NC and valves closed
 FOR x:= 1 TO nRowSize DO
     FOR y := 1 TO nColSize DO
         aConfig[x, y].bOpen        := FALSE;
