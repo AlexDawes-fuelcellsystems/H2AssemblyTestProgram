@@ -7,7 +7,7 @@ VAR
 	fbDispenseMatrix:FB_Matrix;
 	fbInletMatrix:FB_Matrix;
 	fbFillMatrix:FB_Matrix;
-	//Config struct containing config data for all matrices, passed by reference to each FB_Matrix instance
+	//Config struct containing config data for matrices, passed by reference to FB_Matrix instance
 	stMAtrixConfigs:ST_MatrixConfigs;
 	//Instance of fbIO for IO updates
 	fbIO:FB_IO;
@@ -26,11 +26,11 @@ END_IF
 fbIO(inlet:=fbInletMatrix,fill:=fbFillMatrix,dispense:=fbDispenseMatrix,PTTT:=aPT);
 //Update From HMI
 M_UpdateFromHMI();	
-//Calling FB_Matrix for each of the three matrices of valves, Dispense, Inlet and FIlling.
+//Calling FB_Matrix 
 fbDispenseMatrix(aConfig:=stMAtrixConfigs.DispenseConfig);
 fbFillMatrix(aConfig:=stMAtrixConfigs.FillConfig);
 fbInletMatrix(aConfig:=stMAtrixConfigs.InletConfig);
-//Re-Update valve GVL variables from internal saftey logic
+//Update valve GVL variables 
 M_UpdateToHMI();
 ]]></ST>
     </Implementation>
