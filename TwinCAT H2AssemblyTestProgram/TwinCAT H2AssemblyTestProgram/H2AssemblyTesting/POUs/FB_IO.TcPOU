@@ -3,36 +3,59 @@
   <POU Name="FB_IO" Id="{1c9b80c2-f6a7-4a98-9c0f-22ba5373f0a7}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK PUBLIC FB_IO
 VAR_INPUT
+	PTTT: REFERENCE TO ARRAY [1.. GVL_IO.cNumofPT] OF FB_PressureTransducer;
+END_VAR
+VAR
 	inlet:FB_matrix;
 	fill:FB_matrix;
 	dispense:FB_matrix;
-END_VAR
-VAR
 	nsensorNumber:INT;
 	rows:INT;
 	cols:INT;
 	aInletMAtrixValveCmds: INT;
 END_VAR
-VAR_IN_OUT
-		PTTT: ARRAY [1.. GVL_IO.cNumofPT] OF FB_PressureTransducer;
-END_VAR]]></Declaration>
+]]></Declaration>
     <Implementation>
       <ST><![CDATA[M_PTTTransducers();
 M_Solenoids();]]></ST>
     </Implementation>
     <Folder Name="Actuators" Id="{0a74f44c-a186-4f5d-abba-c1f92f894549}" />
+    <Folder Name="Properties" Id="{1bea0c20-9e15-4457-b2ac-582c67937e90}" />
     <Folder Name="Sensors" Id="{2415513d-42f8-4814-955f-fcef3eafc61a}" />
+    <Property Name="DispenseMatrix" Id="{25f8c8ea-72db-4e7f-9424-df95763ea36e}" FolderPath="Properties\">
+      <Declaration><![CDATA[PROPERTY DispenseMatrix : FB_matrix]]></Declaration>
+      <Set Name="Set" Id="{b4b61de5-0f59-4900-bd91-af2c73760bee}">
+        <Declaration><![CDATA[]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[dispense := DispenseMatrix;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <Property Name="FillMatrix" Id="{eb86371d-b4e3-4663-8fa9-8f44d0dcee82}" FolderPath="Properties\">
+      <Declaration><![CDATA[PROPERTY FillMatrix : FB_matrix]]></Declaration>
+      <Set Name="Set" Id="{76f52427-6cad-4e42-b8f0-ed73ad49d5b8}">
+        <Declaration><![CDATA[]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[fill := FillMatrix;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <Property Name="InletMatrix" Id="{19664f95-51b4-4ed3-a2b7-b542e5c6a464}" FolderPath="Properties\">
+      <Declaration><![CDATA[PROPERTY InletMatrix : FB_matrix]]></Declaration>
+      <Set Name="Set" Id="{17f0b4eb-6d50-4ab9-a197-cba0365312ee}">
+        <Declaration><![CDATA[]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[inlet := InletMatrix;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
     <Method Name="M_PTTTransducers" Id="{db9ee37e-2b9d-4ae2-ba7d-052f24f151f3}" FolderPath="Sensors\">
       <Declaration><![CDATA[METHOD M_PTTTransducers : BOOL
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[FOR nsensorNumber:=1 TO GVL_IO.cNumofPT DO
-	PTTT[nsensorNumber](bDeviceReset:=GVL_HMI.bResetSensors,
-					   nSensorPressure:=GVL_IO.aPressRaw[nsensorNumber],
-					   nSensorTemperature:=GVL_IO.aTempRaw[nsensorNumber],
-					   rEngPressure=>GVL_HMI.aPV[nsensorNumber],
-					   rEngTemperature=>GVL_HMI.aTV[nsensorNumber],
-                       eDeviceState=>GVL_HMI.aSensorErrors[nsensorNumber]);			   
+        <ST><![CDATA[FOR nsensorNumber:=1 TO GVL_IO.cNumofPT DO		
+    PTTT[nsensorNumber].RawPressure := GVL_IO.aPressRaw[nsensorNumber];
+    PTTT[nsensorNumber].RawTemperature := GVL_IO.aTempRaw[nsensorNumber];
 END_FOR]]></ST>
       </Implementation>
     </Method>

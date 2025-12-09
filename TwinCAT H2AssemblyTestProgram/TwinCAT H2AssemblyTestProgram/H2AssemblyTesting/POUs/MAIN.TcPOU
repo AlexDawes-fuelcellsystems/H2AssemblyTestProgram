@@ -4,68 +4,93 @@
     <Declaration><![CDATA[PROGRAM MAIN
 VAR
 	//Matrix instances
-	fbDispenseMatrix:FB_Matrix;
-	fbInletMatrix:FB_Matrix;
-	fbFillMatrix:FB_Matrix;
-	//Config struct containing config data for matrices, passed by reference to FB_Matrix instance
-	stMAtrixConfigs:ST_MatrixConfigs;
+	fbDispenseMatrix : FB_Matrix;
+	fbInletMatrix : FB_Matrix;
+	fbFillMatrix : FB_Matrix;
+
 	//Instance of fbIO for IO updates
-	fbIO:FB_IO;
-	aPT: ARRAY [1.. GVL_IO.cNumofPT] OF FB_PressureTransducer;
+	fbIO : FB_IO;
+	//Pressure Transducers
+	aPT : ARRAY [1.. GVL_IO.cNumofPT] OF FB_PressureTransducer;
+	//Devices interface
+	Devices : ARRAY[1..GVL_IO.cNumofMatrices+GVL_IO.cNumofPT] OF I_Devices;
+	
 	//Initialising Boolean 
-	bInitialise:BOOL:=TRUE;
+	bInitialise : BOOL := TRUE;
+	idx : USINT;
+	hr : HRESULT := S_PENDING;
 END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[//Run Initialise Method once on first cycle
 IF bInitialise THEN
-	M_Initalize();
-	bInitialise:=FALSE;
+	hr := M_Initalize();
+	RETURN;
 END_IF
-//Update to/from IO
-fbIO(inlet:=fbInletMatrix,fill:=fbFillMatrix,dispense:=fbDispenseMatrix,PTTT:=aPT);
+
+//Update IO
+M_UpdateIO(PTTT:=aPT);
+
 //Update From HMI
 M_UpdateFromHMI();	
-//Calling FB_Matrix 
-fbDispenseMatrix(aConfig:=stMAtrixConfigs.DispenseConfig);
-fbFillMatrix(aConfig:=stMAtrixConfigs.FillConfig);
-fbInletMatrix(aConfig:=stMAtrixConfigs.InletConfig);
-//Update valve GVL variables 
+
+//Calling Cyclic
+M_CyclicLogic();
+
+//Update HMI
 M_UpdateToHMI();
 ]]></ST>
     </Implementation>
-    <Folder Name="HMI_Updates" Id="{6a391c12-a86f-41a0-abbe-695c56b3d320}" />
-    <Folder Name="Initialisation" Id="{322e65f6-6812-4258-aaf1-27d3c73b96d9}" />
-    <Method Name="M_Initalize" Id="{c8c10e44-8587-4199-9743-e05feaa06a39}" FolderPath="Initialisation\">
-      <Declaration><![CDATA[METHOD PUBLIC M_Initalize 
+    <Folder Name="Updates" Id="{6a391c12-a86f-41a0-abbe-695c56b3d320}" />
+    <Method Name="M_CyclicLogic" Id="{d48a70cc-c9ea-409a-a41a-eae2b0a1f380}">
+      <Declaration><![CDATA[METHOD M_CyclicLogic : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[FOR idx := 1 TO GVL_IO.cNumofMatrices+GVL_IO.cNumofPT DO
+    Devices[idx].M_CyclicLogic();
+END_FOR]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_Initalize" Id="{c8c10e44-8587-4199-9743-e05feaa06a39}">
+      <Declaration><![CDATA[METHOD PUBLIC M_Initalize : HRESULT
 VAR
-rows:INT;
-cols:INT;
-//Standard Config Parameter Struct for FB_PressureTransducers
+idx : INT;
+// Config Parameter Struct 
 stAnalogCfg : ST_AnalogPressureTemp;
+hresult: ARRAY[1..GVL_IO.cNumofMatrices] OF HRESULT;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[
-//Configure + initialise the pressure sensors
-FOR rows:=1 TO GVL_IO.cNumofPT DO
-    aPT[rows].M_Init(sTag:=GVL_IO.sPTTags[rows]);
+//Assign Devices into Interface array
+Devices[1] := fbDispenseMatrix;
+Devices[2] := fbInletMatrix;
+Devices[3] := fbFillMatrix;
+	
+FOR idx := 1 TO GVL_IO.cNumofPT DO
+    Devices[GVL_IO.cNumofMatrices + idx] := aPT[idx];
+END_FOR
+	
+//Initialise the pressure sensors
+FOR idx:=1 TO GVL_IO.cNumofPT DO
+    aPT[idx].M_Init(sTag:=GVL_IO.sPTTags[idx]);
 END_FOR
 
-// Pass each aConfig location to matrix instances
-    fbDispenseMatrix(aConFig:=stMAtrixConfigs.DispenseConfig);
-    fbFillMatrix(aConfig:=stMAtrixConfigs.FillConfig);
-    fbInletMatrix(aConfig:=stMAtrixConfigs.InletConfig);
 //Initialise matrices 
-fbInletMatrix.M_Initialise(nRows:=GVL_HMI.cInletRows,nCols:=GVL_HMI.cInletCols);
-fbDispenseMatrix.M_Initialise(nRows:=GVL_HMI.cMaxRows,nCols:=GVL_HMI.cMaxCols);
-fbFillMatrix.M_Initialise(nRows:=GVL_HMI.cMaxRows,nCols:=GVL_HMI.cMaxCols);
-
-
-    
-]]></ST>
+hresult[1] := fbInletMatrix.M_Init(nRows:=GVL_HMI.cInletRows,nCols:=GVL_HMI.cInletCols);
+hresult[2] :=fbDispenseMatrix.M_Init(nRows:=GVL_HMI.cMaxRows,nCols:=GVL_HMI.cMaxCols);
+hResult[3] := fbFillMatrix.M_Init(nRows:=GVL_HMI.cMaxRows,nCols:=GVL_HMI.cMaxCols);
+FOR idx:= 1 TO GVL_IO.cNumofMatrices DO
+	IF hresult[idx] = E_FAIL THEN
+		M_Initalize:= E_FAIL;
+		RETURN;
+	END_IF
+END_FOR
+//Initialised succesfully
+bInitialise:=FALSE;
+M_Initalize := S_OK;]]></ST>
       </Implementation>
     </Method>
-    <Method Name="M_UpdateFromHMI" Id="{8779a328-bd71-463f-a457-6702a1e02170}" FolderPath="HMI_Updates\">
+    <Method Name="M_UpdateFromHMI" Id="{8779a328-bd71-463f-a457-6702a1e02170}" FolderPath="Updates\">
       <Declaration><![CDATA[METHOD M_UpdateFromHMI
 ]]></Declaration>
       <Implementation>
@@ -83,13 +108,33 @@ fbInletMatrix.M_UpdateFromHMI(stHMI:=GVL_HMI.stInletHMI,
 								 nEndOfPath:=GVL_HMI.eInletEndOfPath);]]></ST>
       </Implementation>
     </Method>
-    <Method Name="M_UpdateToHMI" Id="{dc0c917a-29fb-4fe9-9454-5c7004a311f7}" FolderPath="HMI_Updates\">
+    <Method Name="M_UpdateIO" Id="{b3dc1e8e-ddce-4750-a359-be425c8195a4}" FolderPath="Updates\">
+      <Declaration><![CDATA[METHOD M_UpdateIO 
+VAR_INPUT
+	PTTT: REFERENCE TO ARRAY [1.. GVL_IO.cNumofPT] OF FB_PressureTransducer;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[fbIO.DispenseMatrix:=fbDispenseMatrix;
+fbIO.FillMatrix:=fbFillMatrix;
+fbIO.InletMatrix:=fbInletMatrix;
+fbIO(PTTT:=aPT);]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_UpdateToHMI" Id="{dc0c917a-29fb-4fe9-9454-5c7004a311f7}" FolderPath="Updates\">
       <Declaration><![CDATA[METHOD M_UpdateToHMI
+VAR
+	idx : INT;
+END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[fbDispenseMatrix.M_UpdateToHMI(stHMI:=GVL_HMI.stDispHMI);
 fbFillMatrix.M_UpdateToHMI(stHMI:=GVL_HMI.stFillHMI);
-fbInletMatrix.M_UpdateToHMI(stHMI:=GVL_HMI.stInletHMI);]]></ST>
+fbInletMatrix.M_UpdateToHMI(stHMI:=GVL_HMI.stInletHMI);
+FOR idx:=1 TO GVL_IO.cNumofPT DO
+	aPT[idx].M_UpdateToHMI(PV=>GVL_HMI.aPV[idx],
+		                   TV=>GVL_HMI.aTV[idx],
+						   State=>GVL_HMI.aSensorErrors[idx]);
+END_FOR]]></ST>
       </Implementation>
     </Method>
   </POU>

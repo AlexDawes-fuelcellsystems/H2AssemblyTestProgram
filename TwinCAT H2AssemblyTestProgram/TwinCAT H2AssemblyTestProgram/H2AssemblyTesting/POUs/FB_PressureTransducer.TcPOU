@@ -1,21 +1,39 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
   <POU Name="FB_PressureTransducer" Id="{4a351574-9fd7-451d-b391-c9b46c5a302c}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK FB_PressureTransducer EXTENDS FB_Device
-VAR_INPUT
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_PressureTransducer EXTENDS FB_Device 
+VAR
 	nSensorPressure: INT; //Pressure analog input
-	nSensorTemperature:INT;//Temperature analog input 
+	nSensorTemperature: INT;//Temperature analog input 
 	st_AnalogPressureTempdata:ST_AnalogPressureTemp;//Configuration struct 
 	sTag : T_MaxString;
-END_VAR
-VAR_OUTPUT
 	rEngPressure:REAL;//Pressure in BAR.
 	rEngTemperature:REAL;//Temperature in Degrees C.
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[M_CyclicLogic();]]></ST>
+      <ST><![CDATA[]]></ST>
     </Implementation>
+    <Folder Name="Helpers" Id="{e67afafd-2749-45e6-a1cb-b245f10bb290}" />
+    <Folder Name="Properties" Id="{889b9e44-81d4-4e4d-8dd4-72654b728181}" />
+    <Property Name="EngPressure" Id="{7aad62aa-a606-4ece-bd55-93a6575c4ca1}" FolderPath="Properties\">
+      <Declaration><![CDATA[PROPERTY EngPressure : LREAL]]></Declaration>
+      <Get Name="Get" Id="{cb22cdb7-477a-4adb-9dec-180abbfa29f9}">
+        <Declaration><![CDATA[]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[EngPressure := rEngPressure;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="EngTemperature" Id="{42bc4719-04ee-4714-80bd-05545071d9e0}" FolderPath="Properties\">
+      <Declaration><![CDATA[PROPERTY EngTemperature : LREAL]]></Declaration>
+      <Get Name="Get" Id="{6aa1ac60-3279-42e8-9686-63c16dd45ad7}">
+        <Declaration><![CDATA[]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[EngTemperature := rEngTemperature;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
     <Method Name="M_CyclicLogic" Id="{1ef18ec2-39ea-4a7a-9812-158fef41a970}">
       <Declaration><![CDATA[METHOD M_CyclicLogic : HRESULT
 VAR
@@ -51,21 +69,22 @@ VAR
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[//COnfigure the config struct parameters
-stCfg.rWarninglevel:=GVL_HMI.cWarninglevel;
-stCfg.rErrorLevel:=GVL_HMI.cErrorLevel;
-stCfg.rPressureMinSP:=GVL_HMI.cPressureMinSP;
-stCfg.rPressureMaxSP:=GVL_HMI.cPressureMaxSP;
-stCfg.rTemperatureMinSP:=GVL_HMI.cTemperatureMinSP;
-stCfg.rTemperatureMaxSP:=GVL_HMI.cTemperatureMaxSP;
-stCfg.nRawMin:=GVL_HMI.cRawMin;
-stCfg.nRawMax:=GVL_HMI.cRawMax;
+stCfg.rWarninglevel := GVL_HMI.cWarninglevel;
+stCfg.rErrorLevel := GVL_HMI.cErrorLevel;
+stCfg.rPressureMinSP := GVL_HMI.cPressureMinSP;
+stCfg.rPressureMaxSP := GVL_HMI.cPressureMaxSP;
+stCfg.rTemperatureMinSP := GVL_HMI.cTemperatureMinSP;
+stCfg.rTemperatureMaxSP := GVL_HMI.cTemperatureMaxSP;
+stCfg.nRawMin := GVL_HMI.cRawMin;
+stCfg.nRawMax := GVL_HMI.cRawMax;
 
 st_AnalogPressureTempdata:=stCfg;
 bDeviceEnable:=TRUE;
-THIS^.sTag:=sTag;]]></ST>
+THIS^.sTag:=sTag;
+]]></ST>
       </Implementation>
     </Method>
-    <Method Name="M_PressureState" Id="{5a80939a-4228-4bfa-a79b-b4ef01743c70}">
+    <Method Name="M_PressureState" Id="{5a80939a-4228-4bfa-a79b-b4ef01743c70}" FolderPath="Helpers\">
       <Declaration><![CDATA[METHOD M_PressureState : BOOL
 
 ]]></Declaration>
@@ -80,5 +99,47 @@ ELSE
 END_IF]]></ST>
       </Implementation>
     </Method>
+    <Method Name="M_UpdateToHMI" Id="{ca83704e-8d2e-4d88-a1f1-82ce2927c752}">
+      <Declaration><![CDATA[METHOD M_UpdateToHMI : BOOL
+VAR_OUTPUT
+	PV : REAL;
+	TV : REAL;
+	State : E_ErrorState;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[PV := EngPressure;
+TV := EngTemperature;
+State := SensorState;]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="RawPressure" Id="{afebccb5-7418-4953-b430-a3b7319e3eb4}" FolderPath="Properties\">
+      <Declaration><![CDATA[PROPERTY RawPressure :  INT
+]]></Declaration>
+      <Set Name="Set" Id="{36ade53a-33fa-44b4-81fc-6f302276da78}">
+        <Declaration><![CDATA[]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[nSensorPressure := RawPressure;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <Property Name="RawTemperature" Id="{aac27a54-99ba-4a89-9131-ab6f3c6de3ee}" FolderPath="Properties\">
+      <Declaration><![CDATA[PROPERTY RawTemperature :  INT]]></Declaration>
+      <Set Name="Set" Id="{81c60a91-f9cd-4db1-9cac-80272cd8b0e7}">
+        <Declaration><![CDATA[]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[nSensorTemperature := RawTemperature;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <Property Name="SensorState" Id="{c8ed45f4-5647-46e1-b784-13c67f2d6aa3}" FolderPath="Properties\">
+      <Declaration><![CDATA[PROPERTY SensorState : E_ErrorState]]></Declaration>
+      <Get Name="Get" Id="{10c1b88c-a53f-4f5d-831f-fbab9c783a80}">
+        <Declaration><![CDATA[]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[SensorState := eDeviceState;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
   </POU>
 </TcPlcObject>

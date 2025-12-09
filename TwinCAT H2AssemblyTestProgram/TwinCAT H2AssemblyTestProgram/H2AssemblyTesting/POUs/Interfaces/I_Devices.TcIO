@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <Itf Name="I_Devices" Id="{5ce81993-9a4e-487b-93ae-e57eed0e1a2d}">
+    <Declaration><![CDATA[INTERFACE I_Devices
+]]></Declaration>
+    <Method Name="M_CyclicLogic" Id="{457039af-a69b-4f5f-a08e-36c991da531e}">
+      <Declaration><![CDATA[METHOD M_CyclicLogic : HRESULT
+]]></Declaration>
+    </Method>
+  </Itf>
+</TcPlcObject>

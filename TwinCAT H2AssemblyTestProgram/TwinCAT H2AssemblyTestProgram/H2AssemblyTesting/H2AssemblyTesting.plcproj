@@ -77,6 +77,9 @@
     <Compile Include="POUs\FB_Solenoid.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\Interfaces\I_Devices.TcIO">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\MAIN.TcPOU">
       <SubType>Code</SubType>
     </Compile>
@@ -84,6 +87,7 @@
   <ItemGroup>
     <Folder Include="DUTs" />
     <Folder Include="GVLs" />
+    <Folder Include="POUs\Interfaces" />
     <Folder Include="VISUs" />
     <Folder Include="POUs" />
   </ItemGroup>

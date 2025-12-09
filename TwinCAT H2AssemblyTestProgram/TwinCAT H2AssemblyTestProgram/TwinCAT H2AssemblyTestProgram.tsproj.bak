@@ -93,7 +93,7 @@
 		</System>
 		<Plc>
 			<Project GUID="{62F3C8BB-BCA0-40E5-BF03-2298E4B6F176}" Name="H2AssemblyTesting" PrjFilePath="H2AssemblyTesting\H2AssemblyTesting.plcproj" TmcFilePath="H2AssemblyTesting\H2AssemblyTesting.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{B558E089-5297-8229-A688-E3D3AB6CC0F8}" TmcPath="H2AssemblyTesting\H2AssemblyTesting.tmc">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{F7702E2C-E037-E3D4-FB39-4B8831AF8D2D}" TmcPath="H2AssemblyTesting\H2AssemblyTesting.tmc">
 					<Name>H2AssemblyTesting Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Vars VarGrpType="2" AreaNo="1">

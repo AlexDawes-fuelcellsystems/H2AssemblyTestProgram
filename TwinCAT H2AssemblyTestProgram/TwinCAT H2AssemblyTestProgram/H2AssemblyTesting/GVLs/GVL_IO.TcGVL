@@ -4,6 +4,7 @@
     <Declaration><![CDATA[{attribute 'qualified_only'}
 VAR_GLOBAL CONSTANT
 	cNumofPT:USINT:=16;
+	cNumofMatrices:USINT:=3;
 sPTTags : ARRAY[1..cNumofPT] OF T_MaxString := [
         'PT-301-A-II',
         'PT-302-A-II',
