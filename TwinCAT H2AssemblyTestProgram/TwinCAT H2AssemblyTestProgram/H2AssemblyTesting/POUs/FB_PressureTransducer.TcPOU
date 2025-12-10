@@ -35,7 +35,7 @@ END_VAR
       </Get>
     </Property>
     <Method Name="M_CyclicLogic" Id="{1ef18ec2-39ea-4a7a-9812-158fef41a970}">
-      <Declaration><![CDATA[METHOD M_CyclicLogic : HRESULT
+      <Declaration><![CDATA[METHOD M_CyclicLogic :HRESULT
 VAR
 	rNormPressure:REAL;
 	rNormTemperature:REAL;
@@ -60,7 +60,7 @@ M_PressureState();]]></ST>
       </Implementation>
     </Method>
     <Method Name="M_Init" Id="{5bb119d5-2d47-42ee-aeec-56f042c26262}">
-      <Declaration><![CDATA[METHOD M_Init : BOOL
+      <Declaration><![CDATA[METHOD M_Init 
 VAR_INPUT
     sTag  : T_MaxString;
 END_VAR
@@ -85,8 +85,7 @@ THIS^.sTag:=sTag;
       </Implementation>
     </Method>
     <Method Name="M_PressureState" Id="{5a80939a-4228-4bfa-a79b-b4ef01743c70}" FolderPath="Helpers\">
-      <Declaration><![CDATA[METHOD M_PressureState : BOOL
-
+      <Declaration><![CDATA[METHOD M_PressureState 
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[//Evaluate pressure value against warning and error values.
@@ -100,7 +99,7 @@ END_IF]]></ST>
       </Implementation>
     </Method>
     <Method Name="M_UpdateToHMI" Id="{ca83704e-8d2e-4d88-a1f1-82ce2927c752}">
-      <Declaration><![CDATA[METHOD M_UpdateToHMI : BOOL
+      <Declaration><![CDATA[METHOD M_UpdateToHMI 
 VAR_OUTPUT
 	PV : REAL;
 	TV : REAL;

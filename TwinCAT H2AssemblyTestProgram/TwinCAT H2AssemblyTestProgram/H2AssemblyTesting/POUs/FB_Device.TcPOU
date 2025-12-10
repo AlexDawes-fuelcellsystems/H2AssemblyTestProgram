@@ -42,13 +42,16 @@ END_IF
 // Handle state logic
 IF bError THEN
 	eDeviceState:=E_ErrorState.Alarm;
+	M_CyclicLogic := E_FAIL;
 ELSIF bWarning THEN
         eDeviceState:=E_ErrorState.Warning;	
+		M_CyclicLogic := S_Pending;
 ELSE 
 		eDeviceState:=E_ErrorState.Healthy;
+		M_CyclicLogic := S_OK;
 END_IF
 
-M_CyclicLogic := S_OK;]]></ST>
+]]></ST>
       </Implementation>
     </Method>
   </POU>

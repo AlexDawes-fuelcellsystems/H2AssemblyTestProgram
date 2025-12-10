@@ -35,7 +35,7 @@ END_IF]]></ST>
       </Implementation>
     </Method>
     <Method Name="M_Close" Id="{9936ae59-63a8-4842-acb7-0972cbd832e2}">
-      <Declaration><![CDATA[METHOD PUBLIC M_Close : HRESULT
+      <Declaration><![CDATA[METHOD PUBLIC M_Close 
 
 ]]></Declaration>
       <Implementation>
@@ -58,7 +58,7 @@ M_CheckState();]]></ST>
       </Implementation>
     </Method>
     <Method Name="M_Open" Id="{e0f7a43f-bf45-4aad-b570-5a1a3b451270}">
-      <Declaration><![CDATA[METHOD PUBLIC M_Open : HRESULT
+      <Declaration><![CDATA[METHOD PUBLIC M_Open 
 
 ]]></Declaration>
       <Implementation>

@@ -10,14 +10,18 @@ VAR
 
 	//Instance of fbIO for IO updates
 	fbIO : FB_IO;
+	
 	//Pressure Transducers
 	aPT : ARRAY [1.. GVL_IO.cNumofPT] OF FB_PressureTransducer;
+	
 	//Devices interface
 	Devices : ARRAY[1..GVL_IO.cNumofMatrices+GVL_IO.cNumofPT] OF I_Devices;
 	
 	//Initialising Boolean 
 	bInitialise : BOOL := TRUE;
+	
 	idx : USINT;
+	
 	hr : HRESULT := S_PENDING;
 END_VAR
 ]]></Declaration>
@@ -43,7 +47,7 @@ M_UpdateToHMI();
     </Implementation>
     <Folder Name="Updates" Id="{6a391c12-a86f-41a0-abbe-695c56b3d320}" />
     <Method Name="M_CyclicLogic" Id="{d48a70cc-c9ea-409a-a41a-eae2b0a1f380}">
-      <Declaration><![CDATA[METHOD M_CyclicLogic : BOOL
+      <Declaration><![CDATA[METHOD M_CyclicLogic 
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[FOR idx := 1 TO GVL_IO.cNumofMatrices+GVL_IO.cNumofPT DO
@@ -79,12 +83,15 @@ END_FOR
 hresult[1] := fbInletMatrix.M_Init(nRows:=GVL_HMI.cInletRows,nCols:=GVL_HMI.cInletCols);
 hresult[2] :=fbDispenseMatrix.M_Init(nRows:=GVL_HMI.cMaxRows,nCols:=GVL_HMI.cMaxCols);
 hResult[3] := fbFillMatrix.M_Init(nRows:=GVL_HMI.cMaxRows,nCols:=GVL_HMI.cMaxCols);
+
+//Logic to check if matrices fail to initialise
 FOR idx:= 1 TO GVL_IO.cNumofMatrices DO
 	IF hresult[idx] = E_FAIL THEN
 		M_Initalize:= E_FAIL;
 		RETURN;
 	END_IF
 END_FOR
+
 //Initialised succesfully
 bInitialise:=FALSE;
 M_Initalize := S_OK;]]></ST>

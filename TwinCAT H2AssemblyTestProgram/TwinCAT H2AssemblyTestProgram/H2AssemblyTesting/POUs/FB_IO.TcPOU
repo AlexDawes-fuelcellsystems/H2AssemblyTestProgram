@@ -50,7 +50,7 @@ M_Solenoids();]]></ST>
       </Set>
     </Property>
     <Method Name="M_PTTTransducers" Id="{db9ee37e-2b9d-4ae2-ba7d-052f24f151f3}" FolderPath="Sensors\">
-      <Declaration><![CDATA[METHOD M_PTTTransducers : BOOL
+      <Declaration><![CDATA[METHOD M_PTTTransducers 
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[FOR nsensorNumber:=1 TO GVL_IO.cNumofPT DO		
@@ -60,7 +60,7 @@ END_FOR]]></ST>
       </Implementation>
     </Method>
     <Method Name="M_Solenoids" Id="{dbd95f87-3564-46ed-86ee-3bfcb091fedb}" FolderPath="Actuators\">
-      <Declaration><![CDATA[METHOD M_Solenoids : BOOL
+      <Declaration><![CDATA[METHOD M_Solenoids 
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[//Update IO for valve commands
